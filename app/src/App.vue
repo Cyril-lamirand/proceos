@@ -1,10 +1,14 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <header>
+      <Navbar/>
+    </header>
+    <main>
+      <router-view/>
+    </main>
+    <footer>
+      <Footer/>
+    </footer>
   </div>
 </template>
 
@@ -30,3 +34,10 @@
   color: #42b983;
 }
 </style>
+<script>
+import Navbar from "./components/layouts/Navbar";
+import Footer from "./components/layouts/Footer";
+export default {
+  components: {Footer, Navbar}
+}
+</script>

@@ -1,18 +1,15 @@
-const state = () => ({
-    // Website settings
-    ui: "light"
-})
-
-const getters = {}
-
-const actions = {}
-
-const mutations = {}
-
 export default {
     namespaced: true,
-    state,
-    getters,
-    actions,
-    mutations
+    state: {
+        ui: "light"
+    },
+    getters :{
+        // Getters
+    },
+    actions :{
+        // Setters
+    },
+    mutations: {
+        changeTheme: (state, value) => value ? (state.ui = value) : (state.ui = "light")
+    }
 }
