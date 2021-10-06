@@ -2,6 +2,7 @@
 ## Installation
 Pour informations, le dossier __APP__ contient le FRONT-END du projet (Vue JS). Un README spécialement dédié à l'installation et le contenu du FRONT est disponible dans le dossier.
 
+Ouvrez un terminal, et placez-vous à la racine du projet :
 ```
 cd C:\Path\to\the\project\proceos
 ```
