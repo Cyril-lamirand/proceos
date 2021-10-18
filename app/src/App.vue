@@ -33,11 +33,22 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.bg-light{background-color: #42b983;}
+
+.bg-dark{background-color: #2c3e50;}
+
+.text-light{ color: #2e3136 !important;}
+
+.text-dark{ color: #C9C9C9 !important;}
 </style>
 <script>
 import Navbar from "./components/layouts/Navbar";
 import Footer from "./components/layouts/Footer";
 export default {
-  components: {Footer, Navbar}
+  components: {Footer, Navbar},
+  methods:{
+
+  }
 }
 </script>

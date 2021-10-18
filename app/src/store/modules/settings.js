@@ -13,6 +13,22 @@ export default {
         // Getters
     },
     actions :{
+        defineBg: function(element) {
+            const el = document.getElementsByClassName(element)
+            if (this.$store.state.settings.ui === "light") {
+                return el.classList.add("bg-light")
+            } else {
+                return el.classList.add("bg-dark")
+            }
+        },
+        defineText: function(element) {
+            const el = document.getElementsByClassName(element)
+            if (this.$store.state.settings.ui === "light") {
+                return el.classList.add("text-light")
+            } else {
+                return el.classList.add("text-light")
+            }
+        }
 
     },
     mutations: {
