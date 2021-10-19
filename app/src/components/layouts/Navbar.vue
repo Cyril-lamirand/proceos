@@ -21,11 +21,17 @@
               <CapitalizeFirstLetter v-bind:string="this.$store.state.settings.ui"/>
             </b-form-checkbox>
           </div>
-          <b-nav-form class="ml-3">
-            <b-form-input size="sm" class="mr-sm-2" placeholder="Recherche..."></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">
-              <font-awesome-icon icon="search"/>
-            </b-button>
+          <b-nav-form class="ml-lg-3">
+            <b-row>
+              <b-col cols="9">
+                <b-form-input size="sm" class="mr-sm-2" placeholder="Recherche..."></b-form-input>
+              </b-col>
+              <b-col cols="3">
+                <b-button size="sm" type="submit">
+                  <font-awesome-icon icon="search"/>
+                </b-button>
+              </b-col>
+            </b-row>
           </b-nav-form>
           <b-nav-item-dropdown right>
             <template #button-content>
@@ -102,9 +108,6 @@ export default {
 
 <style scoped>
 
-.global-navbar-component{
-  height: 80px;
-}
 .website-logo{ width: 64px; height: 64px; }
 
 </style>
