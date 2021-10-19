@@ -1,10 +1,6 @@
 <template>
   <div>
-    <b-navbar
-        toggleable="lg"
-        v-bind:class="val === 'light' ? 'bg-light text-dark' : 'bg-dark text-light'"
-        class="global-navbar-component"
-    >
+    <b-navbar toggleable="lg" class="global-navbar-component" id="website-navbar">
       <b-navbar-brand href="#">
         <img alt="Vue logo" src="../../assets/logo.png" class="website-logo" />
       </b-navbar-brand>
@@ -12,10 +8,10 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item href="/">
-            <span v-bind:class="val === 'light' ? 'text-dark' : 'text-light'">Home</span>
+            <span>Home</span>
           </b-nav-item>
           <b-nav-item href="/about">
-            <span v-bind:class="val === 'light' ? 'text-dark' : 'text-light'">About</span>
+            <span>About</span>
           </b-nav-item>
         </b-navbar-nav>
         <!-- Right aligned nav items -->
@@ -34,27 +30,48 @@
           <b-nav-item-dropdown right>
             <template #button-content>
               <em>
-                <span v-bind:class="val === 'light' ? 'text-dark' : 'text-light'">
+                <span>
                   Langue
                 </span>
               </em>
             </template>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">ES</b-dropdown-item>
-            <b-dropdown-item href="#">RU</b-dropdown-item>
-            <b-dropdown-item href="#">FA</b-dropdown-item>
+            <b-dropdown-item href="#">
+              <span v-bind:class="val === 'light' ? '' : 'text-theme-light'">
+                EN
+              </span>
+            </b-dropdown-item>
+            <b-dropdown-item href="#">
+              <span v-bind:class="val === 'light' ? '' : 'text-theme-light'">
+                ES
+              </span>
+            </b-dropdown-item>
+            <b-dropdown-item href="#">
+              <span v-bind:class="val === 'light' ? '' : 'text-theme-light'">
+                RU
+              </span>
+            </b-dropdown-item>
+            <b-dropdown-item href="#">
+              <span v-bind:class="val === 'light' ? '' : 'text-theme-light'">
+                FR
+              </span>
+            </b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item-dropdown right>
             <template #button-content>
               <em>
-                <font-awesome-icon
-                    icon="user-circle"
-                    v-bind:class="val === 'light' ? 'text-dark' : 'text-light'"
-                />
+                <font-awesome-icon icon="user-circle"/>
               </em>
             </template>
-            <b-dropdown-item href="#">Profil</b-dropdown-item>
-            <b-dropdown-item href="#">Déconnexion</b-dropdown-item>
+            <b-dropdown-item href="#">
+              <span v-bind:class="val === 'light' ? '' : 'text-theme-light'">
+                Profil
+              </span>
+            </b-dropdown-item>
+            <b-dropdown-item href="#">
+              <span v-bind:class="val === 'light' ? '' : 'text-theme-light'">
+                Déconnexion
+              </span>
+            </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -88,7 +105,6 @@ export default {
 .global-navbar-component{
   height: 80px;
 }
-
 .website-logo{ width: 64px; height: 64px; }
 
 </style>

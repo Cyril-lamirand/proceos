@@ -4,6 +4,7 @@ export default {
         ui: "light",
         lightThemeColor: "#EEEEEE",
         darkThemeColor: "#222831",
+        cookie: false,
     },
     getters :{
         // Getters
@@ -13,5 +14,6 @@ export default {
     },
     mutations: {
         changeTheme: (state, value) => value ? (state.ui = value) : (state.ui = "light"),
+        defineCookie: (state, value) => value ? (state.cookie = value) : (state.cookie = false)
     }
 }

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Cookie/>
     <header>
       <Navbar/>
     </header>
@@ -15,22 +16,23 @@
 
 <style>
 /* Light Theme */
-.bg-light     {background-color: #42b983 !important;}
-.heading-light{ color: #222222 !important;}
-.text-light   { color: black !important;}
+.navbar-theme-light { background-color: #42b983 !important;}
+.heading-theme-light{ color: #222222 !important;}
+.text-theme-light   { color: black;}
 
 /* Dark Theme */
-.bg-dark     {background-color: #2c3e50 !important;}
-.heading-dark{ color: #CC7832 !important;}
-.text-dark   { color: white !important;}
+.navbar-theme-dark { background-color: #2c3e50 !important;}
+.heading-theme-dark{ color: #CC7832 !important;}
+.text-theme-dark   { color: white !important;}
 </style>
 
 <script>
 import Navbar from "./components/layouts/Navbar"
 import Footer from "./components/layouts/Footer"
+import Cookie from "./components/layouts/Cookie";
 
 export default {
-  components: {Footer, Navbar},
+  components: {Cookie, Footer, Navbar},
   data: function() {
     return{
       val: this.$store.commit("settings/changeTheme", this.$store.state.settings.ui)
@@ -40,39 +42,51 @@ export default {
     'val': function(value, oldValue) {
       const body = document.body
       const heading = ["h1", "h2", "h3", "h4", "h5", "h6"]
-      const text = ["p", "span", "ul", "li", "label"]
+      const text = ["p", "span", "ul", "li", "label", "i", "icon", "a"]
+      const navbar = document.getElementById("website-navbar")
       if(value === 'light') {
+        console.log(navbar)
         console.log("New theme : " + value + " --- Old theme : " + oldValue)
-        body.style.backgroundColor = this.$store.state.settings.darkThemeColor
+        // Change Body
+        body.style.backgroundColor = this.$store.state.settings.lightThemeColor
+        // Change Navbar
+        navbar.classList.remove("navbar-theme-dark")
+        navbar.classList.add("navbar-theme-light")
+        // Change Heading
         heading.forEach((el) => {
           const tags = document.getElementsByTagName(el)
           for (var item of tags) {
-            item.classList.remove("heading-dark")
-            item.classList.add("heading-light")
+            item.classList.remove("heading-theme-dark")
+            item.classList.add("heading-theme-light")
           }
         })
+        // Change Text
         text.forEach((el) => {
           const tags = document.getElementsByTagName(el)
           for (var item of tags) {
-            item.classList.remove("text-light")
-            item.classList.add("text-dark")
+            item.classList.remove("text-theme-dark")
+            item.classList.add("text-theme-light")
           }
         })
       } else {
+        console.log(navbar)
         console.log("New theme : " + value + " --- Old theme : " + oldValue)
-        body.style.backgroundColor = this.$store.state.settings.lightThemeColor
+        body.style.backgroundColor = this.$store.state.settings.darkThemeColor
+        // Change Navbar
+        navbar.classList.remove("navbar-theme-light")
+        navbar.classList.add("navbar-theme-dark")
         heading.forEach((el) => {
           const tags = document.getElementsByTagName(el)
           for (var item of tags) {
-            item.classList.remove("heading-light")
-            item.classList.add("heading-dark")
+            item.classList.remove("heading-theme-light")
+            item.classList.add("heading-theme-dark")
           }
         })
         text.forEach((el) => {
           const tags = document.getElementsByTagName(el)
           for (var item of tags) {
-            item.classList.remove("text-dark")
-            item.classList.add("text-light")
+            item.classList.remove("text-theme-light")
+            item.classList.add("text-theme-dark")
           }
         })
       }
