@@ -1,77 +1,64 @@
 <template>
   <div>
-    <div v-if="this.$store.state.settings.ui === 'light'">
-      <div class="global-navbar-component bg-light text-dark">
-        <b-container fluid class="h-100">
-          <b-row class="h-100">
-            <b-col cols="8">
-              <b-row class="h-100">
-                <b-col cols="4">
-                  <div class="h-100 d-flex align-items-center">
-                    <img alt="Vue logo" src="../../assets/logo.png" class="website-logo" />
-                  </div>
-                </b-col>
-                <b-col cols="8" class="d-flex align-items-center justify-content-around">
-                  <div>
-                    <router-link to="/">Home</router-link>
-                  </div>
-                  <div>
-                    <router-link to="/about">About</router-link>
-                  </div>
-                  <div>
-                    <router-link to="/about">About</router-link>
-                  </div>
-                </b-col>
-              </b-row>
-            </b-col>
-            <b-col cols="2" class="d-flex align-items-center justify-content-center">
-              <b-form-checkbox v-model="checked" @change="setTheme" switch size="lg">
-                <CapitalizeFirstLetter v-bind:string="this.$store.state.settings.ui"/>
-              </b-form-checkbox>
-            </b-col>
-            <b-col cols="2" class="d-flex align-items-center justify-content-center">
-              <font-awesome-icon icon="user-circle"/>
-            </b-col>
-          </b-row>
-        </b-container>
-      </div>
-    </div>
-    <div v-else>
-      <div class="global-navbar-component bg-dark text-light">
-        <b-container fluid class="h-100">
-          <b-row class="h-100">
-            <b-col cols="8">
-              <b-row class="h-100">
-                <b-col cols="4">
-                  <div class="h-100 d-flex align-items-center">
-                    <img alt="Vue logo" src="../../assets/logo.png" class="website-logo" />
-                  </div>
-                </b-col>
-                <b-col cols="8" class="d-flex align-items-center justify-content-around">
-                  <div>
-                    <router-link to="/">Home</router-link>
-                  </div>
-                  <div>
-                    <router-link to="/about">About</router-link>
-                  </div>
-                  <div>
-                    <router-link to="/about">About</router-link>
-                  </div>
-                </b-col>
-              </b-row>
-            </b-col>
-            <b-col cols="2" class="d-flex align-items-center justify-content-center">
-              <b-form-checkbox v-model="checked" @change="setTheme" switch size="lg">
-                <CapitalizeFirstLetter v-bind:string="this.$store.state.settings.ui"/>
-              </b-form-checkbox>
-            </b-col>
-            <b-col cols="2" class="d-flex align-items-center justify-content-center">
-              <font-awesome-icon icon="user-circle"/>
-            </b-col>
-          </b-row>
-        </b-container>
-      </div>
-    </div>
+    <b-navbar
+        toggleable="lg"
+        v-bind:class="val === 'light' ? 'bg-light text-dark' : 'bg-dark text-light'"
+        class="global-navbar-component"
+    >
+      <b-navbar-brand href="#">
+        <img alt="Vue logo" src="../../assets/logo.png" class="website-logo" />
+      </b-navbar-brand>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item href="/">
+            <span v-bind:class="val === 'light' ? 'text-dark' : 'text-light'">Home</span>
+          </b-nav-item>
+          <b-nav-item href="/about">
+            <span v-bind:class="val === 'light' ? 'text-dark' : 'text-light'">About</span>
+          </b-nav-item>
+        </b-navbar-nav>
+        <!-- Right aligned nav items -->
+        <b-navbar-nav class="ml-auto">
+          <div class="d-flex align-items-center">
+            <b-form-checkbox v-model="checked" @change="setTheme" switch size="md">
+              <CapitalizeFirstLetter v-bind:string="this.$store.state.settings.ui"/>
+            </b-form-checkbox>
+          </div>
+          <b-nav-form class="ml-3">
+            <b-form-input size="sm" class="mr-sm-2" placeholder="Recherche..."></b-form-input>
+            <b-button size="sm" class="my-2 my-sm-0" type="submit">
+              <font-awesome-icon icon="search"/>
+            </b-button>
+          </b-nav-form>
+          <b-nav-item-dropdown right>
+            <template #button-content>
+              <em>
+                <span v-bind:class="val === 'light' ? 'text-dark' : 'text-light'">
+                  Langue
+                </span>
+              </em>
+            </template>
+            <b-dropdown-item href="#">EN</b-dropdown-item>
+            <b-dropdown-item href="#">ES</b-dropdown-item>
+            <b-dropdown-item href="#">RU</b-dropdown-item>
+            <b-dropdown-item href="#">FA</b-dropdown-item>
+          </b-nav-item-dropdown>
+          <b-nav-item-dropdown right>
+            <template #button-content>
+              <em>
+                <font-awesome-icon
+                    icon="user-circle"
+                    v-bind:class="val === 'light' ? 'text-dark' : 'text-light'"
+                />
+              </em>
+            </template>
+            <b-dropdown-item href="#">Profil</b-dropdown-item>
+            <b-dropdown-item href="#">Déconnexion</b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
   </div>
 </template>
 

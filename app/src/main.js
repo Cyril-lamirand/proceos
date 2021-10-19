@@ -9,8 +9,10 @@ import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faSearch} from "@fortawesome/free-solid-svg-icons/faSearch"
 
 library.add(faUserCircle)
+library.add(faSearch)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 // Bootstrap
