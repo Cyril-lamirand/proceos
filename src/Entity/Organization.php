@@ -25,11 +25,6 @@ class Organization
     private $label;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="organization")
-     */
-    private $users;
-
-    /**
      * @ORM\OneToMany(targetEntity=Classe::class, mappedBy="organization")
      */
     private $classes;
@@ -39,10 +34,16 @@ class Organization
      */
     private $forum;
 
+    /**
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="organization")
+     */
+    private $users;
+
     public function __construct()
     {
-        $this->users = new ArrayCollection();
         $this->classes = new ArrayCollection();
+        $this->users = new ArrayCollection();
+        $this->users2 = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -58,36 +59,6 @@ class Organization
     public function setLabel(string $label): self
     {
         $this->label = $label;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->setOrganization($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getOrganization() === $this) {
-                $user->setOrganization(null);
-            }
-        }
 
         return $this;
     }
@@ -138,4 +109,35 @@ class Organization
 
         return $this;
     }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setOrganization($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getOrganization() === $this) {
+                $user->setOrganization(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
