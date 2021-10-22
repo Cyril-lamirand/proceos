@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Module{% endblock %}
+
+{% block body %}
+    <h1>Module</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ module.id }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{{ module.createdat ? module.createdat|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('module_index') }}">back to list</a>
+
+    <a href="{{ path('module_edit', {'id': module.id}) }}">edit</a>
+
+    {{ include('module/_delete_form.html.twig') }}
+{% endblock %}

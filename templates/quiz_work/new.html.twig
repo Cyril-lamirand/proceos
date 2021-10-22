@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New QuizWork{% endblock %}
+
+{% block body %}
+    <h1>Create new QuizWork</h1>
+
+    {{ include('quiz_work/_form.html.twig') }}
+
+    <a href="{{ path('quiz_work_index') }}">back to list</a>
+{% endblock %}
