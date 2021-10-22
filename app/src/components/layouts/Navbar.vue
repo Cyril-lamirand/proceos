@@ -8,7 +8,7 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-dropdown-item :href="url + ''">
-            <span>Test</span>
+            <span>Home</span>
           </b-dropdown-item>
           <b-dropdown-item :href="url + 'about'">
             <span>About</span>
