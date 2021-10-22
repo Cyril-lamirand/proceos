@@ -5,6 +5,7 @@ export default {
         lightThemeColor: "#EEEEEE",
         darkThemeColor: "#222831",
         cookie: false,
+        lang: "fr"
     },
     getters :{
         // Getters

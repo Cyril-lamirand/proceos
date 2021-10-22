@@ -7,12 +7,12 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="/">
-            <span>Home</span>
-          </b-nav-item>
-          <b-nav-item href="/about">
+          <b-dropdown-item :href="url + ''">
+            <span>Test</span>
+          </b-dropdown-item>
+          <b-dropdown-item :href="url + 'about'">
             <span>About</span>
-          </b-nav-item>
+          </b-dropdown-item>
         </b-navbar-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
@@ -41,23 +41,23 @@
                 </span>
               </em>
             </template>
-            <b-dropdown-item href="#">
-              <span v-bind:class="val === 'light' ? '' : 'text-theme-light'">
+            <b-dropdown-item href="/en">
+              <span class="force-black">
                 EN
               </span>
             </b-dropdown-item>
             <b-dropdown-item href="#">
-              <span v-bind:class="val === 'light' ? '' : 'text-theme-light'">
+              <span class="force-black">
                 ES
               </span>
             </b-dropdown-item>
             <b-dropdown-item href="#">
-              <span v-bind:class="val === 'light' ? '' : 'text-theme-light'">
+              <span class="force-black">
                 RU
               </span>
             </b-dropdown-item>
-            <b-dropdown-item href="#">
-              <span v-bind:class="val === 'light' ? '' : 'text-theme-light'">
+            <b-dropdown-item href="/fr">
+              <span class="force-black">
                 FR
               </span>
             </b-dropdown-item>
@@ -69,14 +69,10 @@
               </em>
             </template>
             <b-dropdown-item href="#">
-              <span v-bind:class="val === 'light' ? '' : 'text-theme-light'">
-                Profil
-              </span>
+              <span class="force-black">Profil</span>
             </b-dropdown-item>
             <b-dropdown-item href="#">
-              <span v-bind:class="val === 'light' ? '' : 'text-theme-light'">
-                Déconnexion
-              </span>
+              <span class="force-black">Deconnexion</span>
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -86,14 +82,15 @@
 </template>
 
 <script>
-import CapitalizeFirstLetter from "../logics/CapitalizeFirstLetter";
+import CapitalizeFirstLetter from "../logics/CapitalizeFirstLetter"
 export default {
   name: "Navbar",
   components: {CapitalizeFirstLetter},
   data() {
     return{
       val: this.$store.state.settings.ui,
-      checked: this.$store.state.settings.ui !== "light"
+      checked: this.$store.state.settings.ui !== "light",
+      url: window.location.origin + "/" + this.$store.state.settings.lang + "/"
     }
   },
   methods:{
@@ -104,10 +101,14 @@ export default {
     },
   }
 }
+
+console.log(window.location)
 </script>
 
 <style scoped>
 
 .website-logo{ width: 64px; height: 64px; }
+
+.force-black{ color: black !important;}
 
 </style>

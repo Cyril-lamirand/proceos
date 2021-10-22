@@ -6,6 +6,7 @@
     </div>
 
     <div class="text-center mt-5 mb-5">
+      <h1>{{ $t("homepage.heading-1")}}</h1>
       <h1 class="pt-2">Heading H1</h1>
       <h2 class="pt-2">Heading H2</h2>
       <h3 class="pt-2">Heading H3</h3>
