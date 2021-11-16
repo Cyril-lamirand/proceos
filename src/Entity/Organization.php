@@ -43,7 +43,6 @@ class Organization
     {
         $this->classes = new ArrayCollection();
         $this->users = new ArrayCollection();
-        $this->users2 = new ArrayCollection();
     }
 
     public function getId(): ?int
