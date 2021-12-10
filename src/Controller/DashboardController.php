@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 #[Route('/dashboard')]
 class DashboardController extends AbstractController
 {
-    #[Route('/')]
+    #[Route('/',name: 'dashboard')]
     public function index(): Response
     {
         return $this->render('dashboard/index.html.twig', [
