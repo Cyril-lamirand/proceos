@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('exercice_work_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('exercice_work_index') }}">back to list</a>
 
-    <a href="{{ path('exercice_work_edit', {'id': exercice_work.id}) }}">edit</a>
+    <a class="btn btn-success" href="{{ path('exercice_work_edit', {'id': exercice_work.id}) }}"><i class="fas fa-pen"></i></a>
 
     {{ include('exercice_work/_delete_form.html.twig') }}
 {% endblock %}

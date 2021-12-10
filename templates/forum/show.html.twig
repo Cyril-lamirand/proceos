@@ -18,9 +18,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('forum_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('forum_index') }}">back to list</a>
 
-    <a href="{{ path('forum_edit', {'id': forum.id}) }}">edit</a>
+    <a class="btn btn-success" href="{{ path('forum_edit', {'id': forum.id}) }}"><i class="fas fa-pen"></i></a>
 
     {{ include('forum/_delete_form.html.twig') }}
 {% endblock %}

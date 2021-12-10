@@ -3,33 +3,35 @@
 {% block title %}Module index{% endblock %}
 
 {% block body %}
-    <h1>Module index</h1>
+<h1>Modules</h1>
+<a class="btn btn-success" href="{{ path('module_new') }}">Create new</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Createdat</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for module in modules %}
-            <tr>
-                <td>{{ module.id }}</td>
-                <td>{{ module.createdat ? module.createdat|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('module_show', {'id': module.id}) }}">show</a>
-                    <a href="{{ path('module_edit', {'id': module.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Createdat</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for module in modules %}
+    <tr>
+        <td>{{ module.id }}</td>
+        <td>{{ module.createdat ? module.createdat|date('Y-m-d H:i:s') : '' }}</td>
+        <td>
+            <a class="btn btn-success" href="{{ path('module_show', {'id': module.id}) }}"><i
+                    class="far fa-eye"></i></a>
+            <a class="btn btn-success" href="{{ path('module_edit', {'id': module.id}) }}"><i
+                    class="fas fa-pen"></i></a>
+        </td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="3">no records found</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
-    <a href="{{ path('module_new') }}">Create new</a>
 {% endblock %}

@@ -3,35 +3,35 @@
 {% block title %}Quiz index{% endblock %}
 
 {% block body %}
-    <h1>Quiz index</h1>
+<h1>Quiz</h1>
+<a class="btn btn-success" href="{{ path('quiz_new') }}">Create new</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>Createdat</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for quiz in quizzes %}
-            <tr>
-                <td>{{ quiz.id }}</td>
-                <td>{{ quiz.label }}</td>
-                <td>{{ quiz.createdat ? quiz.createdat|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('quiz_show', {'id': quiz.id}) }}">show</a>
-                    <a href="{{ path('quiz_edit', {'id': quiz.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Label</th>
+        <th>Createdat</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for quiz in quizzes %}
+    <tr>
+        <td>{{ quiz.id }}</td>
+        <td>{{ quiz.label }}</td>
+        <td>{{ quiz.createdat ? quiz.createdat|date('Y-m-d H:i:s') : '' }}</td>
+        <td>
+            <a class="btn btn-success" href="{{ path('quiz_show', {'id': quiz.id}) }}"><i class="far fa-eye"></i></a>
+            <a class="btn btn-success" href="{{ path('quiz_edit', {'id': quiz.id}) }}"><i class="fas fa-pen"></i></a>
+        </td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="4">no records found</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
-    <a href="{{ path('quiz_new') }}">Create new</a>
 {% endblock %}
