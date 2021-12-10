@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/exercice/work')]
+#[Route('/exercice_work')]
 class ExerciceWorkController extends AbstractController
 {
     #[Route('/', name: 'exercice_work_index', methods: ['GET'])]
