@@ -18,9 +18,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('classe_index') }}">back to list</a>
+    <a class="btn btn-primary" href="{{ path('classe_index') }}">back to list</a>
 
-    <a href="{{ path('classe_edit', {'id': classe.id}) }}">edit</a>
+    <a class="btn btn-success" href="{{ path('classe_edit', {'id': classe.id}) }}"><i class="fas fa-pen"></i></a>
 
     {{ include('classe/_delete_form.html.twig') }}
 {% endblock %}

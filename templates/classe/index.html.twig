@@ -3,33 +3,33 @@
 {% block title %}Classe index{% endblock %}
 
 {% block body %}
-    <h1>Classe index</h1>
+<h1>Classes</h1>
+<a class="btn btn-success" href="{{ path('classe_new') }}">Create new</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for classe in classes %}
-            <tr>
-                <td>{{ classe.id }}</td>
-                <td>{{ classe.label }}</td>
-                <td>
-                    <a href="{{ path('classe_show', {'id': classe.id}) }}">show</a>
-                    <a href="{{ path('classe_edit', {'id': classe.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Label</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for classe in classes %}
+    <tr>
+        <td>{{ classe.id }}</td>
+        <td>{{ classe.label }}</td>
+        <td>
+            <a class="btn btn-success" href="{{ path('classe_show', {'id': classe.id}) }}"><i class="far fa-eye"></i></a>
+            <a class="btn btn-success" href="{{ path('classe_edit', {'id': classe.id}) }}"><i class="fas fa-pen"></i></a>
+        </td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="3">no records found</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
-    <a href="{{ path('classe_new') }}">Create new</a>
 {% endblock %}
