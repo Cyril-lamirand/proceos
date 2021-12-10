@@ -3,35 +3,37 @@
 {% block title %}QuizWork index{% endblock %}
 
 {% block body %}
-    <h1>QuizWork index</h1>
+<h1>QuizWork</h1>
+<a class="btn btn-success" href="{{ path('quiz_work_new') }}">Create new</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Correctanswer</th>
-                <th>Createdat</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for quiz_work in quiz_works %}
-            <tr>
-                <td>{{ quiz_work.id }}</td>
-                <td>{{ quiz_work.correctanswer }}</td>
-                <td>{{ quiz_work.createdat ? quiz_work.createdat|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('quiz_work_show', {'id': quiz_work.id}) }}">show</a>
-                    <a href="{{ path('quiz_work_edit', {'id': quiz_work.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Correctanswer</th>
+        <th>Createdat</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for quiz_work in quiz_works %}
+    <tr>
+        <td>{{ quiz_work.id }}</td>
+        <td>{{ quiz_work.correctanswer }}</td>
+        <td>{{ quiz_work.createdat ? quiz_work.createdat|date('Y-m-d H:i:s') : '' }}</td>
+        <td>
+            <a class="btn btn-success" href="{{ path('quiz_work_show', {'id': quiz_work.id}) }}"><i
+                    class="far fa-eye"></i></a>
+            <a class="btn btn-success" href="{{ path('quiz_work_edit', {'id': quiz_work.id}) }}"><i
+                    class="fas fa-pen"></i></a>
+        </td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="4">no records found</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
-    <a href="{{ path('quiz_work_new') }}">Create new</a>
 {% endblock %}
