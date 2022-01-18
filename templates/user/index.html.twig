@@ -4,7 +4,7 @@
 
 {% block body %}
 <h1>Users</h1>
-
+<a href="{{path('create_user')}}" class="btn btn-success">Create user</a>
 <table class="table">
     <thead>
     <tr>
@@ -23,8 +23,7 @@
         <td>{{user.email}}</td>
         <td>{{user.firstname}}</td>
         <td>{{user.lastname}}</td>
-        <td>{{user.roles[0]}}</td>
-        <td>
+        <td>{{user.roles[0]}}
             <form action="{{path('admin_update_role',{id:user.id})}}" method="post">
                 <select name="roles" id="roles">
                     <option value="ROLE_ADMIN">ROLE_ADMIN</option>
@@ -34,6 +33,9 @@
                 </select>
                 <input class="btn btn-primary" type="submit" value="update">
             </form>
+        </td>
+        <td>
+            <a class="btn btn-success" href="{{path('update_user',{id:user.id})}}"><i class="fas fa-pen"></i></a>
         </td>
     </tr>
     {% else %}
