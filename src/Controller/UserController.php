@@ -6,6 +6,7 @@ use App\Entity\Classe;
 use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,7 +50,11 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($_POST);
+            dd($_POST['courses']);
+            $courses = $_POST['courses'];
+            foreach ($courses as $course){
+                $user->addClass($course);
+            }
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($user);
             $manager->flush();
@@ -63,7 +68,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/api/classes', name: 'api_get_classes')]
-    public function getClasses()
+    public function getClasses(): JsonResponse
     {
         $classes = $this->getDoctrine()->getManager()->getRepository(Classe::class)->findAll();
         $array = [];
@@ -73,7 +78,7 @@ class UserController extends AbstractController
                 'label' => $classe->getLabel(),
                 'id' => $classe->getId(),
             ];
-            array_push($array,$ar);
+            $array[] = $ar;
         }
 
         return $this->json($array);

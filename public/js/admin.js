@@ -1,5 +1,6 @@
 let select = document.getElementById('user_classes');
 let hiddenInput = document.getElementById('courses');
+hiddenInput.setAttribute('value', "");
 
 fetch(window.location.origin + '/admin/api/classes')
     .then(res => res.json())
@@ -21,8 +22,12 @@ select.addEventListener('change', () => {
     let inputContentIntoArray = inputContent.split(',');
     createLiForList(select.options[select.selectedIndex].text, select.value);
     inputContentIntoArray.push(select.value);
-    hiddenInput.innerHTML = inputContentIntoArray.join(',');
-
+    if (hiddenInput.getAttribute('value') === "") {
+        hiddenInput.setAttribute('value', inputContentIntoArray.join(','));
+        hiddenInput.setAttribute('value', hiddenInput.getAttribute('value').substring(1));
+    } else {
+        hiddenInput.setAttribute('value', hiddenInput.getAttribute('value') + inputContentIntoArray.join(','));
+    }
 
 })
 
@@ -47,13 +52,21 @@ function createLiForList(text, id) {
     btn.setAttribute('data-id', id);
 
     btn.addEventListener('click', (event) => {
-        let array = hiddenInput.textContent.split(',');
-        let parent = event.target.parentNode;
-        let parentDataId = parent.getAttribute('data-id');
-        let newContentForArray = array.splice(array.indexOf(parentDataId) + 1, 1);
-        hiddenInput.textContent = newContentForArray.join(',');
-        li.parentNode.remove();
+        let str = hiddenInput.getAttribute('value');
+        let parentDataId = event.target.parentNode.getAttribute('data-id');
+        if (str.length !== 1) {
+            let array = str.split(',');
+            console.log(array);
+            let res = array.filter(el => el !== parentDataId);
+            console.log(res);
+            res = res.join();
+            console.log(res);
+            hiddenInput.setAttribute('value', res);
+        } else {
+            hiddenInput.setAttribute('value', '');
+        }
 
+        li.parentNode.remove();
     })
 
     div.append(li);
