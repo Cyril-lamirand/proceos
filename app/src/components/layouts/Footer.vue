@@ -60,7 +60,7 @@
         </b-col>
       </b-row>
       <b-col cols="12" class="d-flex justify-content-center mt-5">
-        <h6>Open Source - Prenez nous par le cul. 2021-2022.</h6>
+        <h6>Proceos - Open-Source. 2021-2022.</h6>
       </b-col>
     </b-container>
   </div>
