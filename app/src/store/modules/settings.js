@@ -1,6 +1,7 @@
 export default {
     namespaced: true,
     state: {
+        backendUrl: "http://localhost:8000/",
         ui: "light",
         lightThemeColor: "#EEEEEE",
         darkThemeColor: "#222831",

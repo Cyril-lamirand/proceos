@@ -93,6 +93,8 @@
 </template>
 
 <script>
+import axios from "../plugins/axios"
+
 export default {
   name: "Register",
   data() {
@@ -108,13 +110,16 @@ export default {
         { text: "Veuillez choisir...", value: null },
         "Étudiant",
         "Intervenant",
-        "Administrateur",
+        "Gérant d'une organisation",
       ]
     };
   },
   methods: {
     onSubmit(event) {
       event.preventDefault();
+      axios.post(this.$store.state["settings/backendUrl"] + "/api/register", this.form)
+
+
       alert(JSON.stringify(this.form))
     },
     onReset(event) {
