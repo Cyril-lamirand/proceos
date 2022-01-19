@@ -56,11 +56,8 @@ function createLiForList(text, id) {
         let parentDataId = event.target.parentNode.getAttribute('data-id');
         if (str.length !== 1) {
             let array = str.split(',');
-            console.log(array);
             let res = array.filter(el => el !== parentDataId);
-            console.log(res);
             res = res.join();
-            console.log(res);
             hiddenInput.setAttribute('value', res);
         } else {
             hiddenInput.setAttribute('value', '');

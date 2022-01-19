@@ -12,14 +12,24 @@
         <option value="0" selected disabled>Choose a class</option>
     </select>
     <ul id="listOfClasses">
+        {% if user is not empty %}
+        {% for usr in user.classes %}
+        <div style="display: flex;align-items: center;margin-top: 10px;">
+            <li style="margin-right: 10px;">{{usr.label}}</li>
+            <button class="btn btn-danger trash" data-id="{{usr.id}}"><i class="fas fa-trash"></i></button>
+        </div>
+        {% endfor %}
+        {% endif %}
     </ul>
 </div>
+
 <div style="display:none">
-    <input type="text" name="courses" id="courses">
+    <input type="text" name="courses" id="courses" value="">
 </div>
 {{ form_end(form) }}
 {% endblock %}
 
 {% block javascripts %}
 <script src="{{ asset('js/admin.js')}}"></script>
+<script src="{{asset('js/admin_update_user.js')}}"></script>
 {% endblock %}
