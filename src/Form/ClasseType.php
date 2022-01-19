@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Classe;
 use App\Entity\Organization;
+use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,7 +19,8 @@ class ClasseType extends AbstractType
             ->add('organization', EntityType::class, [
                 'class' => Organization::class,
                 'choice_label' => "label",
-            ]);
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
