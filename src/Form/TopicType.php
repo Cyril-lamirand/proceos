@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Topic;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,7 +16,10 @@ class TopicType extends AbstractType
         $builder
             ->add('title')
             ->add('createdat')
-            ->add('user')
+            ->add('user', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'email'
+            ])
         ;
     }
 

@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Exercice;
+use App\Entity\Module;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,7 +21,10 @@ class ExerciceType extends AbstractType
             ->add('contentbeginner')
             ->add('contentintermediate')
             ->add('contentexpert')
-            ->add('module')
+            ->add('module', EntityType::class, [
+                'class' => Module::class,
+                'choice_label' => 'id'
+            ])
         ;
     }
 
