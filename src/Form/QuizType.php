@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Module;
 use App\Entity\Quiz;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,7 +16,10 @@ class QuizType extends AbstractType
         $builder
             ->add('label')
             ->add('createdat')
-            ->add('module')
+            ->add('module', EntityType::class, [
+                'class' => Module::class,
+                'choice_label' => 'id'
+            ])
         ;
     }
 

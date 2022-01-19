@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Forum;
 use App\Entity\Organization;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +15,6 @@ class OrganizationType extends AbstractType
     {
         $builder
             ->add('label')
-            ->add('forum')
         ;
     }
 
