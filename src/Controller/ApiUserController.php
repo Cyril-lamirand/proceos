@@ -74,7 +74,7 @@ class ApiUserController extends AbstractController
         // TODO : Check if everything is ok !
 
         $arrayCollection = [
-            "status" => "200",
+            "status" => 200,
             "message" => "Utilisateur enregistre en base de donnees !"
         ];
 
