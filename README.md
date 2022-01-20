@@ -41,7 +41,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 * Lorem ipsum dolor sit amet.
 * Lorem ipsum dolor sit amet.
 ## Contributors
-* Cyril LAMIRAND
-* Mathias GILLES
-* Victor GAUBIN
+* Cyril LAMIRAND.
+* Mathias GILLES.
+* Victor GAUBIN.
 
