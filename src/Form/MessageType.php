@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Message;
+use App\Entity\Topic;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -20,7 +21,10 @@ class MessageType extends AbstractType
                 'class' => User::class,
                 'choice_label' => 'email'
             ])
-        ;
+            ->add('topic', EntityType::class, [
+                'class' => Topic::class,
+                'choice_label' => "title",
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

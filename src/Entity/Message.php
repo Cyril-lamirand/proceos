@@ -33,6 +33,12 @@ class Message
      */
     private $createdat;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Topic::class, inversedBy="messages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $topic;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +76,18 @@ class Message
     public function setCreatedat(\DateTimeInterface $createdat): self
     {
         $this->createdat = $createdat;
+
+        return $this;
+    }
+
+    public function getTopic(): ?Topic
+    {
+        return $this->topic;
+    }
+
+    public function setTopic(?Topic $topic): self
+    {
+        $this->topic = $topic;
 
         return $this;
     }
