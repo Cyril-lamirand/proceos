@@ -98,10 +98,6 @@ export default function Register() {
         }
     }, [organization])
 
-    // TODO / DEV : Have to be deleted
-    useEffect(() => { console.log(organization) }, [organization])
-    useEffect(() => { console.log(form) }, [form])
-
     return(
         <>
             <div className="container">
