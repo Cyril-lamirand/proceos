@@ -5,11 +5,13 @@ import axios from "axios"
 import {UserContext} from "../../contexts/UserContext"
 // Assets
 import Square from "../../assets/fake/fake-square.jpg"
+import {useNavigate} from "react-router-dom";
 
 export default function Login() {
 
     const [form, setForm] = useState({})
     const [user, setUser] = useContext(UserContext)
+    const navigate = useNavigate()
 
     function handleChange(event) {
         const target = event.target
@@ -34,6 +36,9 @@ export default function Login() {
                     } else {
                         console.log("Error somewhere")
                     }
+                })
+                .then(()=>{
+                    navigate("/dashboard")
                 })
 
         } catch (error) {
