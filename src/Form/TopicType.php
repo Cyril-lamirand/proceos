@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Forum;
 use App\Entity\Topic;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -20,7 +21,10 @@ class TopicType extends AbstractType
                 'class' => User::class,
                 'choice_label' => 'email'
             ])
-        ;
+            ->add('forum', EntityType::class, [
+                'class' => Forum::class,
+                'choice_label' => "label",
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

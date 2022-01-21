@@ -33,6 +33,12 @@ class Topic
      */
     private $createdat;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Forum::class, inversedBy="topics")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $forum;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +76,18 @@ class Topic
     public function setCreatedat(\DateTimeInterface $createdat): self
     {
         $this->createdat = $createdat;
+
+        return $this;
+    }
+
+    public function getForum(): ?Forum
+    {
+        return $this->forum;
+    }
+
+    public function setForum(?Forum $forum): self
+    {
+        $this->forum = $forum;
 
         return $this;
     }

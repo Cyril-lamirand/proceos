@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ForumRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +29,16 @@ class Forum
      * @ORM\JoinColumn(nullable=false)
      */
     private $organization;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Topic::class, mappedBy="forum", orphanRemoval=true)
+     */
+    private $topics;
+
+    public function __construct()
+    {
+        $this->topics = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -53,6 +65,36 @@ class Forum
     public function setOrganization(Organization $organization): self
     {
         $this->organization = $organization;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Topic[]
+     */
+    public function getTopics(): Collection
+    {
+        return $this->topics;
+    }
+
+    public function addTopic(Topic $topic): self
+    {
+        if (!$this->topics->contains($topic)) {
+            $this->topics[] = $topic;
+            $topic->setForum($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTopic(Topic $topic): self
+    {
+        if ($this->topics->removeElement($topic)) {
+            // set the owning side to null (unless already changed)
+            if ($topic->getForum() === $this) {
+                $topic->setForum(null);
+            }
+        }
 
         return $this;
     }
