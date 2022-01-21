@@ -84,6 +84,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $organization;
 
+    /**
+     * @ORM\Column(type="string", length=255,nullable=true)
+     */
+    private $profilepicture;
+
     public function __construct()
     {
         $this->classes = new ArrayCollection();
@@ -392,6 +397,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setOrganization(?Organization $organization): self
     {
         $this->organization = $organization;
+
+        return $this;
+    }
+
+    public function getProfilepicture(): ?string
+    {
+        return $this->profilepicture;
+    }
+
+    public function setProfilepicture(string $profilepicture): self
+    {
+        $this->profilepicture = $profilepicture;
 
         return $this;
     }

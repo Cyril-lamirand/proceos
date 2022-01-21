@@ -8,4 +8,5 @@
 /var/
 /vendor/
 /public/uploads/organizations/
+/public/uploads/users/
 ###< symfony/framework-bundle ###

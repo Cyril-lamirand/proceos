@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Classe;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -13,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/admin')]
 class UserController extends AbstractController
@@ -43,7 +45,7 @@ class UserController extends AbstractController
 
     #[Route('/user/create', name: 'create_user')]
     #[Route('/user/update/{id}', name: 'update_user')]
-    public function updateUser(User $user = null, Request $request, UserPasswordHasherInterface $passwordHasher): RedirectResponse|Response
+    public function updateUser(User $user = null, Request $request, UserPasswordHasherInterface $passwordHasher, SluggerInterface $slugger): RedirectResponse|Response
     {
         if (!$user) {
             $user = new User();
@@ -64,6 +66,12 @@ class UserController extends AbstractController
                 $user,
                 'motdepasse'
             ));
+            $profilePicture = $form->get('profilepicture')->getData();
+            if ($profilePicture) {
+                $fileUploader = new FileUploader($this->getParameter('users'), $slugger);
+                $ppName = $fileUploader->upload($profilePicture);
+                $user->setProfilepicture($ppName);
+            }
             $manager->persist($user);
             $manager->flush();
             $this->addFlash('success', "User updated");
@@ -72,7 +80,7 @@ class UserController extends AbstractController
 
         return $this->render('user/form.html.twig', [
             'form' => $form->createView(),
-            "user"=>$user
+            "user" => $user
         ]);
     }
 

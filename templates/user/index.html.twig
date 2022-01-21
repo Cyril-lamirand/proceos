@@ -12,6 +12,7 @@
         <th>Name</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Profil Picture</th>
         <th>Role</th>
         <th>Actions</th>
     </tr>
@@ -23,6 +24,11 @@
         <td>{{user.email}}</td>
         <td>{{user.firstname}}</td>
         <td>{{user.lastname}}</td>
+        <td>
+            {% if user.profilepicture is not null %}
+            <img src="{{asset('/uploads/users/'~ user.profilepicture)}}" alt="profil picture {{user.firstname}} {{user.lastname}}" style="width: 100px">
+            {% endif %}
+        </td>
         <td>{{user.roles[0]}}
             <form action="{{path('admin_update_role',{id:user.id})}}" method="post">
                 <select name="roles" id="roles">
