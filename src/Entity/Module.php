@@ -51,6 +51,11 @@ class Module
      */
     private $exercices;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $label;
+
     public function __construct()
     {
         $this->courses = new ArrayCollection();
@@ -171,6 +176,18 @@ class Module
                 $exercice->setModule(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): self
+    {
+        $this->label = $label;
 
         return $this;
     }

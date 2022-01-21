@@ -16,6 +16,7 @@ class ModuleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('label')
             ->add('createdat')
             ->add('user', EntityType::class, [
                 'class' => User::class,
