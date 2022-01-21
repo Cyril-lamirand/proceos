@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react"
 import { useNavigate } from 'react-router-dom'
+// Axios
 import axios from "axios"
 // Assets
 import Square from "../../assets/fake/fake-square.jpg"
@@ -41,12 +42,14 @@ export default function Register() {
         event.preventDefault()
         const cfg = {
             headers: { "Content-Type": "application/json" },
-            method: "post",
+            method: "post"
         }
         try {
             axios
                 .post("http://localhost:8000/api/register", form, cfg)
-                .then((r) => navigate("/success"));
+                .then((r) => {
+                    navigate("/success")
+                })
         } catch (e) {
             console.log(e.message);
         }
@@ -188,13 +191,13 @@ export default function Register() {
                                             {
                                                 samePassword ?
                                                     <>
-                                                        <div className="text-success pt-1">
+                                                        <div className="text-success pt-2">
                                                             <span>Les mots de passe sont identiques !</span>
                                                         </div>
                                                     </>
                                                     :
                                                     <>
-                                                        <div className="text-danger pt-1">
+                                                        <div className="text-danger pt-2">
                                                             <span>Les mots de passe ne sont pas identiques !</span>
                                                         </div>
                                                     </>
@@ -203,7 +206,7 @@ export default function Register() {
                                         :
                                         ""
                                 }
-                                <div className="alert alert-info mt-2">
+                                <div className="alert alert-info mt-3">
                                     <span><b>Pour votre sécurité</b>, votre mot de passe devrait contenir :</span>
                                     <ul className="pt-2">
                                         <li>{require1 ? "🟢" : "🔴"} Minimum 8 charactères (a-Z) (0-9)</li>

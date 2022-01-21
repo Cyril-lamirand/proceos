@@ -42,6 +42,38 @@ class ApiUserController extends AbstractController
     #[Route('/api/login', name: 'api_login', methods: 'post')]
     public function apiLogin(Request $request)
     {
+        $form = json_decode($request->getContent(), true);
+        $user = $this->userRepository->findOneBy(["email" => $form["email"]]);
+        if($this->encoder->isPasswordValid($user, $form["password"])) {
+            $arrayCollection = [
+                "request" => [
+                    "status" => 200,
+                    "message" => "Authentification OK !",
+                ],
+                "user" => [
+                    "email" => $user->getEmail(),
+                    "firstname" => $user->getFirstname(),
+                    "lastname" => $user->getLastname(),
+                    "organization" => [
+                        "id" => $user->getOrganization()->getId(),
+                        "label" => $user->getOrganization()->getLabel()
+                    ],
+                    "roles" => $user->getRoles()
+                ]
+            ];
+
+            return new JsonResponse($arrayCollection);
+
+        } else {
+            $arrayCollection = [
+                "request" => [
+                    "status" => 500,
+                    "message" => "Une erreur est survenue !",
+                ]
+            ];
+
+            return new JsonResponse($arrayCollection);
+        }
 
     }
 

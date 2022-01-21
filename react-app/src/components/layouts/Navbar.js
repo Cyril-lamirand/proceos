@@ -1,8 +1,13 @@
-import React from "react"
+import React, {useContext} from "react"
+// Context
+import {UserContext} from "../../contexts/UserContext"
 // Assets
 import logo from "../../logo.svg"
 
+
 export default function Navbar() {
+
+    const [user, setUser] = useContext(UserContext)
 
     return(
         <>
@@ -26,14 +31,26 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <a className="nav-link text-light" aria-current="page" href="/">Accueil</a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link text-light" href="/dashboard">Tableau de bord</a>
-                            </li>
+
                         </ul>
                         <form className="d-flex">
-                            <div>
-                                <a className="text-light" href="/login">Connexion</a> <span>/</span> <a className="text-light" href="/register">S'enregistrer</a>
-                            </div>
+                            {user.email ?
+                                <>
+                                    <div className="d-flex">
+                                        <div className="mr-2">
+                                            <a className="text-light" href="/dashboard">Tableau de bord</a>
+                                        </div>
+                                    </div>
+                                </>
+                                :
+                                <>
+                                    <div>
+                                        <a className="text-light" href="/login">Connexion</a> <span>/</span> <a className="text-light" href="/register">S'enregistrer</a>
+                                    </div>
+                                </>
+                            }
+
+
                         </form>
                     </div>
                 </div>

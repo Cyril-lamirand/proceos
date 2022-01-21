@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useContext, useEffect, useState} from "react"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 // Assets
 import './App.css'
@@ -14,11 +14,24 @@ import Register from "./pages/register/Register"
 import Dashboard from "./pages/dashboard/Dashboard"
 import CheckAuth from "./security/CheckAuth"
 import Success from "./pages/messages/Success"
-import Error from "./pages/messages/Error";
+import Error from "./pages/messages/Error"
+import Logout from "./pages/messages/Logout"
 
 function App() {
 
     const [user, setUser] = useState({})
+
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            const values = JSON.parse(localStorage.getItem("user"))
+            setUser({...user, ...values})
+        } else {
+            console.log("Not found")
+        }
+    }, [])
+
+    // TODO : Remove (for dev)
+    useEffect(() => { console.log(user)}, [user])
 
     return (
         <>
@@ -33,6 +46,7 @@ function App() {
 
                             <Route exact path="/success" element={ <Success/> }/>
                             <Route exact path="/error" element={ <Error/>}/>
+                            <Route exact path="/logout" element={ <Logout/>}/>
                         </Routes>
                     </Main>
                 </BrowserRouter>

@@ -1,21 +1,21 @@
-import React from "react"
+import React, {useContext, useEffect} from "react"
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import {UserContext} from "../contexts/UserContext"
 
 export default function CheckAuth({ children }) {
+
+    const [user, setUser] = useContext(UserContext)
     const navigate = useNavigate()
-    axios.interceptors.response.use(
-        function (response) {
-            return response
-        },
-        function (error) {
-            console.log(error)
-            if (error.response.status === 403) {
-                navigate('/login')
-            }
-            return Promise.reject(error)
-        },
-    )
+
+    useEffect(() => {
+        if (Object.keys(user).length < 1) {
+            console.log("Go")
+        } else if (Object.keys(user).length > 1) {
+            console.log("Ok")
+        }
+    }, [])
+
     return (
         <>{children}</>
     )
