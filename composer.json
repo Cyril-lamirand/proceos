@@ -79,6 +79,8 @@
         }
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest"
+        ,
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "symfony/maker-bundle": "^1.34"
     }
