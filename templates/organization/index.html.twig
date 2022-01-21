@@ -11,6 +11,7 @@
     <tr>
         <th>Id</th>
         <th>Label</th>
+        <th>Logo</th>
         <th>actions</th>
     </tr>
     </thead>
@@ -19,6 +20,11 @@
     <tr>
         <td>{{ organization.id }}</td>
         <td>{{ organization.label }}</td>
+        <td>
+            {% if organization.logo is not null %}
+            <img src="{{asset('/uploads/organizations/'~ organization.logo)}}" alt="logo {{organization.label}}" style="width:100px;">
+            {% endif %}
+        </td>
         <td>
             <a class="btn btn-success" href="{{ path('organization_show', {'id': organization.id}) }}"><i
                     class="far fa-eye"></i></a>

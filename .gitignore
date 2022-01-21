@@ -7,4 +7,5 @@
 /public/bundles/
 /var/
 /vendor/
+/public/uploads/organizations/
 ###< symfony/framework-bundle ###

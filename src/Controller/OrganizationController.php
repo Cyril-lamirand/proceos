@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Organization;
 use App\Form\OrganizationType;
 use App\Repository\OrganizationRepository;
+use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/organization')]
 class OrganizationController extends AbstractController
@@ -21,14 +23,22 @@ class OrganizationController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'organization_new', methods: ['GET','POST'])]
-    public function new(Request $request): Response
+    #[Route('/new', name: 'organization_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, SluggerInterface $slugger): Response
     {
         $organization = new Organization();
         $form = $this->createForm(OrganizationType::class, $organization);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $logo = $form->get('logo')->getData();
+            if ($logo) {
+                $fileUploader = new FileUploader($this->getParameter('organizations'), $slugger);
+                $logoName = $fileUploader->upload($logo);
+                $organization->setLogo($logoName);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($organization);
             $entityManager->flush();
@@ -50,7 +60,7 @@ class OrganizationController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'organization_edit', methods: ['GET','POST'])]
+    #[Route('/{id}/edit', name: 'organization_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Organization $organization): Response
     {
         $form = $this->createForm(OrganizationType::class, $organization);
@@ -71,7 +81,7 @@ class OrganizationController extends AbstractController
     #[Route('/{id}', name: 'organization_delete', methods: ['POST'])]
     public function delete(Request $request, Organization $organization): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$organization->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $organization->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($organization);
             $entityManager->flush();

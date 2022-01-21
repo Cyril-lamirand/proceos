@@ -39,6 +39,11 @@ class Organization
      */
     private $users;
 
+    /**
+     * @ORM\Column(type="string", length=255,nullable=true)
+     */
+    private $logo;
+
     public function __construct()
     {
         $this->classes = new ArrayCollection();
@@ -135,6 +140,18 @@ class Organization
                 $user->setOrganization(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(string $logo): self
+    {
+        $this->logo = $logo;
 
         return $this;
     }
