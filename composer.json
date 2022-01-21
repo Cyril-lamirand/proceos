@@ -33,7 +33,8 @@
     "symfony/serializer": "5.3.*",
     "symfony/twig-bundle": "5.3.*",
     "symfony/validator": "5.3.*",
-    "symfony/yaml": "5.3.*"
+    "symfony/yaml": "5.3.*",
+    "symfony/maker-bundle": "^1.34"
   },
   "config": {
     "optimize-autoloader": true,
@@ -83,7 +84,6 @@
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
-    "doctrine/doctrine-fixtures-bundle": "^3.4",
-    "symfony/maker-bundle": "^1.34"
+    "doctrine/doctrine-fixtures-bundle": "^3.4"
   }
 }
