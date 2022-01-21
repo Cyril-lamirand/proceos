@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 // Assets
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 // Components
 import Main from "./components/layouts/Main"
 // Context
@@ -12,6 +13,8 @@ import Login from "./pages/login/Login"
 import Register from "./pages/register/Register"
 import Dashboard from "./pages/dashboard/Dashboard"
 import CheckAuth from "./security/CheckAuth"
+import Success from "./pages/messages/Success"
+import Error from "./pages/messages/Error";
 
 function App() {
 
@@ -19,7 +22,7 @@ function App() {
 
     return (
         <>
-            <UserContext.Provider values={[user, setUser]}>
+            <UserContext.Provider value={[user, setUser]}>
                 <BrowserRouter>
                     <Main>
                         <Routes>
@@ -27,6 +30,9 @@ function App() {
                             <Route exact path="/login" element={ <Login/> }/>
                             <Route exact path="/register" element={ <Register/> }/>
                             <Route exact path="/dashboard" element={<CheckAuth> <Dashboard/> </CheckAuth>}/>
+
+                            <Route exact path="/success" element={ <Success/> }/>
+                            <Route exact path="/error" element={ <Error/>}/>
                         </Routes>
                     </Main>
                 </BrowserRouter>
