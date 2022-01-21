@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\api;
 
 use App\Entity\User;
 use App\Repository\OrganizationRepository;
@@ -39,13 +39,45 @@ class ApiUserController extends AbstractController
         $this->encoder = $encoder;
     }
 
-    #[Route('/api/login', name: 'api_login')]
+    #[Route('/api/login', name: 'api_login', methods: 'post')]
     public function apiLogin(Request $request)
     {
+        $form = json_decode($request->getContent(), true);
+        $user = $this->userRepository->findOneBy(["email" => $form["email"]]);
+        if($this->encoder->isPasswordValid($user, $form["password"])) {
+            $arrayCollection = [
+                "request" => [
+                    "status" => 200,
+                    "message" => "Authentification OK !",
+                ],
+                "user" => [
+                    "email" => $user->getEmail(),
+                    "firstname" => $user->getFirstname(),
+                    "lastname" => $user->getLastname(),
+                    "organization" => [
+                        "id" => $user->getOrganization()->getId(),
+                        "label" => $user->getOrganization()->getLabel()
+                    ],
+                    "roles" => $user->getRoles()
+                ]
+            ];
+
+            return new JsonResponse($arrayCollection);
+
+        } else {
+            $arrayCollection = [
+                "request" => [
+                    "status" => 500,
+                    "message" => "Une erreur est survenue !",
+                ]
+            ];
+
+            return new JsonResponse($arrayCollection);
+        }
 
     }
 
-    #[Route('/api/register', name: 'api_register')]
+    #[Route('/api/register', name: 'api_register', methods: 'post')]
     public function apiRegister(Request $request): JsonResponse
     {
         $values = json_decode($request->getContent(), true);
@@ -72,6 +104,8 @@ class ApiUserController extends AbstractController
         $this->entityManager->flush();
 
         // TODO : Check if everything is ok !
+
+        // TODO : Send an email !
 
         $arrayCollection = [
             "status" => 200,
