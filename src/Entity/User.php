@@ -89,6 +89,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $profilepicture;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isVerified = false;
+
     public function __construct()
     {
         $this->classes = new ArrayCollection();
@@ -409,6 +414,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setProfilepicture(string $profilepicture): self
     {
         $this->profilepicture = $profilepicture;
+
+        return $this;
+    }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(?bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }
