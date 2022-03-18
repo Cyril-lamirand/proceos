@@ -4,7 +4,9 @@
 
 {% block body %}
 <h1>Classes</h1>
+{% if is_granted('ROLE_ADMIN') %}
 <a class="btn btn-success" href="{{ path('classe_new') }}">Create new</a>
+{% endif %}
 
 <table class="table">
     <thead>
