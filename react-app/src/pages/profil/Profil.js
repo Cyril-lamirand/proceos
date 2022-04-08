@@ -1,6 +1,7 @@
-import React, {useContext, useState} from "react"
+import React, {useContext, useEffect, useState} from "react"
 import {UserContext} from "../../contexts/UserContext"
 import Avatar from 'avataaars'
+import axios from "axios"
 
 export default function Profil() {
 
@@ -146,6 +147,24 @@ export default function Profil() {
         { label: 'Vomir', value: 'Vomit' }, // 11
     ]
 
+    function randomAvatar() {
+        setAvatar({
+            topType: TopType[Math.floor(Math.random() * TopType.length)].value,
+            accessoriesType:
+            AccessoriesType[Math.floor(Math.random() * AccessoriesType.length)]
+                .value,
+            hairColor: HairColor[Math.floor(Math.random() * HairColor.length)].value,
+            facialHairType:
+            FacialHairType[Math.floor(Math.random() * FacialHairType.length)].value,
+            clotheType:
+            ClotheType[Math.floor(Math.random() * ClotheType.length)].value,
+            eyeType: Eyes[Math.floor(Math.random() * Eyes.length)].value,
+            eyebrowType: Eyebrow[Math.floor(Math.random() * Eyebrow.length)].value,
+            mouthType: Mouth[Math.floor(Math.random() * Mouth.length)].value,
+            skinColor: Skin[Math.floor(Math.random() * Skin.length)].value,
+        })
+    }
+
     function handleChange(event) {
         const target = event.target
         const name = target.name
@@ -159,7 +178,67 @@ export default function Profil() {
 
     function handleSubmit(e) {
         e.preventDefault()
+        if (!avatar.topType) {
+            avatar.topType = "LongHairStraight"
+        }
+        if (!avatar.accessoriesType) {
+            avatar.accessoriesType = "Blank"
+        }
+        if (!avatar.hairColor) {
+            avatar.hairColor = "BrownDark"
+        }
+        if (!avatar.facialHairType) {
+            avatar.facialHairType = "Blank"
+        }
+        if (!avatar.clotheType) {
+            avatar.clotheType = "BlazerShirt"
+        }
+        if (!avatar.eyeType) {
+            avatar.eyeType = "Default"
+        }
+        if (!avatar.eyebrowType) {
+            avatar.eyebrowType = "Default"
+        }
+        if (!avatar.mouthType) {
+            avatar.mouthType = "Default"
+        }
+        if (!avatar.skinColor) {
+            avatar.skinColor = "Light"
+        }
+
+        const cfg = {
+            headers: { "Content-Type": "application/json" },
+            method: "post"
+        }
+
+        setUser({...user, avatar: avatar})
+
+        const finalObject = {
+            id: user.id,
+            ...avatar
+        }
+
+        console.log(finalObject)
+
+        try {
+            axios
+                .post("http://localhost:8000/api/save_avatar", finalObject, cfg)
+                .then((r) => {
+                    console.log(r)
+                })
+                .then(()=>{
+                    setPage("main")
+                })
+        } catch (e) {
+            console.log(e.message);
+        }
     }
+
+    // Todo : Remove DEV
+    useEffect(() => {
+        console.log("// User")
+        console.log(user)
+    }, [user])
 
 
     return(

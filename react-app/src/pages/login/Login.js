@@ -5,7 +5,7 @@ import axios from "axios"
 import {UserContext} from "../../contexts/UserContext"
 // Assets
 import Square from "../../assets/fake/fake-square.jpg"
-import {useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom"
 
 export default function Login() {
 
