@@ -14,7 +14,9 @@
         <th>Last Name</th>
         <th>Profil Picture</th>
         <th>Role</th>
+        {% if is_granted('ROLE_ORGA_ADMIN')%}
         <th>Actions</th>
+        {% endif %}
     </tr>
     </thead>
     <tbody>
@@ -26,7 +28,8 @@
         <td>{{user.lastname}}</td>
         <td>
             {% if user.profilepicture is not null %}
-            <img src="{{asset('/uploads/users/'~ user.profilepicture)}}" alt="profil picture {{user.firstname}} {{user.lastname}}" style="width: 100px">
+            <img src="{{asset('/uploads/users/'~ user.profilepicture)}}"
+                 alt="profil picture {{user.firstname}} {{user.lastname}}" style="width: 100px">
             {% endif %}
         </td>
         <td>{{user.roles[0]}}
@@ -40,9 +43,11 @@
                 <input class="btn btn-primary" type="submit" value="update">
             </form>
         </td>
+        {% if is_granted('ROLE_ORGA_ADMIN')%}
         <td>
             <a class="btn btn-success" href="{{path('update_user',{id:user.id})}}"><i class="fas fa-pen"></i></a>
         </td>
+        {% endif %}
     </tr>
     {% else %}
     <tr>
