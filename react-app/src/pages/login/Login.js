@@ -11,6 +11,7 @@ export default function Login() {
 
     const [form, setForm] = useState({})
     const [user, setUser] = useContext(UserContext)
+    const [message, setMessage] = useState("")
     const navigate = useNavigate()
 
     function handleChange(event) {
@@ -31,14 +32,14 @@ export default function Login() {
             axios
                 .post("http://localhost:8000/api/login", form, cfg)
                 .then((response) => {
-                    if(response.data.request.status === 200) {
+                    console.log(response.data.request.message)
+                    if (response.data.request.message === "Authentification succeed") {
+                        setMessage(response.data.request.message)
                         setUser({...response.data.user})
+                        navigate("/dashboard")
                     } else {
-                        console.log("Error somewhere")
+                        setMessage(response.data.request.message)
                     }
-                })
-                .then(()=>{
-                    navigate("/dashboard")
                 })
 
         } catch (error) {
@@ -48,8 +49,31 @@ export default function Login() {
 
     useEffect(() => {
         if (user) {
-            window.localStorage.setItem('user', JSON.stringify(user));
+            if (!user.avatar) {
+                try {
+                    axios.get('http://localhost:8000/api/get_avatar/' + user.id)
+                        .then(function (response) {
+                            setUser({
+                                ...user,
+                                avatar: response.data
+                            })
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            window.localStorage.setItem('user', JSON.stringify(user))
+                        });
+                } catch (e) {
+                    console.log(e.message)
+                }
+            }
         }
+    }, [user])
+
+    useEffect(() => {
+        console.log(user)
     }, [user])
 
     return(
@@ -89,6 +113,19 @@ export default function Login() {
                                             required
                                         />
                                     </div>
+                                    {
+                                        message === "Authentification failed" ?
+                                            <>
+                                                <div className="mt-3 mb-3">
+                                                    <div className="alert alert-danger">
+                                                        <span>Erreur dans <b>l'identifiant</b> ou le <b>mot de passe</b> !</span>
+                                                    </div>
+                                                </div>
+                                            </>
+                                            :
+                                            <>
+                                            </>
+                                    }
                                     <div className="d-flex justify-content-center mt-4 mb-2">
                                         <button type="submit" className="btn btn-primary">
                                             Connexion

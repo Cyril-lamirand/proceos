@@ -150,18 +150,14 @@ export default function Profil() {
     function randomAvatar() {
         setAvatar({
             topType: TopType[Math.floor(Math.random() * TopType.length)].value,
-            accessoriesType:
-            AccessoriesType[Math.floor(Math.random() * AccessoriesType.length)]
-                .value,
+            accessoriesType: AccessoriesType[Math.floor(Math.random() * AccessoriesType.length)].value,
             hairColor: HairColor[Math.floor(Math.random() * HairColor.length)].value,
-            facialHairType:
-            FacialHairType[Math.floor(Math.random() * FacialHairType.length)].value,
-            clotheType:
-            ClotheType[Math.floor(Math.random() * ClotheType.length)].value,
+            facialHairType: FacialHairType[Math.floor(Math.random() * FacialHairType.length)].value,
+            clotheType: ClotheType[Math.floor(Math.random() * ClotheType.length)].value,
             eyeType: Eyes[Math.floor(Math.random() * Eyes.length)].value,
             eyebrowType: Eyebrow[Math.floor(Math.random() * Eyebrow.length)].value,
             mouthType: Mouth[Math.floor(Math.random() * Mouth.length)].value,
-            skinColor: Skin[Math.floor(Math.random() * Skin.length)].value,
+            skinColor: Skin[Math.floor(Math.random() * Skin.length)].value
         })
     }
 
