@@ -1,0 +1,48 @@
+@import "../setup/variables";
+
+nav {
+  position: fixed;
+  height: 100vh;
+  width: 200px;
+  background: $card;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+
+  ul, li {
+    width: 100%;
+  }
+
+  .home-link {
+    color: $hover_nav_link;
+    font-size: 1.5rem;
+  }
+
+  .home-link:hover {
+    color: $text;
+  }
+
+  ul {
+    margin-top: 20px;
+
+    .link-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+
+
+      .circle {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px solid $text;
+      }
+    }
+
+    .link-container:hover {
+      background: $hover_nav_link;
+    }
+  }
+}

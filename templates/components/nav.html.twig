@@ -1,68 +1,82 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{path('dashboard')}}">Dashboard</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('css/components/nav.css')}}">
+{% endblock %}
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            {% if app.user %}
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('organization_index')}}">Organizations</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('classe_index')}}">Classes</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('course_index')}}">Courses</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('exercice_index')}}">Exercices</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('answer_index')}}">Answer</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('exercice_work_index')}}">Exercices Work</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('module_index')}}">Modules</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('question_index')}}">Questions</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('quiz_index')}}">Quiz</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('quiz_work_index')}}">Quiz Work</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('forum_index')}}">Forum</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('topic_index')}}">Topic</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('message_index')}}">Messages</a>
-            </li>
-            {% if is_granted('ROLE_ADMIN') %}
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('admin_user')}}">User</a>
-            </li>
-            {% endif %}
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('app_logout')}}">Logout</a>
-            </li>
-            {% else %}
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('app_login')}}">Login</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{path('app_register')}}">Sign in</a>
-            </li>
-            {% endif %}
-        </ul>
-    </div>
+<nav>
+    <a class="link home-link" href="{{path('dashboard')}}">Dashboard</a>
+    <ul>
+        {% if app.user %}
+        <li class="link-container">
+            <i class="fa-light fa-sitemap"></i>
+            <a class="link" href="{{path('organization_index')}}">Organizations</a>
+        </li>
+        <li class="link-container">
+            <i class="fa-light fa-school"></i>
+            <a class="link" href="{{path('classe_index')}}">Classes</a>
+        </li>
+        <li class="link-container">
+            <div class="circle"></div>
+            <a class="link" href="{{path('course_index')}}">Courses</a>
+        </li>
+        <li class="link-container">
+            <div class="circle"></div>
+            <a class="link" href="{{path('exercice_index')}}">Exercices</a>
+        </li>
+        <li class="link-container">
+            <i class="fa-light fa-list-check"></i>
+            <a class="link" href="{{path('answer_index')}}">Answer</a>
+        </li>
+        <li class="link-container">
+            <i class="fa-light fa-file-pen"></i>
+            <a class="link" href="{{path('exercice_work_index')}}">Exercices Work</a>
+        </li>
+        <li class="link-container">
+            <div class="circle"></div>
+            <a class="link" href="{{path('module_index')}}">Modules</a>
+        </li>
+        <li class="link-container">
+            <i class="fa-light fa-question"></i>
+            <a class="link" href="{{path('question_index')}}">Questions</a>
+        </li>
+        <li class="link-container">
+            <div class="circle"></div>
+            <a class="link" href="{{path('quiz_index')}}">Quiz</a>
+        </li>
+        <li class="link-container">
+            <i class="fa-light fa-file-pen"></i>
+            <a class="link" href="{{path('quiz_work_index')}}">Quiz Work</a>
+        </li>
+        <li class="link-container">
+            <div class="circle"></div>
+            <a class="link" href="{{path('forum_index')}}">Forum</a>
+        </li>
+        <li class="link-container">
+            <div class="circle"></div>
+            <a class="link" href="{{path('topic_index')}}">Topic</a>
+        </li>
+        <li class="link-container">
+            <i class="fa-light fa-message"></i>
+            <a class="link" href="{{path('message_index')}}">Messages</a>
+        </li>
+        {% if is_granted('ROLE_ADMIN') %}
+        <li class="link-container">
+            <i class="fa-light fa-users"></i>
+            <a class="link" href="{{path('admin_user')}}">User</a>
+        </li>
+        {% endif %}
+        <li class="link-container">
+            <i class="fa-light fa-arrow-right-from-bracket"></i>
+            <a class="link" href="{{path('app_logout')}}">Logout</a>
+        </li>
+        {% else %}
+        <li class="link-container">
+            <i class="fa-light fa-arrow-right-to-bracket"></i>
+            <a class="link" href="{{path('app_login')}}">Login</a>
+        </li>
+        <li class="link-container">
+            <i class="fa-light fa-id-card"></i>
+            <a class="link" href="{{path('app_register')}}">Sign in</a>
+        </li>
+        {% endif %}
+    </ul>
 </nav>

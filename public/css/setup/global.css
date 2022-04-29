@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #161d31;
+  color: #cfd1d5;
+}
+
+main {
+  width: calc(100vw - 200px);
+  margin-left: 200px;
+}
+
+a {
+  text-decoration: none;
+  color: #cfd1d5;
+}
+
+a:hover {
+  color: #cfd1d5;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+i {
+  color: #cfd1d5;
+  font-family: "FontAwesome", sans-serif !important;
+}
+
+/*# sourceMappingURL=global.css.map */
