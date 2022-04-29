@@ -213,6 +213,9 @@
             "bin/console"
         ]
     },
+    "symfony/css-selector": {
+        "version": "v5.3.14"
+    },
     "symfony/dependency-injection": {
         "version": "v5.3.8"
     },
@@ -453,6 +456,15 @@
     },
     "symfony/yaml": {
         "version": "v5.3.6"
+    },
+    "tijsverkoyen/css-to-inline-styles": {
+        "version": "2.2.4"
+    },
+    "twig/cssinliner-extra": {
+        "version": "v3.3.5"
+    },
+    "twig/extra-bundle": {
+        "version": "v3.3.8"
     },
     "twig/twig": {
         "version": "v3.3.3"

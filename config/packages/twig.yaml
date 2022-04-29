@@ -1,6 +1,8 @@
 twig:
   default_path: '%kernel.project_dir%/templates'
   form_themes: [ "bootstrap_4_layout.html.twig" ]
+  paths:
+    '%kernel.project_dir%/public/css/emails': styles
 when@test:
   twig:
     strict_variables: true
