@@ -37,4 +37,53 @@ i {
   font-family: "FontAwesome", sans-serif !important;
 }
 
+.delete-button {
+  width: 20px;
+  height: 20px;
+  background: rgba(234, 84, 85, 0.12);
+}
+
+.delete-button::after {
+  content: "";
+}
+
+nav {
+  position: fixed;
+  height: 100vh;
+  width: 200px;
+  background: #283046;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+nav ul, nav li {
+  width: 100%;
+}
+nav .home-link {
+  color: #605ec3;
+  font-size: 1.5rem;
+}
+nav .home-link:hover {
+  color: #cfd1d5;
+}
+nav ul {
+  margin-top: 20px;
+}
+nav ul .link-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+}
+nav ul .link-container .circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #cfd1d5;
+}
+nav ul .link-container:hover {
+  background: #605ec3;
+}
+
 /*# sourceMappingURL=index.css.map */

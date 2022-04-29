@@ -1,0 +1,9 @@
+.delete-button{
+  width: 20px;
+  height: 20px;
+  background: $rouge_en_fond;
+}
+
+.delete-button::after{
+  content: '';
+}
