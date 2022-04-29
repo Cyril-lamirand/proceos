@@ -8,8 +8,8 @@ table {
     margin: 20px 20px 0px;
     font-weight: 400;
     background-color: $background_table;
-    border-bottom-left-radius: 0.357rem;
-    border-bottom-right-radius: 0.357rem;
+    border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
     min-width: 90%;
     text-align: center;
 }
@@ -35,6 +35,6 @@ tr {
     padding-right: .7rem;
     padding-top: .2rem;
     padding-bottom: .2rem;
-    border-radius: .358rem;
+    border-radius: $radius;
     cursor: pointer;
 }

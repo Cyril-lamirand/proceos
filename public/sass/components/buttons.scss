@@ -3,12 +3,15 @@
   height: 20px;
   background: $rouge_en_fond;
 }
+.delete-button::after{
+  content: '';
+}
 
 .create-new {
   background-color: $button_new_color;
   padding: .786rem 1.5rem;
   color: $text;
-  border-radius: .358rem;
+  border-radius: $radius;
   margin: 20px;
     &:hover {
       box-shadow: 0 8px 25px -8px $button_new_color;
@@ -22,7 +25,7 @@
   padding-right: .7rem;
   padding-top: .2rem;
   padding-bottom: .2rem;
-  border-radius: .358rem;
+  border-radius: $radius;
   color: $text;
   margin: 3px;
   cursor: pointer;
@@ -31,6 +34,42 @@
     }
 }
 
-.delete-button::after{
-  content: '';
+.back-button {
+  background-color: $button_back;
+  padding: .786rem 1.5rem;
+  color: #FFF;
+  border-radius: $radius;
+  margin: 20px;
+    &:hover {
+      box-shadow: 0 8px 25px -8px $button_back;
+    }
+}
+
+.validation-button {
+  border: solid 1px $button_validation;
+  background-color: $button_validation;
+  padding: .786rem 1.5rem;
+  color: #FFF;
+  border-radius: $radius;
+  margin: 20px;
+  cursor: pointer;
+    &:hover {
+      box-shadow: 0 8px 25px -8px $button_validation;
+    }
+}
+
+.user-form  {
+  button {
+      border: solid 1px $button_validation;
+      background-color: $button_validation;
+      padding: .786rem 1.5rem;
+      color: #FFF;
+      border-radius: $radius;
+      margin: 20px;
+      width: 150px;
+      cursor: pointer;
+        &:hover {
+          box-shadow: 0 8px 25px -8px $button_validation;
+        }
+  }
 }

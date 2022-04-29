@@ -3,9 +3,9 @@
 {% block title %}New Module{% endblock %}
 
 {% block body %}
-    <h1>Create new Module</h1>
+    <h1 class="big-titles">Create new Module</h1>
 
     {{ include('module/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('module_index') }}">back to list</a>
+    <a class="btn back-button" href="{{ path('module_index') }}">back to list</a>
 {% endblock %}
