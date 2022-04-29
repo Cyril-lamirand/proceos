@@ -3,11 +3,11 @@
 {% block title %}Edit Answer{% endblock %}
 
 {% block body %}
-    <h1>Edit Answer</h1>
+    <h1 class="big-titles">Edit Answer</h1>
 
     {{ include('answer/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a class="btn btn-primary" href="{{ path('answer_index') }}">back to list</a>
+    <a class="btn back-button" href="{{ path('answer_index') }}">back to list</a>
 
     {{ include('answer/_delete_form.html.twig') }}
 {% endblock %}

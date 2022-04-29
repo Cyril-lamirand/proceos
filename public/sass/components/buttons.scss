@@ -1,11 +1,11 @@
-.delete-button{
-  width: 20px;
-  height: 20px;
-  background: $rouge_en_fond;
-}
-.delete-button::after{
-  content: '';
-}
+// .delete-button{
+//   width: 20px;
+//   height: 20px;
+//   background: $rouge_en_fond;
+// }
+// .delete-button::after{
+//   content: '';
+// }
 
 .create-new {
   background-color: $button_new_color;
@@ -71,5 +71,28 @@
         &:hover {
           box-shadow: 0 8px 25px -8px $button_validation;
         }
+  }
+}
+
+.delete-button{
+  background-color: $button_delete;
+  border: solid 1px $button_delete;
+  padding-left: .7rem;
+  padding-right: .7rem;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+  border-radius: $radius;
+  color: $text;
+  margin: 3px;
+  cursor: pointer;
+    &:hover {
+      box-shadow: 0 8px 25px -8px $button_delete;
+    }
+}
+.delete-button-formuser {
+  background-color: $button_delete !important;
+  border: solid 1px $button_delete !important;
+  &:hover {
+    box-shadow: 0 8px 25px -8px $button_delete !important;
   }
 }

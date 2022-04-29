@@ -17,7 +17,7 @@
         {% for usr in user.classes %}
         <div style="display: flex;align-items: center;margin-top: 10px;">
             <li style="margin-right: 10px;">{{usr.label}}</li>
-            <button class="btn btn-danger trash" data-id="{{usr.id}}"><i class="fas fa-trash"></i></button>
+            <button class="btn delete-button-formuser trash" data-id="{{usr.id}}"><i class="fas fa-trash"></i></button>
         </div>
         {% endfor %}
         {% endif %}

@@ -39,16 +39,6 @@ i {
   font-family: "FontAwesome", sans-serif !important;
 }
 
-.delete-button {
-  width: 20px;
-  height: 20px;
-  background: rgba(234, 84, 85, 0.12);
-}
-
-.delete-button::after {
-  content: "";
-}
-
 .create-new {
   background-color: #7367f0;
   padding: 0.786rem 1.5rem;
@@ -112,6 +102,30 @@ i {
 }
 .user-form button:hover {
   box-shadow: 0 8px 25px -8px #2AC76F;
+}
+
+.delete-button {
+  background-color: #ea5455;
+  border: solid 1px #ea5455;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 0.357rem;
+  color: #cfd1d5;
+  margin: 3px;
+  cursor: pointer;
+}
+.delete-button:hover {
+  box-shadow: 0 8px 25px -8px #ea5455;
+}
+
+.delete-button-formuser {
+  background-color: #ea5455 !important;
+  border: solid 1px #ea5455 !important;
+}
+.delete-button-formuser:hover {
+  box-shadow: 0 8px 25px -8px #ea5455 !important;
 }
 
 nav {
@@ -179,6 +193,11 @@ tr {
   font-weight: 300;
   height: 30px;
   border-top: 1px solid #ebe9f1;
+}
+
+.margin_form_top {
+  margin-top: 30px;
+  margin-left: 20px;
 }
 
 .user-table-line {
