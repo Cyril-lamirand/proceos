@@ -22,3 +22,11 @@ input[type="text"], select, textarea, input[type="number"] {
 input[type="number"] {
     width: 30%;
 }
+
+.form-inline {
+    display: flex;
+    width: 70%;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
