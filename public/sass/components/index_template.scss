@@ -1,0 +1,40 @@
+.big-titles {
+    font-weight: 400;
+    margin: 0px 20px 20px;
+    padding-top: 30px;
+}
+
+table {
+    margin: 20px 20px 0px;
+    font-weight: 400;
+    background-color: $background_table;
+    border-bottom-left-radius: 0.357rem;
+    border-bottom-right-radius: 0.357rem;
+    min-width: 90%;
+    text-align: center;
+}
+thead {
+    height: 50px;
+    background-color: #343d55;
+}
+tr {
+    font-weight: 300;
+    height: 30px;
+    border-top: 1px solid #ebe9f1;
+}
+
+//for user table
+.user-table-line {
+    height: 60px;
+}
+.user-input-select {
+    border: 1px solid $button_new_color;
+    background: none;
+    color: $text;
+    padding-left: .7rem;
+    padding-right: .7rem;
+    padding-top: .2rem;
+    padding-bottom: .2rem;
+    border-radius: .358rem;
+    cursor: pointer;
+}

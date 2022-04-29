@@ -3,8 +3,8 @@
 {% block title %}Users{% endblock %}
 
 {% block body %}
-<h1>Users</h1>
-<a href="{{path('create_user')}}" class="btn btn-success">Create user</a>
+<h1 class="big-titles">Users</h1>
+<a href="{{path('create_user')}}" class="btn btn-success create-new">Create user</a>
 <table class="table">
     <thead>
     <tr>
@@ -19,7 +19,7 @@
     </thead>
     <tbody>
     {% for user in users %}
-    <tr>
+    <tr class="user-table-line">
         <td>{{user.id}}</td>
         <td>{{user.email}}</td>
         <td>{{user.firstname}}</td>
@@ -31,13 +31,13 @@
         </td>
         <td>{{user.roles[0]}}
             <form action="{{path('admin_update_role',{id:user.id})}}" method="post">
-                <select name="roles" id="roles">
+                <select name="roles" id="roles" class="user-input-select">
                     <option value="ROLE_ADMIN">ROLE_ADMIN</option>
                     <option value="ROLE_INTERVENANT">ROLE_INTERVENANT</option>
                     <option value="ROLE_ORGA_ADMIN">ROLE_ORGA_ADMIN</option>
                     <option value="ROLE_STUDENT">ROLE_STUDENT</option>
                 </select>
-                <input class="btn btn-primary" type="submit" value="update">
+                <input class="btn update-button" type="submit" value="update">
             </form>
         </td>
         <td>

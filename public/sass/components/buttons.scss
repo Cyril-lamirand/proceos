@@ -4,6 +4,33 @@
   background: $rouge_en_fond;
 }
 
+.create-new {
+  background-color: $button_new_color;
+  padding: .786rem 1.5rem;
+  color: $text;
+  border-radius: .358rem;
+  margin: 20px;
+    &:hover {
+      box-shadow: 0 8px 25px -8px $button_new_color;
+    }
+}
+
+.update-button {
+  background-color: $button_new_color;
+  border: solid 1px $button_new_color;
+  padding-left: .7rem;
+  padding-right: .7rem;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+  border-radius: .358rem;
+  color: $text;
+  margin: 3px;
+  cursor: pointer;
+    &:hover {
+      box-shadow: 0 8px 25px -8px $button_new_color;
+    }
+}
+
 .delete-button::after{
   content: '';
 }

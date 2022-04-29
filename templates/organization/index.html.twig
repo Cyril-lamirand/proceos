@@ -3,8 +3,8 @@
 {% block title %}Organization index{% endblock %}
 
 {% block body %}
-<h1>Organizations</h1>
-<a class="btn btn-success" href="{{ path('organization_new') }}">Create new</a>
+<h1 class="big-titles">Organizations</h1>
+<a class="btn btn-success create-new" href="{{ path('organization_new') }}">Create new</a>
 
 <table class="table">
     <thead>
@@ -33,7 +33,7 @@
         </td>
     </tr>
     {% else %}
-    <tr>
+    <tr class="table-line">
         <td colspan="3">no records found</td>
     </tr>
     {% endfor %}

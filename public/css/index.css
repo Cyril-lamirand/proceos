@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +8,7 @@
 body {
   background: #161d31;
   color: #cfd1d5;
+  font-family: "Montserrat", sans-serif;
 }
 
 main {
@@ -43,6 +45,33 @@ i {
   background: rgba(234, 84, 85, 0.12);
 }
 
+.create-new {
+  background-color: #7367f0;
+  padding: 0.786rem 1.5rem;
+  color: #cfd1d5;
+  border-radius: 0.358rem;
+  margin: 20px;
+}
+.create-new:hover {
+  box-shadow: 0 8px 25px -8px #7367f0;
+}
+
+.update-button {
+  background-color: #7367f0;
+  border: solid 1px #7367f0;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 0.358rem;
+  color: #cfd1d5;
+  margin: 3px;
+  cursor: pointer;
+}
+.update-button:hover {
+  box-shadow: 0 8px 25px -8px #7367f0;
+}
+
 .delete-button::after {
   content: "";
 }
@@ -58,6 +87,7 @@ nav {
   padding-top: 20px;
 }
 nav ul, nav li {
+  font-weight: 300;
   width: 100%;
 }
 nav .home-link {
@@ -84,6 +114,49 @@ nav ul .link-container .circle {
 }
 nav ul .link-container:hover {
   background: #605ec3;
+}
+
+.big-titles {
+  font-weight: 400;
+  margin: 0px 20px 20px;
+  padding-top: 30px;
+}
+
+table {
+  margin: 20px 20px 0px;
+  font-weight: 400;
+  background-color: #283046;
+  border-bottom-left-radius: 0.357rem;
+  border-bottom-right-radius: 0.357rem;
+  min-width: 90%;
+  text-align: center;
+}
+
+thead {
+  height: 50px;
+  background-color: #343d55;
+}
+
+tr {
+  font-weight: 300;
+  height: 30px;
+  border-top: 1px solid #ebe9f1;
+}
+
+.user-table-line {
+  height: 60px;
+}
+
+.user-input-select {
+  border: 1px solid #7367f0;
+  background: none;
+  color: #cfd1d5;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 0.358rem;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=index.css.map */
