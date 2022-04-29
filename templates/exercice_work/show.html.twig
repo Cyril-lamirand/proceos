@@ -3,7 +3,7 @@
 {% block title %}ExerciceWork{% endblock %}
 
 {% block body %}
-    <h1>ExerciceWork</h1>
+    <h1 class="big-titles">ExerciceWork</h1>
 
     <table class="table">
         <tbody>
@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('exercice_work_index') }}">back to list</a>
+    <a class="btn back-button" href="{{ path('exercice_work_index') }}">back to list</a>
 
-    <a class="btn btn-success" href="{{ path('exercice_work_edit', {'id': exercice_work.id}) }}"><i class="fas fa-pen"></i></a>
+    <a class="btn update-button" href="{{ path('exercice_work_edit', {'id': exercice_work.id}) }}"><i class="fas fa-pen"></i></a>
 
     {{ include('exercice_work/_delete_form.html.twig') }}
 {% endblock %}

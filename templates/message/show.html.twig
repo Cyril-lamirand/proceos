@@ -3,7 +3,7 @@
 {% block title %}Message{% endblock %}
 
 {% block body %}
-    <h1>Message</h1>
+    <h1 class="big-titles">Message</h1>
 
     <table class="table">
         <tbody>
@@ -22,9 +22,9 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('message_index') }}">back to list</a>
+    <a class="btn back-button" href="{{ path('message_index') }}">back to list</a>
 
-    <a class="btn btn-success" href="{{ path('message_edit', {'id': message.id}) }}"><i class="fas fa-pen"></i></a>
+    <a class="btn update-button" href="{{ path('message_edit', {'id': message.id}) }}"><i class="fas fa-pen"></i></a>
 
     {{ include('message/_delete_form.html.twig') }}
 {% endblock %}
