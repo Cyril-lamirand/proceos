@@ -3,8 +3,11 @@
 namespace App\Controller\api;
 
 use App\Entity\User;
+use App\Entity\UserAvatar;
 use App\Repository\OrganizationRepository;
+use App\Repository\UserAvatarRepository;
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,18 +20,21 @@ class ApiUserController extends AbstractController
     private $entityManager;
     private $organisationRepository;
     private $userRepository;
+    private $userAvatarRepository;
     private $encoder;
 
     /**
      * ApiController constructor.
      * @param UserRepository $userRepository
      * @param OrganizationRepository $organisationRepository
+     * @param UserAvatarRepository $userAvatarRepository
      * @param EntityManagerInterface $entityManager
      * @param UserPasswordHasherInterface $encoder
      */
     public function __construct(
         UserRepository $userRepository,
         OrganizationRepository $organisationRepository,
+        UserAvatarRepository $userAvatarRepository,
         EntityManagerInterface $entityManager,
         UserPasswordHasherInterface $encoder
     )
@@ -36,21 +42,23 @@ class ApiUserController extends AbstractController
         $this->userRepository = $userRepository;
         $this->entityManager = $entityManager;
         $this->organisationRepository = $organisationRepository;
+        $this->userAvatarRepository = $userAvatarRepository;
         $this->encoder = $encoder;
     }
 
     #[Route('/api/login', name: 'api_login', methods: 'post')]
-    public function apiLogin(Request $request)
+    public function apiLogin(Request $request): JsonResponse
     {
         $form = json_decode($request->getContent(), true);
         $user = $this->userRepository->findOneBy(["email" => $form["email"]]);
-        if($this->encoder->isPasswordValid($user, $form["password"])) {
+        if ($this->encoder->isPasswordValid($user, $form["password"])) {
             $arrayCollection = [
                 "request" => [
                     "status" => 200,
-                    "message" => "Authentification OK !",
+                    "message" => "Authentification succeed",
                 ],
                 "user" => [
+                    "id" => $user->getId(),
                     "email" => $user->getEmail(),
                     "firstname" => $user->getFirstname(),
                     "lastname" => $user->getLastname(),
@@ -68,7 +76,7 @@ class ApiUserController extends AbstractController
             $arrayCollection = [
                 "request" => [
                     "status" => 500,
-                    "message" => "Une erreur est survenue !",
+                    "message" => "Authentification failed",
                 ]
             ];
 
@@ -115,4 +123,84 @@ class ApiUserController extends AbstractController
         return new JsonResponse($arrayCollection);
     }
 
+    #[Route('/api/save_avatar', name: 'api_save_avatar', methods: ['POST', 'PUT'])]
+    public function apiUserAvatar(Request $request): JsonResponse
+    {
+        $httpMethod = $_SERVER['REQUEST_METHOD'];
+
+        switch ($httpMethod) {
+            case 'POST':
+
+                break;
+
+            case 'PUT':
+
+                break;
+
+            default:
+                echo "Default";
+                break;
+        }
+        $jsonRes = [
+            "method" => $httpMethod
+        ];
+
+        /**
+        $values = json_decode($request->getContent(), true);
+        // Set the Avatar
+        $avatar = new UserAvatar();
+        $avatar->setUser($this->userRepository->findOneBy(["id" => $values["id"]]));
+        $avatar->setAccessoriesType($values["accessoriesType"]);
+        $avatar->setClotheType($values["clotheType"]);
+        $avatar->setEyebrowType($values["eyebrowType"]);
+        $avatar->setEyeType($values["eyeType"]);
+        $avatar->setFacialHairType($values["facialHairType"]);
+        $avatar->setHairColor($values["hairColor"]);
+        $avatar->setMouthType($values["mouthType"]);
+        $avatar->setSkinColor($values["skinColor"]);
+        $avatar->setTopType($values["topType"]);
+        // Register in DB
+        $this->entityManager->persist($avatar);
+        $this->entityManager->flush();
+        // Return message
+        $arrayCollection = [
+            "status" => 200,
+            "message" => "Avatar enregistré !"
+        ];
+        $response = new JsonResponse($arrayCollection);
+        return $response;
+         **/
+
+        return new JsonResponse($jsonRes);
+
+    }
+
+    #[Route('/api/get_avatar/{id}', name: 'api_get_avatar', methods: ['GET'])]
+    public function apiGetUserAvatar($id): JsonResponse
+    {
+        try {
+            $user = $this->userAvatarRepository->findOneBy(["user" => $id]);
+            if (!$user) {
+                $jsonRes = [
+                    "message" => "Avatar retrieve failed"
+                ];
+            } else {
+                $jsonRes = [
+                    "accessoriesType" => $user->getTopType(),
+                    "clotheType" => $user->getClotheType(),
+                    "eyebrowType" => $user->getEyebrowType(),
+                    "facialHairType" => $user->getFacialHairType(),
+                    "hairColor" => $user->getHairColor(),
+                    "mouthType" => $user->getMouthType(),
+                    "skinColor" => $user->getSkinColor(),
+                    "topType" => $user->getTopType()
+                ];
+            }
+        } catch (Exception $e) {
+            $jsonRes = [
+                "error" => $e
+            ];
+        }
+        return new JsonResponse($jsonRes);
+    }
 }
