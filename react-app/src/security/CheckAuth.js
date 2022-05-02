@@ -10,9 +10,11 @@ export default function CheckAuth({ children }) {
 
     useEffect(() => {
         if (Object.keys(user).length < 1) {
-            console.log("Go")
+            console.log("Security : 🟢")
         } else if (Object.keys(user).length > 1) {
-            console.log("Ok")
+            console.log("Security : 🔴")
+
+            // TODO : User not ok ? Redirect to Homepage or Login
         }
     }, [])
 

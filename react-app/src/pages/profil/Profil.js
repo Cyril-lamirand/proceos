@@ -204,10 +204,8 @@ export default function Profil() {
 
         const cfg = {
             headers: { "Content-Type": "application/json" },
-            method: "post"
+            method: "put"
         }
-
-        setUser({...user, avatar: avatar})
 
         const finalObject = {
             id: user.id,
@@ -218,19 +216,36 @@ export default function Profil() {
 
         try {
             axios
-                .post("http://localhost:8000/api/save_avatar", finalObject, cfg)
+                .put("http://localhost:8000/api/save_avatar", finalObject, cfg)
                 .then((r) => {
-                    console.log(r)
+                    if (r.data.message === "Avatar enregistré !") {
+                        setUser({...user, avatar: avatar})
+                    } else {
+                        // TODO : Show error message on the page !
+                    }
                 })
-                .then(()=>{
+                .then(() => {
                     setPage("main")
+                })
+                .then(() => {
+                    // TODO : Axios GET for the user
                 })
         } catch (e) {
             console.log(e.message);
         }
     }
 
+    useEffect(() => {
+        if (user) {
+            setAvatar({...user.avatar})
+        }
+    }, [user])
+
     // Todo : Remove DEV
+    useEffect(() => {
+        console.log(avatar)
+    }, [avatar])
+
     useEffect(() => {
         console.log("// User")
         console.log(user)

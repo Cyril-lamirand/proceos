@@ -66,7 +66,18 @@ class ApiUserController extends AbstractController
                         "id" => $user->getOrganization()->getId(),
                         "label" => $user->getOrganization()->getLabel()
                     ],
-                    "roles" => $user->getRoles()
+                    "roles" => $user->getRoles(),
+                    "avatar" => [
+                        "topType" => $user->getUserAvatar()->getTopType(),
+                        "skinColor" => $user->getUserAvatar()->getSkinColor(),
+                        "mouthType" => $user->getUserAvatar()->getMouthType(),
+                        "hairColor" => $user->getUserAvatar()->getHairColor(),
+                        "facialHairType" => $user->getUserAvatar()->getFacialHairType(),
+                        "eyebrowType" => $user->getUserAvatar()->getEyebrowType(),
+                        "clotheType" => $user->getUserAvatar()->getClotheType(),
+                        "accessoriesType" => $user->getUserAvatar()->getAccessoriesType(),
+                        "eyeType" => $user->getUserAvatar()->getEyeType()
+                    ]
                 ]
             ];
 
@@ -89,118 +100,96 @@ class ApiUserController extends AbstractController
     public function apiRegister(Request $request): JsonResponse
     {
         $values = json_decode($request->getContent(), true);
-        // Create User
-        $user = new User();
-        // Main Informations
-        $user->setEmail($values["email"]);
-        $user->setFirstname($values["firstname"]);
-        $user->setLastname($values["lastname"]);
-        // Organization
-        $user->setOrganization($this->organisationRepository->findOneBy(["id" => $values["organization"]]));
-        // Roles
-        if ($values["roles"] === "Étudiant") {
-            $user->setRoles(["ROLE_STUDENT"]);
-        } elseif ($values["roles"] === "Intervenant") {
-            $user->setRoles(["ROLE_INTERVENANT"]);
+        $emailIsTaken = $this->userRepository->findOneBy(["email" => $values["email"]]);
+
+        if ($emailIsTaken) {
+            $arrayCollection = [
+                "status" => 200,
+                "message" => "L'adresse email existe déjà !"
+            ];
         } else {
-            $user->setRoles(["ROLE_ORGA_ADMIN"]);
+            // Create User
+            $user = new User();
+            // Main Informations
+            $user->setEmail($values["email"]);
+            $user->setFirstname($values["firstname"]);
+            $user->setLastname($values["lastname"]);
+            // Organization
+            $user->setOrganization($this->organisationRepository->findOneBy(["id" => $values["organization"]]));
+            // Roles
+            if ($values["roles"] === "Étudiant") {
+                $user->setRoles(["ROLE_STUDENT"]);
+            } elseif ($values["roles"] === "Intervenant") {
+                $user->setRoles(["ROLE_INTERVENANT"]);
+            } else {
+                $user->setRoles(["ROLE_ORGA_ADMIN"]);
+            }
+            // Encrypt
+            $user->setPassword($this->encoder->hashPassword($user, $values["password"]));
+            // Register
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+
+            // Find the user we just create. I know, not so fabulous.
+            $user_avatar = $this->userRepository->findOneBy(["email" => $values["email"]]);
+            // Create the Avatar
+            $avatar = new UserAvatar();
+            $avatar->setTopType("LongHairStraight");
+            $avatar->setSkinColor("Light");
+            $avatar->setMouthType("Default");
+            $avatar->setHairColor("BrownDark");
+            $avatar->setFacialHairType("Blank");
+            $avatar->setEyeType("Default");
+            $avatar->setEyebrowType("Default");
+            $avatar->setClotheType("BlazerShirt");
+            $avatar->setAccessoriesType("Blank");
+            $avatar->setUser($user_avatar);
+            $this->entityManager->persist($avatar);
+            $this->entityManager->flush();
+
+            // TODO : Send an email !
+
+            $arrayCollection = [
+                "status" => 200,
+                "message" => "Utilisateur enregistre en base de donnees !"
+            ];
         }
-        // Encrypt
-        $user->setPassword($this->encoder->hashPassword($user, $values["password"]));
-        // Register
-        $this->entityManager->persist($user);
-        $this->entityManager->flush();
-
-        // TODO : Check if everything is ok !
-
-        // TODO : Send an email !
-
-        $arrayCollection = [
-            "status" => 200,
-            "message" => "Utilisateur enregistre en base de donnees !"
-        ];
-
         return new JsonResponse($arrayCollection);
     }
 
-    #[Route('/api/save_avatar', name: 'api_save_avatar', methods: ['POST', 'PUT'])]
+    #[Route('/api/save_avatar', name: 'api_save_avatar', methods: ['PUT'])]
     public function apiUserAvatar(Request $request): JsonResponse
     {
-        $httpMethod = $_SERVER['REQUEST_METHOD'];
-
-        switch ($httpMethod) {
-            case 'POST':
-
-                break;
-
-            case 'PUT':
-
-                break;
-
-            default:
-                echo "Default";
-                break;
-        }
-        $jsonRes = [
-            "method" => $httpMethod
-        ];
-
-        /**
         $values = json_decode($request->getContent(), true);
-        // Set the Avatar
-        $avatar = new UserAvatar();
-        $avatar->setUser($this->userRepository->findOneBy(["id" => $values["id"]]));
-        $avatar->setAccessoriesType($values["accessoriesType"]);
-        $avatar->setClotheType($values["clotheType"]);
-        $avatar->setEyebrowType($values["eyebrowType"]);
-        $avatar->setEyeType($values["eyeType"]);
-        $avatar->setFacialHairType($values["facialHairType"]);
-        $avatar->setHairColor($values["hairColor"]);
-        $avatar->setMouthType($values["mouthType"]);
-        $avatar->setSkinColor($values["skinColor"]);
-        $avatar->setTopType($values["topType"]);
-        // Register in DB
-        $this->entityManager->persist($avatar);
-        $this->entityManager->flush();
-        // Return message
-        $arrayCollection = [
-            "status" => 200,
-            "message" => "Avatar enregistré !"
-        ];
-        $response = new JsonResponse($arrayCollection);
-        return $response;
-         **/
+        $user = $this->userRepository->findOneBy(["id" => $values["id"]]);
 
-        return new JsonResponse($jsonRes);
-
-    }
-
-    #[Route('/api/get_avatar/{id}', name: 'api_get_avatar', methods: ['GET'])]
-    public function apiGetUserAvatar($id): JsonResponse
-    {
-        try {
-            $user = $this->userAvatarRepository->findOneBy(["user" => $id]);
-            if (!$user) {
-                $jsonRes = [
-                    "message" => "Avatar retrieve failed"
-                ];
-            } else {
-                $jsonRes = [
-                    "accessoriesType" => $user->getTopType(),
-                    "clotheType" => $user->getClotheType(),
-                    "eyebrowType" => $user->getEyebrowType(),
-                    "facialHairType" => $user->getFacialHairType(),
-                    "hairColor" => $user->getHairColor(),
-                    "mouthType" => $user->getMouthType(),
-                    "skinColor" => $user->getSkinColor(),
-                    "topType" => $user->getTopType()
-                ];
-            }
-        } catch (Exception $e) {
-            $jsonRes = [
-                "error" => $e
+        if (!$user) {
+            $arrayCollection = [
+                "status" => 500,
+                "message" => "Utilisateur introuvable"
+            ];
+        } else {
+            $userAvatar = $this->userAvatarRepository->findOneBy(["user" => $user]);
+            $newAvatar = $userAvatar
+                ->setAccessoriesType($values["accessoriesType"])
+                ->setClotheType($values["clotheType"])
+                ->setEyebrowType($values["eyebrowType"])
+                ->setEyeType($values["eyeType"])
+                ->setFacialHairType($values["facialHairType"])
+                ->setHairColor($values["hairColor"])
+                ->setMouthType($values["mouthType"])
+                ->setSkinColor($values["skinColor"])
+                ->setTopType($values["topType"])
+            ;
+            // Register in DB
+            $this->entityManager->persist($newAvatar);
+            $this->entityManager->flush();
+            // Return message
+            $arrayCollection = [
+                "status" => 200,
+                "message" => "Avatar enregistré !"
             ];
         }
-        return new JsonResponse($jsonRes);
+        return new JsonResponse($arrayCollection);
     }
 }

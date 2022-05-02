@@ -41,7 +41,6 @@ export default function Login() {
                         setMessage(response.data.request.message)
                     }
                 })
-
         } catch (error) {
             console.log("Axios : " + error)
         }
@@ -49,28 +48,10 @@ export default function Login() {
 
     useEffect(() => {
         if (user) {
-            if (!user.avatar) {
-                try {
-                    axios.get('http://localhost:8000/api/get_avatar/' + user.id)
-                        .then(function (response) {
-                            setUser({
-                                ...user,
-                                avatar: response.data
-                            })
-                        })
-                        .catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function () {
-                            window.localStorage.setItem('user', JSON.stringify(user))
-                        });
-                } catch (e) {
-                    console.log(e.message)
-                }
-            }
+            window.localStorage.setItem('user', JSON.stringify(user));
         }
     }, [user])
+
 
     useEffect(() => {
         console.log(user)

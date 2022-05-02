@@ -31,9 +31,6 @@ function App() {
         }
     }, [])
 
-    // TODO : Remove (for dev)
-    useEffect(() => { console.log(user)}, [user])
-
     return (
         <>
             <UserContext.Provider value={[user, setUser]}>
