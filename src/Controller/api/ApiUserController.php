@@ -134,16 +134,18 @@ class ApiUserController extends AbstractController
             $user_avatar = $this->userRepository->findOneBy(["email" => $values["email"]]);
             // Create the Avatar
             $avatar = new UserAvatar();
-            $avatar->setTopType("LongHairStraight");
-            $avatar->setSkinColor("Light");
-            $avatar->setMouthType("Default");
-            $avatar->setHairColor("BrownDark");
-            $avatar->setFacialHairType("Blank");
-            $avatar->setEyeType("Default");
-            $avatar->setEyebrowType("Default");
-            $avatar->setClotheType("BlazerShirt");
-            $avatar->setAccessoriesType("Blank");
-            $avatar->setUser($user_avatar);
+            $avatar
+                ->setTopType("LongHairStraight")
+                ->setSkinColor("Light")
+                ->setMouthType("Default")
+                ->setHairColor("BrownDark")
+                ->setFacialHairType("Blank")
+                ->setEyeType("Default")
+                ->setEyebrowType("Default")
+                ->setClotheType("BlazerShirt")
+                ->setAccessoriesType("Blank")
+                ->setUser($user_avatar)
+            ;
             $this->entityManager->persist($avatar);
             $this->entityManager->flush();
 
