@@ -116,9 +116,6 @@ class ApiUserController extends AbstractController
                     ]
                 ]
             ];
-
-            return new JsonResponse($arrayCollection);
-
         } else {
             $arrayCollection = [
                 "request" => [
@@ -126,10 +123,8 @@ class ApiUserController extends AbstractController
                     "message" => "Authentification failed",
                 ]
             ];
-
-            return new JsonResponse($arrayCollection);
         }
-
+        return new JsonResponse($arrayCollection);
     }
 
     #[Route('/api/register', name: 'api_register', methods: 'post')]
