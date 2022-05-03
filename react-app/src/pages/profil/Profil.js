@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from "react"
 import {UserContext} from "../../contexts/UserContext"
 import Avatar from 'avataaars'
 import axios from "axios"
+import UserRoleString from "../../components/logics/UserRoleString";
 
 export default function Profil() {
 
@@ -255,44 +256,71 @@ export default function Profil() {
         }
     })
 
+    // TODO : Remove DEV
+    useEffect(() => {
+        console.log(user)
+    }, [user])
+
     return(
         <>
             {page === "main" &&
                 <>
                     { user ?
                         <>
-                            <div className="d-flex justify-content-center">
-                                <Avatar
-                                    style={{ width: '200px', height: '200px' }}
-                                    topType={avatar['topType']}
-                                    avatarStyle="Transparent"
-                                    accessoriesType={avatar['accessoriesType']}
-                                    hairColor={avatar['hairColor']}
-                                    facialHairType={avatar['facialHairType']}
-                                    clotheType={avatar['clotheType']}
-                                    eyeType={avatar['eyeType']}
-                                    eyebrowType={avatar['eyebrowType']}
-                                    mouthType={avatar['mouthType']}
-                                    skinColor={avatar['skinColor']}
-                                />
-                            </div>
-                            <div className="text-center mt-5">
-                                <div>
-                                    <h2>{user.firstname} {user.lastname}</h2>
-                                </div>
-                                <div className="mt-3">
-                                    <span>{user.email}</span>
-                                </div>
-                                <div className="mt-3">
-                                    {user.organization ?
-                                        <>
-                                            <h3>{user.organization.label}</h3>
-                                        </>
-                                        :
-                                        <>
-                                            <h3>Pas d'organisation trouvée</h3>
-                                        </>
-                                    }
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-12 col-md-4 col-lg-3">
+                                        <div className="d-flex justify-content-center">
+                                            <Avatar
+                                                style={{ width: '180px', height: '180px' }}
+                                                topType={avatar['topType']}
+                                                avatarStyle="Transparent"
+                                                accessoriesType={avatar['accessoriesType']}
+                                                hairColor={avatar['hairColor']}
+                                                facialHairType={avatar['facialHairType']}
+                                                clotheType={avatar['clotheType']}
+                                                eyeType={avatar['eyeType']}
+                                                eyebrowType={avatar['eyebrowType']}
+                                                mouthType={avatar['mouthType']}
+                                                skinColor={avatar['skinColor']}
+                                            />
+                                        </div>
+                                        <div className="d-flex justify-content-center mt-2">
+                                            <button className="btn btn-primary" onClick={() => setPage("edit")}>
+                                                <span>Modifier l'avatar</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 col-md-4 col-lg-6">
+                                        <div className="h-100 align-items-center">
+                                            <div className="pt-5">
+                                                <h2>{user.firstname} {user.lastname}</h2>
+                                            </div>
+                                            <div>
+                                                <h5>{user.email}</h5>
+                                            </div>
+                                            <hr/>
+                                            <div>
+                                                {user.organization ?
+                                                    <>
+                                                        <h3>{user.organization.label}</h3>
+                                                        <div>
+                                                            <h5><UserRoleString props={user.roles[0]}/></h5>
+                                                        </div>
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <h3>Pas d'organisation trouvée</h3>
+                                                    </>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 col-md-4 col-lg-3">
+                                        <div className="d-flex h-100 align-items-center">
+                                            <a className="btn btn-danger" href="/logout">Déconnexion</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </>
@@ -301,11 +329,6 @@ export default function Profil() {
                             <h2>Pas d'utilisateur</h2>
                         </>
                     }
-                    <div className="text-center mt-3">
-                        <button className="btn btn-primary" onClick={() => setPage("edit")}>
-                            <span>Modifier l'avatar</span>
-                        </button>
-                    </div>
                 </>
             }
             { page === "edit" &&
