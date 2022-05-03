@@ -7,6 +7,9 @@ import Square from "../../assets/fake/fake-square.jpg"
 
 export default function Register() {
 
+    // Message
+    const [message, setMessage] = useState("")
+
     // Manage Form
     const [form, setForm] = useState({})
     const [organization, setOrganization] = useState(null)
@@ -48,7 +51,11 @@ export default function Register() {
             axios
                 .post("http://localhost:8000/api/register", form, cfg)
                 .then((r) => {
-                    navigate("/success")
+                    if (r.data.message === "L'adresse email existe déjà !") {
+                        setMessage(r.data.message)
+                    } else {
+                        navigate("/success")
+                    }
                 })
         } catch (e) {
             console.log(e.message);
@@ -257,12 +264,21 @@ export default function Register() {
                                     <option value="Organisation Administrateur">Administrateur d'organisation</option>
                                 </select>
                             </div>
+                            { message ?
+                                <>
+                                    <div className="alert alert-warning mt-4 mb-4">
+                                        <span>{message}</span>
+                                    </div>
+                                </>
+                                :
+                                <>
+                                </>
+                            }
                             <div className="d-flex justify-content-center mt-4 mb-4">
                                 <button type="submit" className="btn btn-primary">
                                     S'enregistrer
                                 </button>
                             </div>
-
                         </form>
                     </div>
                     <div className="col-12 col-md-4 col-lg-6">
@@ -275,13 +291,9 @@ export default function Register() {
                         <div className="mt-3">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi at dignissimos, impedit molestiae natus nisi officiis quae rem sunt vero! Autem, dicta dolorem doloribus dolorum pariatur repudiandae similique ut voluptate?</p>
                         </div>
-
                     </div>
                 </div>
-
-
             </div>
-
         </>
     )
 }

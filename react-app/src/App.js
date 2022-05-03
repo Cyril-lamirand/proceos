@@ -16,6 +16,7 @@ import CheckAuth from "./security/CheckAuth"
 import Success from "./pages/messages/Success"
 import Error from "./pages/messages/Error"
 import Logout from "./pages/messages/Logout"
+import Profil from "./pages/profil/Profil"
 
 function App() {
 
@@ -30,9 +31,6 @@ function App() {
         }
     }, [])
 
-    // TODO : Remove (for dev)
-    useEffect(() => { console.log(user)}, [user])
-
     return (
         <>
             <UserContext.Provider value={[user, setUser]}>
@@ -43,6 +41,7 @@ function App() {
                             <Route exact path="/login" element={ <Login/> }/>
                             <Route exact path="/register" element={ <Register/> }/>
                             <Route exact path="/dashboard" element={<CheckAuth> <Dashboard/> </CheckAuth>}/>
+                            <Route exact path="/profil" element={<CheckAuth> <Profil/> </CheckAuth>}/>
 
                             <Route exact path="/success" element={ <Success/> }/>
                             <Route exact path="/error" element={ <Error/>}/>

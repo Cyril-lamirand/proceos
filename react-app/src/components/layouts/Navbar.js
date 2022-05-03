@@ -3,6 +3,8 @@ import React, {useContext} from "react"
 import {UserContext} from "../../contexts/UserContext"
 // Assets
 import logo from "../../logo.svg"
+// Avatar
+import Avatar from 'avataaars'
 
 
 export default function Navbar() {
@@ -37,9 +39,35 @@ export default function Navbar() {
                             {user.email ?
                                 <>
                                     <div className="d-flex">
-                                        <div className="mr-2">
-                                            <a className="text-light" href="/dashboard">Tableau de bord</a>
+                                        <div className="h-100 d-flex align-items-center">
+                                            <a className="text-light" style={{marginRight: "10px"}} href="/dashboard">Tableau de bord</a>
                                         </div>
+                                        <a href="/profil">
+                                            <div>
+                                                <div style={{
+                                                    background: "white",
+                                                    borderRadius:"4px",
+                                                    paddingTop:"3px",
+                                                    paddingBottom:"3px",
+                                                    paddingLeft:"3px",
+                                                    paddingRight:"3px"
+                                                }}>
+                                                    <Avatar
+                                                        style={{ width: '50px', height: '50px' }}
+                                                        topType={user.avatar['topType']}
+                                                        avatarStyle="Transparent"
+                                                        accessoriesType={user.avatar['accessoriesType']}
+                                                        hairColor={user.avatar['hairColor']}
+                                                        facialHairType={user.avatar['facialHairType']}
+                                                        clotheType={user.avatar['clotheType']}
+                                                        eyeType={user.avatar['eyeType']}
+                                                        eyebrowType={user.avatar['eyebrowType']}
+                                                        mouthType={user.avatar['mouthType']}
+                                                        skinColor={user.avatar['skinColor']}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 </>
                                 :
