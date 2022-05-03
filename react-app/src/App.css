@@ -12,3 +12,12 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 991.9px) {
+  #responsive-button{ display: block; }
+}
+
+@media (min-width: 992px) {
+  #responsive-button{ display: none; }
+}
+
