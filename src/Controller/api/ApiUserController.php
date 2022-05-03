@@ -46,6 +46,42 @@ class ApiUserController extends AbstractController
         $this->encoder = $encoder;
     }
 
+    #[Route('/api/user/{id}', name: 'api_get_user', methods: 'get')]
+    public function apiGetOneUserById($id): JsonResponse
+    {
+        $user = $this->userRepository->findOneBy(["id" => $id]);
+        if ($user) {
+            $jsonRes = [
+                "id" => $user->getId(),
+                "email" => $user->getEmail(),
+                "firstname" => $user->getFirstname(),
+                "lastname" => $user->getLastname(),
+                "organization" => [
+                    "id" => $user->getOrganization()->getId(),
+                    "label" => $user->getOrganization()->getLabel()
+                ],
+                "roles" => $user->getRoles(),
+                "avatar" => [
+                    "topType" => $user->getUserAvatar()->getTopType(),
+                    "skinColor" => $user->getUserAvatar()->getSkinColor(),
+                    "mouthType" => $user->getUserAvatar()->getMouthType(),
+                    "hairColor" => $user->getUserAvatar()->getHairColor(),
+                    "facialHairType" => $user->getUserAvatar()->getFacialHairType(),
+                    "eyebrowType" => $user->getUserAvatar()->getEyebrowType(),
+                    "clotheType" => $user->getUserAvatar()->getClotheType(),
+                    "accessoriesType" => $user->getUserAvatar()->getAccessoriesType(),
+                    "eyeType" => $user->getUserAvatar()->getEyeType()
+                ]
+            ];
+        } else {
+            $jsonRes = [
+              "status" => 500,
+              "message" => "Utilisateur introuvable"
+            ];
+        }
+        return new JsonResponse($jsonRes);
+    }
+
     #[Route('/api/login', name: 'api_login', methods: 'post')]
     public function apiLogin(Request $request): JsonResponse
     {
