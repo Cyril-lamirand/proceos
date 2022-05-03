@@ -39,8 +39,8 @@ export default function Navbar() {
                             {user.email ?
                                 <>
                                     <div className="d-flex">
-                                        <div className="mr-2">
-                                            <a className="text-light" href="/dashboard">Tableau de bord</a>
+                                        <div className="h-100 d-flex align-items-center">
+                                            <a className="text-light" style={{marginRight: "10px"}} href="/dashboard">Tableau de bord</a>
                                         </div>
                                         <a href="/profil">
                                             <div>

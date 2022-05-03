@@ -8,6 +8,7 @@ export default function Profil() {
     const [page, setPage] = useState("main")
     const [user, setUser] = useContext(UserContext)
     const [avatar, setAvatar] = useState({})
+    const [update, setUpdate] = useState(false)
 
     const TopType = [
         { label: 'Cheveux longs droits 1', value: 'LongHairStraight' }, // 0
@@ -228,7 +229,13 @@ export default function Profil() {
                     setPage("main")
                 })
                 .then(() => {
-                    // TODO : Axios GET for the user
+                    axios.get("http://localhost:8000/api/user/" + user.id)
+                        .then((response) => {
+                            setUser({...response.data})
+                        })
+                        .then(() => {
+                            setUpdate(true)
+                        })
                 })
         } catch (e) {
             console.log(e.message);
@@ -241,16 +248,12 @@ export default function Profil() {
         }
     }, [user])
 
-    // Todo : Remove DEV
     useEffect(() => {
-        console.log(avatar)
-    }, [avatar])
-
-    useEffect(() => {
-        console.log("// User")
-        console.log(user)
-    }, [user])
-
+        if (update) {
+            localStorage.clear()
+            window.localStorage.setItem('user', JSON.stringify(user))
+        }
+    })
 
     return(
         <>
