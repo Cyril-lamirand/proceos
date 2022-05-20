@@ -37,6 +37,7 @@ security:
   access_control:
     - { path: ^/login, roles: [ PUBLIC_ACCESS,IS_AUTHENTICATED_ANONYMOUSLY ] }
     - { path: ^/register, roles: [ PUBLIC_ACCESS,IS_AUTHENTICATED_ANONYMOUSLY ] }
+    - { path: ^/proceos, roles: [ROLE_USER]}
     # Api Routes
     - { path: ^/api/login, roles: PUBLIC_ACCESS }
     - { path: ^/api/register, roles: PUBLIC_ACCESS }

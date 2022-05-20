@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route('/organization')]
+#[Route('proceos/organization')]
 class OrganizationController extends AbstractController
 {
     #[Route('/', name: 'organization_index', methods: ['GET'])]

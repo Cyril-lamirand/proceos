@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/module')]
+#[Route('proceos/module')]
 class ModuleController extends AbstractController
 {
     #[Route('/', name: 'module_index', methods: ['GET'])]
