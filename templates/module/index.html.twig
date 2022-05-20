@@ -10,6 +10,7 @@
     <thead>
     <tr>
         <th>Id</th>
+        <th>Name</th>
         <th>Createdat</th>
         <th>actions</th>
     </tr>
@@ -18,6 +19,7 @@
     {% for module in modules %}
     <tr>
         <td>{{ module.id }}</td>
+        <td>{{ module.label }}</td>
         <td>{{ module.createdat ? module.createdat|date('Y-m-d H:i:s') : '' }}</td>
         <td>
             <a class="btn btn-success" href="{{ path('module_show', {'id': module.id}) }}"><i
