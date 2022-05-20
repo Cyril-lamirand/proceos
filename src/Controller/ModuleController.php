@@ -13,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('proceos/module')]
 class ModuleController extends AbstractController
 {
+    // TODO : Show only Organization USER Module
+
     #[Route('/', name: 'module_index', methods: ['GET'])]
     public function index(ModuleRepository $moduleRepository): Response
     {
