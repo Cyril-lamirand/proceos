@@ -1,5 +1,5 @@
 <form method="post" action="{{ path('message_delete', {'id': message.id}) }}"
-      onsubmit="return confirm('Are you sure you want to delete this item?');">
+      onsubmit="return confirm('Are you sure you want to delete this item?');" class="margin_form_top">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ message.id) }}">
-    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+    <button class="btn delete-button"><i class="fas fa-trash"></i></button>
 </form>

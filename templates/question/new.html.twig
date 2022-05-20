@@ -3,9 +3,9 @@
 {% block title %}New Question{% endblock %}
 
 {% block body %}
-    <h1>Create new Question</h1>
+    <h1 class="big-titles">Create new Question</h1>
 
     {{ include('question/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('question_index') }}">back to list</a>
+    <a class="btn back-button" href="{{ path('question_index') }}">back to list</a>
 {% endblock %}

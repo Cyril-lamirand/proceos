@@ -3,7 +3,7 @@
 {% block title %}Module{% endblock %}
 
 {% block body %}
-    <h1>Module</h1>
+    <h1 class="big-titles">Module</h1>
 
     <table class="table">
         <tbody>
@@ -22,9 +22,9 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('module_index') }}">back to list</a>
+    <a class="btn back-button" href="{{ path('module_index') }}">back to list</a>
 
-    <a class="btn btn-success" href="{{ path('module_edit', {'id': module.id}) }}"><i class="fas fa-pen"></i></a>
+    <a class="btn update-button" href="{{ path('module_edit', {'id': module.id}) }}"><i class="fas fa-pen"></i></a>
 
     {{ include('module/_delete_form.html.twig') }}
 {% endblock %}

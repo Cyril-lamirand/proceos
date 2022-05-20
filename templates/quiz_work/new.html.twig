@@ -3,9 +3,9 @@
 {% block title %}New QuizWork{% endblock %}
 
 {% block body %}
-    <h1>Create new QuizWork</h1>
+    <h1 class="big-titles">Create new QuizWork</h1>
 
     {{ include('quiz_work/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('quiz_work_index') }}">back to list</a>
+    <a class="btn back-button" href="{{ path('quiz_work_index') }}">back to list</a>
 {% endblock %}

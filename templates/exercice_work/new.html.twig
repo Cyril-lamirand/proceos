@@ -3,9 +3,9 @@
 {% block title %}New ExerciceWork{% endblock %}
 
 {% block body %}
-    <h1>Create new ExerciceWork</h1>
+    <h1 class="big-titles">Create new ExerciceWork</h1>
 
     {{ include('exercice_work/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('exercice_work_index') }}">back to list</a>
+    <a class="btn back-button" href="{{ path('exercice_work_index') }}">back to list</a>
 {% endblock %}

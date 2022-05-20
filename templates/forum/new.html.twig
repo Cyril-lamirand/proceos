@@ -3,9 +3,9 @@
 {% block title %}New Forum{% endblock %}
 
 {% block body %}
-    <h1>Create new Forum</h1>
+    <h1 class="big-titles">Create new Forum</h1>
 
     {{ include('forum/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('forum_index') }}">back to list</a>
+    <a class="btn back-button" href="{{ path('forum_index') }}">back to list</a>
 {% endblock %}

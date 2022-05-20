@@ -3,9 +3,9 @@
 {% block title %}Classe index{% endblock %}
 
 {% block body %}
-<h1>Classes</h1>
+<h1 class="big-titles">Classes</h1>
 {% if is_granted('ROLE_ADMIN') %}
-<a class="btn btn-success" href="{{ path('classe_new') }}">Create new</a>
+<a class="btn btn-success create-new" href="{{ path('classe_new') }}">Create new</a>
 {% endif %}
 
 <table class="table">

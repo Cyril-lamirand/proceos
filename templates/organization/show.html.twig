@@ -3,7 +3,7 @@
 {% block title %}Organization{% endblock %}
 
 {% block body %}
-    <h1>Organization</h1>
+    <h1 class="big-titles">Organization</h1>
 
     <table class="table">
         <tbody>
@@ -18,9 +18,9 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('organization_index') }}">back to list</a>
+    <a class="btn back-button" href="{{ path('organization_index') }}">back to list</a>
 
-    <a class="btn btn-success" href="{{ path('organization_edit', {'id': organization.id}) }}"><i class="fas fa-pen"></i></a>
+    <a class="btn update-button" href="{{ path('organization_edit', {'id': organization.id}) }}"><i class="fas fa-pen"></i></a>
 
     {{ include('organization/_delete_form.html.twig') }}
 {% endblock %}

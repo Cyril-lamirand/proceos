@@ -3,11 +3,11 @@
 {% block title %}Edit Course{% endblock %}
 
 {% block body %}
-    <h1>Edit Course</h1>
+    <h1 class="big-titles">Edit Course</h1>
 
     {{ include('course/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a class="btn btn-primary" href="{{ path('course_index') }}">back to list</a>
+    <a class="btn back-button" href="{{ path('course_index') }}">back to list</a>
 
     {{ include('course/_delete_form.html.twig') }}
 {% endblock %}

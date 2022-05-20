@@ -3,9 +3,9 @@
 {% block title %}New Classe{% endblock %}
 
 {% block body %}
-    <h1>Create new Classe</h1>
+    <h1 class="big-titles">Create new Classe</h1>
 
     {{ include('classe/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('classe_index') }}">back to list</a>
+    <a class="btn back-button" href="{{ path('classe_index') }}">back to list</a>
 {% endblock %}
