@@ -286,7 +286,7 @@ export default function Profil() {
                                             />
                                         </div>
                                         <div className="d-flex justify-content-center mt-2">
-                                            <button className="btn btn-primary" onClick={() => setPage("edit")}>
+                                            <button className="button-primary" onClick={() => setPage("edit")}>
                                                 <span>Modifier l'avatar</span>
                                             </button>
                                         </div>
@@ -318,7 +318,7 @@ export default function Profil() {
                                     </div>
                                     <div className="col-12 col-md-4 col-lg-3">
                                         <div className="d-flex h-100 align-items-center">
-                                            <a className="btn btn-danger" href="/logout">Déconnexion</a>
+                                            <a className="button-danger a-reset" href="/logout">Déconnexion</a>
                                         </div>
                                     </div>
                                 </div>
