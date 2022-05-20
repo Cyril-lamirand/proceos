@@ -13,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('proceos/forum')]
 class ForumController extends AbstractController
 {
+    // TODO : Show only Organization USER Forum
+
     #[Route('/', name: 'forum_index', methods: ['GET'])]
     public function index(ForumRepository $forumRepository): Response
     {

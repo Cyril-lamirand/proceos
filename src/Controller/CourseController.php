@@ -13,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('proceos/course')]
 class CourseController extends AbstractController
 {
+    // TODO : Show only Organization USER Course
+
     #[Route('/', name: 'course_index', methods: ['GET'])]
     public function index(CourseRepository $courseRepository): Response
     {

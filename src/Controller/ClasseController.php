@@ -16,6 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('proceos/classe')]
 class ClasseController extends AbstractController
 {
+    // TODO : Show only Organization Classes
+
     #[Route('/', name: 'classe_index', methods: ['GET'])]
     public function index(ClasseRepository $classeRepository): Response
     {

@@ -17,6 +17,7 @@ import Success from "./pages/messages/Success"
 import Error from "./pages/messages/Error"
 import Logout from "./pages/messages/Logout"
 import Profil from "./pages/profil/Profil"
+import Editor from "./pages/editor/Editor"
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
                             <Route exact path="/success" element={ <Success/> }/>
                             <Route exact path="/error" element={ <Error/>}/>
                             <Route exact path="/logout" element={ <Logout/>}/>
+                            <Route exact path="/editor" element={ <Editor/>}/>
                         </Routes>
                     </Main>
                 </BrowserRouter>

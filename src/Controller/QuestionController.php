@@ -13,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('proceos/question')]
 class QuestionController extends AbstractController
 {
+    // TODO : Show only Organization USER Question
+
     #[Route('/', name: 'question_index', methods: ['GET'])]
     public function index(QuestionRepository $questionRepository): Response
     {
