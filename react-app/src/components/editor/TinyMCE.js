@@ -14,7 +14,6 @@ export default function TinyMCE() {
 
     function handleChange(event) {
 
-
         setTinyValue({
             wysiwyg : editorRef.current.getContent()
         })
@@ -69,14 +68,10 @@ export default function TinyMCE() {
                             "Pas de rendu disponible..."
                         }
                     </div>
-
                 </div>
                 <hr/>
                 <h2>Paramètres supplémentaires</h2>
-
-
             </div>
-
         </>
     )
 }
