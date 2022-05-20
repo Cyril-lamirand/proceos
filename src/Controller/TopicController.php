@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/topic')]
+#[Route('proceos/topic')]
 class TopicController extends AbstractController
 {
     #[Route('/', name: 'topic_index', methods: ['GET'])]

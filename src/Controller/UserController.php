@@ -16,7 +16,7 @@ use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route('/admin')]
+#[Route('proceos/admin')]
 class UserController extends AbstractController
 {
     #[Route('/user', name: 'admin_user')]

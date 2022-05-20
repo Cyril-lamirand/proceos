@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/forum')]
+#[Route('proceos/forum')]
 class ForumController extends AbstractController
 {
     #[Route('/', name: 'forum_index', methods: ['GET'])]

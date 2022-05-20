@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/course')]
+#[Route('proceos/course')]
 class CourseController extends AbstractController
 {
     #[Route('/', name: 'course_index', methods: ['GET'])]
