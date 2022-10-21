@@ -2,7 +2,7 @@ let select = document.getElementById('user_classes');
 let hiddenInput = document.getElementById('courses');
 hiddenInput.setAttribute('value', "");
 
-fetch(window.location.origin + '/admin/api/classes')
+fetch(window.location.origin + '/proceos/admin/api/classes')
     .then(res => res.json())
     .then(response => {
         let i = 0;
