@@ -19,7 +19,7 @@ export default function From(){
     }, [modules])
 
     function addQuestionBloc() {
-        const question_form = `<div className="form-group">
+        const question_form = `<div className="form-group mt-3">
         <label>Question :</label>
         <input type='text' placeholder="Lorem Impsum" className="form-control"></input>
         <label>Réponse :</label>
@@ -40,7 +40,7 @@ export default function From(){
         <div>
             <form className="form-group" onSubmit={sendForm}>
                 <label>Choix du module</label>
-                <select className="form-control" name="module">
+                <select className="form-control mb-3" name="module">
                 <option defaultValue>Veuillez choisir...</option>
                     {modules ?
                         <>
