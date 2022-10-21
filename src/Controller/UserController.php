@@ -22,7 +22,14 @@ class UserController extends AbstractController
     #[Route('/user', name: 'admin_user')]
     public function index(): Response
     {
-        $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAll();
+        $role = $this->getUser()?->getRoles();
+
+        if (in_array('ROLE_ORGA_ADMIN', $role, true)) {
+            $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByOrga($this->getUser()?->getOrganization());
+        } else {
+            $users
+                = $this->getDoctrine()->getManager()->getRepository(User::class)->findAll();
+        }
         return $this->render('user/index.html.twig', [
             "users" => $users,
         ]);

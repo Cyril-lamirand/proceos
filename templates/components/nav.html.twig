@@ -54,7 +54,7 @@
             <i class="fa-light fa-message"></i>
             <a class="link" href="{{path('message_index')}}">Messages</a>
         </li>
-        {% if is_granted('ROLE_ADMIN') %}
+        {% if is_granted('ROLE_ORGA_ADMIN') %}
         <li class="link-container">
             <i class="fa-light fa-users"></i>
             <a class="link" href="{{path('admin_user')}}">User</a>
