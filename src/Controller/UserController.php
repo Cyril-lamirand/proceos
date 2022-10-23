@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Classe;
+use App\Entity\Organization;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Service\FileUploader;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -19,6 +21,11 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('proceos/admin')]
 class UserController extends AbstractController
 {
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     #[Route('/user', name: 'admin_user')]
     public function index(): Response
     {
@@ -91,20 +98,24 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/api/classes', name: 'api_get_classes')]
-    public function getClasses(): JsonResponse
+    #[Route('/api/classes/{id}', name: 'api_get_classes')]
+    public function getClasses($id): JsonResponse
     {
-        $classes = $this->getDoctrine()->getManager()->getRepository(Classe::class)->findAll();
-        $array = [];
-
-        foreach ($classes as $classe) {
-            $ar = [
-                'label' => $classe->getLabel(),
-                'id' => $classe->getId(),
-            ];
-            $array[] = $ar;
+        $orga = $this->em->getRepository(Organization::class)->find($id);
+        if ($orga) {
+            $array = [];
+            foreach ($orga->getClasses() as $classe) {
+                $ar = [
+                    'label' => $classe->getLabel(),
+                    'id' => $classe->getId(),
+                ];
+                $array[] = $ar;
+            }
+            return $this->json($array);
         }
-
-        return $this->json($array);
+        return new JsonResponse([
+            "status" => 500,
+            "message" => "Any organization with this id"
+        ]);
     }
 }
