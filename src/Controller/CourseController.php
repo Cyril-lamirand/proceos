@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Course;
 use App\Form\CourseType;
 use App\Repository\CourseRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,17 +14,39 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('proceos/course')]
 class CourseController extends AbstractController
 {
-    // TODO : Show only Organization USER Course
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
 
     #[Route('/', name: 'course_index', methods: ['GET'])]
     public function index(CourseRepository $courseRepository): Response
     {
+        $user = $this->getUser();
+        if (in_array('ROLE_ADMIN', $user?->getRoles(), true)) {
+            $courses = $courseRepository->findAll();
+        } else {
+            $orga = $user?->getOrganization();
+            if ($orga) {
+                $users = $orga->getUsers();
+                $courses = [];
+                foreach ($users as $usr){
+                    $modules = $usr->getModules();
+                    foreach ($modules as $module) {
+                        $c = $module->getCourses();
+                        foreach ($c as $element) {
+                            $courses[] = $element;
+                        }
+                    }
+                }
+            }
+        }
         return $this->render('course/index.html.twig', [
-            'courses' => $courseRepository->findAll(),
+            'courses' => $courses,
         ]);
     }
 
-    #[Route('/new', name: 'course_new', methods: ['GET','POST'])]
+    #[Route('/new', name: 'course_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $course = new Course();
@@ -52,7 +75,7 @@ class CourseController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'course_edit', methods: ['GET','POST'])]
+    #[Route('/{id}/edit', name: 'course_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Course $course): Response
     {
         $form = $this->createForm(CourseType::class, $course);
@@ -73,7 +96,7 @@ class CourseController extends AbstractController
     #[Route('/{id}', name: 'course_delete', methods: ['POST'])]
     public function delete(Request $request, Course $course): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$course->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $course->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($course);
             $entityManager->flush();
