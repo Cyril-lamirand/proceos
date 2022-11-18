@@ -44,15 +44,22 @@ export default function From(){
             let question = document.getElementById(`question${x}`).value
             let reponse = document.getElementById(`reponse${x}`).value
             questions.push(
-                {
-                    'question' : question,
-                    'réponse' : reponse
+                {   
+                    label : question,
+                    placeholder : '',
+                    type : 'text',
+                    answer: [
+                        {
+                            value: reponse,
+                            correct: true
+                        }
+                    ]
                 }
             )
         }
         const result = {
             label : moduleName[0].value,
-            module : module[0].value,
+            id : module[0].value,
             questions
         }
         console.log(result)
