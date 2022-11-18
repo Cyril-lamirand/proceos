@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Module;
+use App\Entity\User;
 use App\Form\ModuleType;
 use App\Repository\ModuleRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,17 +15,34 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('proceos/module')]
 class ModuleController extends AbstractController
 {
-    // TODO : Show only Organization USER Module
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
 
     #[Route('/', name: 'module_index', methods: ['GET'])]
     public function index(ModuleRepository $moduleRepository): Response
     {
+        $user = $this->em->getRepository(User::class)->findOneBy(['email' => $this->getUser()?->getUserIdentifier()]);
+        if (in_array('ROLE_ADMIN', $user?->getRoles(), true)) {
+            $modules = $moduleRepository->findAll();
+        } elseif (in_array('ROLE_ORGA_ADMIN', $user?->getRoles(), true)) {
+            $classes = $user?->getOrganization()?->getClasses();
+            foreach ($classes as $class){
+                $modulesArray = $class->getModules();
+                foreach($modulesArray as $m){
+                    $modules[] = $m;
+                }
+            }
+        } elseif (in_array('ROLE_INTERVENANT', $user?->getRoles(), true)) {
+            $modules = $user?->getModules();
+        }
         return $this->render('module/index.html.twig', [
-            'modules' => $moduleRepository->findAll(),
+            'modules' => $modules,
         ]);
     }
 
-    #[Route('/new', name: 'module_new', methods: ['GET','POST'])]
+    #[Route('/new', name: 'module_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $module = new Module();
@@ -52,7 +71,7 @@ class ModuleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'module_edit', methods: ['GET','POST'])]
+    #[Route('/{id}/edit', name: 'module_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Module $module): Response
     {
         $form = $this->createForm(ModuleType::class, $module);
@@ -73,7 +92,7 @@ class ModuleController extends AbstractController
     #[Route('/{id}', name: 'module_delete', methods: ['POST'])]
     public function delete(Request $request, Module $module): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$module->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $module->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($module);
             $entityManager->flush();
