@@ -23,8 +23,10 @@ class ClasseController extends AbstractController
         $user = $this->getUser();
         if (in_array('ROLE_ADMIN', $user?->getRoles(), true)) {
             $classes = $classeRepository->findAll();
-        } else {
+        } else if (in_array('ROLE_ORGA_ADMIN', $user?->getRoles(), true)) {
             $classes = $classeRepository->findByOrga($user?->getOrganization());
+        } else if (in_array('ROLE_INTERVENANT', $user?->getRoles(), true)){
+            $classes = $user?->getClasses();
         }
 
         return $this->render('classe/index.html.twig', [
