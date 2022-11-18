@@ -20,7 +20,7 @@ export default function From(){
 
     // increment questions
     let i = 0;
-    function addQuestionBloc() {
+    function addQuestionBloc() { //create question from
         i+=1
         const question_div = `<div className="form-group">
         <label>Question ${i}:</label>
@@ -56,8 +56,15 @@ export default function From(){
             module : module[0].value,
             questions
         }
-
         console.log(result)
+        
+        axios.post('https://localhost:8000/api/create/quiz', result)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
 
     return(
@@ -84,7 +91,6 @@ export default function From(){
                 <div className="new_question"></div>
                 <button className="btn btn-secondary m-3" onClick={addQuestionBloc} type="button">Ajouter une question</button>
                 <button className="btn btn-success m-3" type="submit" onClick={sendForm}>Valider le formulaire</button>
-                {/* <button onClick={test} type="button">Générer l'objet dans la console</button> */}
             </form>
         </div>
         </>
