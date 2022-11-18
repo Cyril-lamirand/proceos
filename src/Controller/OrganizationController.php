@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Organization;
+use App\Entity\User;
 use App\Form\OrganizationType;
 use App\Repository\OrganizationRepository;
 use App\Service\FileUploader;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,11 +17,25 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('proceos/organization')]
 class OrganizationController extends AbstractController
 {
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     #[Route('/', name: 'organization_index', methods: ['GET'])]
     public function index(OrganizationRepository $organizationRepository): Response
     {
+        $user = $this->getUser();
+        if (in_array('ROLE_ORGA_ADMIN', $user?->getRoles(), true)) {
+            $userFromDb = $this->em->getRepository(User::class)->findOneBy(['email' => $user?->getUserIdentifier()]);
+            if ($userFromDb){
+                $organizations[] = $userFromDb->getOrganization();
+            }
+        } else {
+            $organizations = $organizationRepository->findAll();
+        }
         return $this->render('organization/index.html.twig', [
-            'organizations' => $organizationRepository->findAll(),
+            'organizations' => $organizations,
         ]);
     }
 
