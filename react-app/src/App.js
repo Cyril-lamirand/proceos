@@ -18,6 +18,7 @@ import Error from "./pages/messages/Error"
 import Logout from "./pages/messages/Logout"
 import Profil from "./pages/profil/Profil"
 import Editor from "./pages/editor/Editor"
+import Form from "./pages/formulaire/Form"
 
 function App() {
 
@@ -48,6 +49,8 @@ function App() {
                             <Route exact path="/error" element={ <Error/>}/>
                             <Route exact path="/logout" element={ <Logout/>}/>
                             <Route exact path="/editor" element={ <Editor/>}/>
+
+                            <Route exact path="/formulaire" element={<CheckAuth> <Form/> </CheckAuth>}/>
                         </Routes>
                     </Main>
                 </BrowserRouter>

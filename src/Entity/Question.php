@@ -31,12 +31,12 @@ class Question
     private $label;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $type;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $placeholder;
 
@@ -84,7 +84,7 @@ class Question
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->type = $type;
 
@@ -96,7 +96,7 @@ class Question
         return $this->placeholder;
     }
 
-    public function setPlaceholder(string $placeholder): self
+    public function setPlaceholder(?string $placeholder): self
     {
         $this->placeholder = $placeholder;
 

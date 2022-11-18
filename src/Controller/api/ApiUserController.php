@@ -85,7 +85,7 @@ class ApiUserController extends AbstractController
     #[Route('/api/login', name: 'api_login', methods: 'post')]
     public function apiLogin(Request $request): JsonResponse
     {
-        $form = json_decode($request->getContent(), true);
+        $form = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
         $user = $this->userRepository->findOneBy(["email" => $form["email"]]);
         if ($this->encoder->isPasswordValid($user, $form["password"])) {
             $arrayCollection = [
@@ -104,15 +104,15 @@ class ApiUserController extends AbstractController
                     ],
                     "roles" => $user->getRoles(),
                     "avatar" => [
-                        "topType" => $user->getUserAvatar()->getTopType(),
-                        "skinColor" => $user->getUserAvatar()->getSkinColor(),
-                        "mouthType" => $user->getUserAvatar()->getMouthType(),
-                        "hairColor" => $user->getUserAvatar()->getHairColor(),
-                        "facialHairType" => $user->getUserAvatar()->getFacialHairType(),
-                        "eyebrowType" => $user->getUserAvatar()->getEyebrowType(),
-                        "clotheType" => $user->getUserAvatar()->getClotheType(),
-                        "accessoriesType" => $user->getUserAvatar()->getAccessoriesType(),
-                        "eyeType" => $user->getUserAvatar()->getEyeType()
+                        "topType" => $user->getUserAvatar()?->getTopType(),
+                        "skinColor" => $user->getUserAvatar()?->getSkinColor(),
+                        "mouthType" => $user->getUserAvatar()?->getMouthType(),
+                        "hairColor" => $user->getUserAvatar()?->getHairColor(),
+                        "facialHairType" => $user->getUserAvatar()?->getFacialHairType(),
+                        "eyebrowType" => $user->getUserAvatar()?->getEyebrowType(),
+                        "clotheType" => $user->getUserAvatar()?->getClotheType(),
+                        "accessoriesType" => $user->getUserAvatar()?->getAccessoriesType(),
+                        "eyeType" => $user->getUserAvatar()?->getEyeType()
                     ]
                 ]
             ];

@@ -24,12 +24,12 @@ class Answer
     private $question;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $value;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $correct;
 
@@ -55,7 +55,7 @@ class Answer
         return $this->value;
     }
 
-    public function setValue(string $value): self
+    public function setValue(?string $value): self
     {
         $this->value = $value;
 
@@ -67,7 +67,7 @@ class Answer
         return $this->correct;
     }
 
-    public function setCorrect(bool $correct): self
+    public function setCorrect(?bool $correct): self
     {
         $this->correct = $correct;
 

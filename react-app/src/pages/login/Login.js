@@ -36,6 +36,7 @@ export default function Login() {
                     if (response.data.request.message === "Authentification succeed") {
                         setMessage(response.data.request.message)
                         setUser({...response.data.user})
+                        localStorage.setItem("userId", response.data.user.id)
                         navigate("/dashboard")
                     } else {
                         setMessage(response.data.request.message)
