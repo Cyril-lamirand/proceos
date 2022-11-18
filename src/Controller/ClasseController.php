@@ -16,13 +16,21 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('proceos/classe')]
 class ClasseController extends AbstractController
 {
-    // TODO : Show only Organization Classes
 
     #[Route('/', name: 'classe_index', methods: ['GET'])]
     public function index(ClasseRepository $classeRepository): Response
     {
+        $user = $this->getUser();
+        if (in_array('ROLE_ADMIN', $user?->getRoles(), true)) {
+            $classes = $classeRepository->findAll();
+        } else if (in_array('ROLE_ORGA_ADMIN', $user?->getRoles(), true)) {
+            $classes = $classeRepository->findByOrga($user?->getOrganization());
+        } else if (in_array('ROLE_INTERVENANT', $user?->getRoles(), true)){
+            $classes = $user?->getClasses();
+        }
+
         return $this->render('classe/index.html.twig', [
-            'classes' => $classeRepository->findAll(),
+            'classes' => $classes,
         ]);
     }
 

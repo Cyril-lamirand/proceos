@@ -19,32 +19,13 @@ class ClasseRepository extends ServiceEntityRepository
         parent::__construct($registry, Classe::class);
     }
 
-    // /**
-    //  * @return Classe[] Returns an array of Classe objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findByOrga($orga)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('c')
+            ->from($this->_entityName, 'c')
+            ->where("c.organization = :orga")
+            ->setParameter('orga',$orga);
+        return $qb->getQuery()->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Classe
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

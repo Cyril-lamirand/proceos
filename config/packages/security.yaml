@@ -5,7 +5,10 @@ security:
     Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     App\Entity\User:
       algorithm: auto
-
+  role_hierarchy:
+    ROLE_ADMIN: [ ROLE_ORGA_ADMIN,ROLE_INTERVENANT,ROLE_STUDENT ]
+    ROLE_ORGA_ADMIN: [ ROLE_INTERVENANT,ROLE_STUDENT ]
+    ROLE_INTERVENANT: ROLE_STUDENT
   # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
   providers:
     # used to reload user from session & other features (e.g. switch_user)
@@ -37,7 +40,8 @@ security:
   access_control:
     - { path: ^/login, roles: [ PUBLIC_ACCESS,IS_AUTHENTICATED_ANONYMOUSLY ] }
     - { path: ^/register, roles: [ PUBLIC_ACCESS,IS_AUTHENTICATED_ANONYMOUSLY ] }
-    - { path: ^/proceos, roles: [ROLE_USER]}
+    - { path: ^/proceos, roles: [ ROLE_USER ] }
+    - { path: ^/admin, roles: [ ROLE_ADMIN, ROLE_ORGA_ADMIN ] }
     # Api Routes
     - { path: ^/api/login, roles: PUBLIC_ACCESS }
     - { path: ^/api/register, roles: PUBLIC_ACCESS }
