@@ -11,3 +11,5 @@
 /public/uploads/users/
 ###< symfony/framework-bundle ###
 .idea/
+# Local Netlify folder
+.netlify

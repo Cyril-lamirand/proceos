@@ -1,0 +1,82 @@
+19 UTC] [debug] Notified event "kernel.response" to listener "ApiPlatform\Core\HttpCache\EventListener\AddHeadersListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ErrorListener::removeCspHeader".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\DisallowRobotsIndexingListener::onResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleAwareLi19 UTC] [debug] Notified event "kernel.response" to listener "ApiPlatform\Core\HttpCache\EventListener\AddHeadersListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ErrorListener::removeCspHeader".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\DisallowRobotsIndexingListener::onResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleAwareLi19 UTC] [debug] Notified event "kernel.response" to listener "ApiPlatform\Core\HttpCache\EventListener\AddHeadersListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ErrorListener::removeCspHeader".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\DisallowRobotsIndexingListener::onResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleAwareLi19 UTC] [debug] Notified event "kernel.response" to listener "ApiPlatform\Core\HttpCache\EventListener\AddHeadersListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ErrorListener::removeCspHeader".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\DisallowRobotsIndexingListener::onResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleAwareLi19 UTC] [debug] Notified event "kernel.response" to listener "ApiPlatform\Core\HttpCache\EventListener\AddHeadersListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ErrorListener::removeCspHeader".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\DisallowRobotsIndexingListener::onResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleAwareLi19 UTC] [debug] Notified event "kernel.response" to listener "ApiPlatform\Core\HttpCache\EventListener\AddHeadersListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ErrorListener::removeCspHeader".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\DisallowRobotsIndexingListener::onResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleAwareLi19 UTC] [debug] Notified event "kernel.response" to listener "ApiPlatform\Core\HttpCache\EventListener\AddHeadersListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ErrorListener::removeCspHeader".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\DisallowRobotsIndexingListener::onResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleAwareLi19 UTC] [debug] Notified event "kernel.response" to listener "ApiPlatform\Core\HttpCache\EventListener\AddHeadersListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ErrorListener::removeCspHeader".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\DisallowRobotsIndexingListener::onResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleAwareLi19 UTC] [debug] Notified event "kernel.response" to listener "ApiPlatform\Core\HttpCache\EventListener\AddHeadersListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ErrorListener::removeCspHeader".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\DisallowRobotsIndexingListener::onResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\SessionListener::onFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener::onKernelFinishRequest".
+        [PHP-FPM    ] [16-Nov-2022 08:42:19 UTC] [debug] Notified event "kernel.finish_request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleAwareLi
