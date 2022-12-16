@@ -218,7 +218,7 @@ export default function Profil() {
 
         try {
             axios
-                .put("http://localhost:8000/api/save_avatar", finalObject, cfg)
+                .put(`${process.env.REACT_APP_API_URL}/api/save_avatar`, finalObject, cfg)
                 .then((r) => {
                     if (r.data.message === "Avatar enregistré !") {
                         setUser({...user, avatar: avatar})
@@ -230,7 +230,7 @@ export default function Profil() {
                     setPage("main")
                 })
                 .then(() => {
-                    axios.get("http://localhost:8000/api/user/" + user.id)
+                    axios.get(`${process.env.REACT_APP_API_URL}/api/user/` + user.id)
                         .then((response) => {
                             setUser({...response.data})
                         })

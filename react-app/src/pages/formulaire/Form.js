@@ -7,7 +7,7 @@ export default function From(){
     let userId = localStorage.getItem("userId");
     useEffect(() => {
         if (modules === null) {
-            axios.get(`https://localhost:8000/api/modules/intervenant/${userId}`)
+            axios.get(`${process.env.REACT_APP_API_URL}/api/modules/intervenant/${userId}`)
                 .then(function (response) {
                     setModules(response.data)
                 })
@@ -64,7 +64,7 @@ export default function From(){
         }
         console.log(result)
 
-        axios.post('https://localhost:8000/api/create/quiz', result)
+        axios.post(`${process.env.REACT_APP_API_URL}/api/create/quiz`, result)
         .then(function (response) {
             console.log(response);
         })

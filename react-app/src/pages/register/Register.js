@@ -49,7 +49,7 @@ export default function Register() {
         }
         try {
             axios
-                .post("http://localhost:8000/api/register", form, cfg)
+                .post(`${process.env.REACT_APP_API_URL}/api/register`, form, cfg)
                 .then((r) => {
                     if (r.data.message === "L'adresse email existe déjà !") {
                         setMessage(r.data.message)
@@ -97,7 +97,7 @@ export default function Register() {
 
     useEffect(() => {
         if (organization === null) {
-            axios.get("http://localhost:8000/api/organization")
+            axios.get(`${process.env.REACT_APP_API_URL}/api/organization`)
                 .then(function (response) {
                     setOrganization(response.data)
                 })
