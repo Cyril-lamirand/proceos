@@ -30,7 +30,7 @@ export default function Login() {
         }
         try{
             axios
-                .post("http://localhost:8000/api/login", form, cfg)
+                .post(`${process.env.REACT_APP_API_URL}/api/login`, form, cfg)
                 .then((response) => {
                     console.log(response.data.request.message)
                     if (response.data.request.message === "Authentification succeed") {
