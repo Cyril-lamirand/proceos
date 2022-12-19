@@ -10,9 +10,6 @@ jobs:
   deploy-front:
     runs-on: ubuntu-latest
     steps:
-      - name: Test
-        shell: bash -l -eo pipefail {0}
-        run: echo $NVM_DIR
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
