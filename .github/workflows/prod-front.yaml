@@ -2,7 +2,7 @@ name: prod-front
 
 on:
   push:
-    branches: [ "update/CICD" ]
+    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
