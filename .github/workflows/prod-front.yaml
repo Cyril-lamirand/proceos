@@ -22,5 +22,7 @@ jobs:
             cd ~/proceos
             git pull origin master
             cd react-app
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             npm install
             npm run build
