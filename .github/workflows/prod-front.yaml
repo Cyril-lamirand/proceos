@@ -21,5 +21,6 @@ jobs:
             cd ~/proceos
             git pull origin master
             cd react-app
+            nvm use 12
             npm install
             npm run build
