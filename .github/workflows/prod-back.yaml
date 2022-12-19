@@ -1,0 +1,26 @@
+name: prod-back
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  deploy-back:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd ~/proceos
+            git pull origin master
+            composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+            php bin/console doctrine:migrations:migrate --no-interaction
+            sudo APP_ENV=prod 
+            php bin/console cache:clear
