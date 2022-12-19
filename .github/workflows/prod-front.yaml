@@ -1,0 +1,25 @@
+name: prod-front
+
+on:
+  push:
+    branches: [ "update/CICD" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  deploy-front:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd ~/proceos
+            git pull origin master
+            cd react-app
+            npm install
+            npm run build
