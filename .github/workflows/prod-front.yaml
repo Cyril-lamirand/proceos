@@ -13,7 +13,6 @@ jobs:
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
-          node-version: 18.0.0
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
@@ -24,5 +23,6 @@ jobs:
             cd react-app
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
+            nvm use 18
             npm install
             npm run build
