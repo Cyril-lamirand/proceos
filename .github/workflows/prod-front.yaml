@@ -24,6 +24,5 @@ jobs:
             cd ~/proceos
             git pull origin master
             cd react-app
-            /home/runner/.nvm use 12
             npm install
             npm run build
