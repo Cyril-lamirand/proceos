@@ -82,7 +82,7 @@ class ApiUserController extends AbstractController
         return new JsonResponse($jsonRes);
     }
 
-    #[Route('/api/login', name: 'api_login', methods: 'post')]
+    #[Route('/api/login', name: 'api_login', methods: ['GET','POST'])]
     public function apiLogin(Request $request): JsonResponse
     {
         $form = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
