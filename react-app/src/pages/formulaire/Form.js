@@ -101,7 +101,7 @@ export default function From(){
                 </select>
                 <div className="new_question"></div>
                 <button className="btn btn-secondary m-3" onClick={addQuestionBloc} type="button">Ajouter une question</button>
-                <button className="btn btn-success m-3" type="submit" onClick={sendForm}>Valider le formulaire</button>
+                <button className="btn btn-success m-3" type="button" onClick={sendForm}>Valider le formulaire</button>
             </form>
         </div>
 
@@ -111,7 +111,10 @@ export default function From(){
             </Modal.Header>
             <Modal.Body>Le formulaire a été envoyé avec succès !</Modal.Body>
             <Modal.Footer>
-                <button className="btn btn-secondary" onClick={() => setShowModal(false)}>Fermer</button>
+            <button className="btn btn-secondary" onClick={() => {
+                setShowModal(false);
+                window.location.reload();
+            }}>Fermer</button>
             </Modal.Footer>
         </Modal>
 
