@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react"
 import axios from "axios"
+import Modal from 'react-bootstrap/Modal';
 
 export default function From(){
 
@@ -18,6 +19,8 @@ export default function From(){
         }
     }, [modules])
 
+    const [showModal, setShowModal] = useState(false);
+
     let i = 0; // to increment questions
     function addQuestionBloc() { //create question from
         i+=1
@@ -35,6 +38,7 @@ export default function From(){
     }
 
     function sendForm(){
+
         let module = document.getElementsByClassName('module') //id
         let moduleName = document.getElementsByClassName('moduleName') //module name
         let nbFrom = document.querySelectorAll('.new_question > div') //nb of question
@@ -67,6 +71,7 @@ export default function From(){
         axios.post(`${process.env.REACT_APP_API_URL}/api/create/quiz`, result)
         .then(function (response) {
             console.log(response);
+            setShowModal(true);
         })
         .catch(function (error) {
             console.log(error);
@@ -78,11 +83,11 @@ export default function From(){
         <div>
             <form className="form-group" onSubmit={sendForm}>
                 <label className="mt-3">Nom du quizz</label>
-                <input className="form-control mb-3 mt-3 moduleName" placeholder="Nom du quizz"></input>
+                <input className="form-control mb-3 mt-3 moduleName" placeholder="Nom du quizz" required></input>
                 <label>Choix du module</label>
                 <select className="form-control mb-3 mt-3 module" name="module">
                 <option defaultValue>Veuillez choisir...</option>
-                    {modules ?
+                    {/* {modules ?
                         <>
                             {modules.map((mod, index) => {
                                 return(
@@ -92,13 +97,24 @@ export default function From(){
                         </>
                         :
                         ""
-                    }
+                    } */}
                 </select>
                 <div className="new_question"></div>
                 <button className="btn btn-secondary m-3" onClick={addQuestionBloc} type="button">Ajouter une question</button>
-                <button className="btn btn-success m-3" type="button" onClick={sendForm}>Valider le formulaire</button>
+                <button className="btn btn-success m-3" type="submit" onClick={sendForm}>Valider le formulaire</button>
             </form>
         </div>
+
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Confirmation</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Le formulaire a été envoyé avec succès !</Modal.Body>
+            <Modal.Footer>
+                <button className="btn btn-secondary" onClick={() => setShowModal(false)}>Fermer</button>
+            </Modal.Footer>
+        </Modal>
+
         </>
     )
 }
