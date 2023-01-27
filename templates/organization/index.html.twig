@@ -16,27 +16,29 @@
     </tr>
     </thead>
     <tbody>
-    {% for organization in organizations %}
-    <tr>
-        <td>{{ organization.id }}</td>
-        <td>{{ organization.label }}</td>
-        <td>
-            {% if organization.logo is not null %}
-            <img src="{{asset('/uploads/organizations/'~ organization.logo)}}" alt="logo {{organization.label}}" style="width:100px;">
-            {% endif %}
-        </td>
-        <td>
-            <a class="btn btn-success" href="{{ path('organization_show', {'id': organization.id}) }}"><i
-                    class="far fa-eye"></i></a>
-            <a class="btn btn-success" href="{{ path('organization_edit', {'id': organization.id}) }}"><i
-                    class="fas fa-pen"></i></a>
-        </td>
-    </tr>
+    {% if organizations is not null %}
+        {% for organization in organizations %}
+        <tr>
+            <td>{{ organization.id }}</td>
+            <td>{{ organization.label }}</td>
+            <td>
+                {% if organization.logo is not null %}
+                <img src="{{asset('/uploads/organizations/'~ organization.logo)}}" alt="logo {{organization.label}}" style="width:100px;">
+                {% endif %}
+            </td>
+            <td>
+                <a class="btn btn-success" href="{{ path('organization_show', {'id': organization.id}) }}"><i
+                        class="far fa-eye"></i></a>
+                <a class="btn btn-success" href="{{ path('organization_edit', {'id': organization.id}) }}"><i
+                        class="fas fa-pen"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
     {% else %}
     <tr class="table-line">
         <td colspan="3">no records found</td>
     </tr>
-    {% endfor %}
+    {% endif %}
     </tbody>
 </table>
 
