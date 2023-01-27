@@ -87,7 +87,7 @@ export default function From(){
                 <label>Choix du module</label>
                 <select className="form-control mb-3 mt-3 module" name="module">
                 <option defaultValue>Veuillez choisir...</option>
-                    {/* {modules ?
+                    {modules ?
                         <>
                             {modules.map((mod, index) => {
                                 return(
@@ -97,7 +97,7 @@ export default function From(){
                         </>
                         :
                         ""
-                    } */}
+                    }
                 </select>
                 <div className="new_question"></div>
                 <button className="btn btn-secondary m-3" onClick={addQuestionBloc} type="button">Ajouter une question</button>
