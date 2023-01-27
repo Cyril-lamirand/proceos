@@ -46,7 +46,8 @@
     "allow-plugins": {
       "symfony/flex": true,
       "symfony/runtime": true
-    }
+    },
+    "platform-check": false
   },
   "autoload": {
     "psr-4": {
