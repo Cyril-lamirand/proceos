@@ -26,7 +26,7 @@ class OrganizationController extends AbstractController
     public function index(OrganizationRepository $organizationRepository): Response
     {
         $user = $this->getUser();
-        if (in_array('ROLE_ORGA_ADMIN', $user?->getRoles(), true)) {
+        if (in_array('ROLE_ORGA_ADMIN', $user?->getRoles(), false)) {
             $userFromDb = $this->em->getRepository(User::class)->findOneBy(['email' => $user?->getUserIdentifier()]);
             if ($userFromDb){
                 $organizations[] = $userFromDb->getOrganization();
