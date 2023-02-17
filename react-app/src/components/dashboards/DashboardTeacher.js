@@ -39,6 +39,7 @@ export default function DashboardTeacher() {
                     {modules ?
                         <>
                             {modules.map((mod, index) => {
+                                var url = "/module/" + mod.id
                                 return(
                                     <div key={index} className="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
                                         <div className="shadow pt-3 pb-3 pr-2 pl-2">
@@ -50,7 +51,7 @@ export default function DashboardTeacher() {
                                             </div>
                                             <hr/>
                                             <div className="text-center">
-                                                <a href="" className="btn btn-primary">Voir le module</a>
+                                                <a href={url} className="btn btn-primary">Voir le module</a>
                                             </div>
                                         </div>
 
@@ -59,7 +60,9 @@ export default function DashboardTeacher() {
                             })}
                         </>
                         :
-                        ""
+                        <div className="mt-3 mb-4">
+                            <h6>La liste des modules est vide.</h6>
+                        </div>
                     }
 
                 </div>

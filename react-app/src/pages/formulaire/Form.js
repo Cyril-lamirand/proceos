@@ -80,7 +80,7 @@ export default function From(){
 
     return(
         <>
-        <div>
+        <div className="container">
             <form className="form-group" onSubmit={sendForm}>
                 <label className="mt-3">Nom du quizz</label>
                 <input className="form-control mb-3 mt-3 moduleName" placeholder="Nom du quizz" required></input>
