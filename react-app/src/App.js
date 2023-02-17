@@ -19,6 +19,7 @@ import Logout from "./pages/messages/Logout"
 import Profil from "./pages/profil/Profil"
 import Editor from "./pages/editor/Editor"
 import Form from "./pages/formulaire/Form"
+import Module from "./pages/module/Module";
 
 function App() {
     
@@ -51,6 +52,8 @@ function App() {
                             <Route exact path="/editor" element={ <Editor/>}/>
 
                             <Route exact path="/formulaire" element={<CheckAuth> <Form/> </CheckAuth>}/>
+
+                            <Route exact path="/module/:moduleId" element={<Module/>}/>
                         </Routes>
                     </Main>
                 </BrowserRouter>

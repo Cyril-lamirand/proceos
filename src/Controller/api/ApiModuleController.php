@@ -40,4 +40,22 @@ class ApiModuleController extends AbstractController
 
         return new JsonResponse(["Error" => "Aucun module pour cet intervenant"]);
     }
+
+    #[Route('/modules/{id}', name: 'api_get_module', methods: 'get')]
+    public function getModuleById($id): JsonResponse
+    {
+        $module = $this->em->getRepository(Module::class)->findOneBy(["id" => $id]);
+        if ($module) {
+            $returnedArray = [
+                "id" => $module->getId(),
+                "label" => $module->getLabel()
+            ];
+            return new JsonResponse($returnedArray);
+        } else {
+            $errorArray = [
+              "message" => "There ins't a Module with that ID !"
+            ];
+            return new JsonResponse($errorArray);
+        }
+    }
 }
