@@ -1,0 +1,34 @@
+{% extends './server/base.html.twig' %}
+
+{% block title %}Course{% endblock %}
+
+{% block body %}
+    <h1 class="big-titles">Course</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ course.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ course.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ course.content }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{{ course.createdat ? course.createdat|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn back-button" href="{{ path('course_index') }}">back to list</a>
+
+    <a class="btn update-button" href="{{ path('course_edit', {'id': course.id}) }}"><i class="fas fa-pen"></i></a>
+
+    {{ include('server/course/_delete_form.html.twig') }}
+{% endblock %}

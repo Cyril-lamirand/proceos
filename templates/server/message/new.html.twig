@@ -1,0 +1,11 @@
+{% extends './server/base.html.twig' %}
+
+{% block title %}New Message{% endblock %}
+
+{% block body %}
+    <h1 class="big-titles">Create new Message</h1>
+
+    {{ include('server/message/_form.html.twig') }}
+
+    <a class="btn back-button" href="{{ path('message_index') }}">back to list</a>
+{% endblock %}

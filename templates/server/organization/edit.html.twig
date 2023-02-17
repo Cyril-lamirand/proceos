@@ -1,0 +1,13 @@
+{% extends './server/base.html.twig' %}
+
+{% block title %}Edit Organization{% endblock %}
+
+{% block body %}
+    <h1 class="big-titles">Edit Organization</h1>
+
+    {{ include('server/organization/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a class="btn back-button" href="{{ path('organization_index') }}">back to list</a>
+
+    {{ include('server/organization/_delete_form.html.twig') }}
+{% endblock %}

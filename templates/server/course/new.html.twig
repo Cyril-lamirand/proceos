@@ -1,0 +1,11 @@
+{% extends './server/base.html.twig' %}
+
+{% block title %}New Course{% endblock %}
+
+{% block body %}
+    <h1 class="big-titles">Create new Course</h1>
+
+    {{ include('server/course/_form.html.twig') }}
+
+    <a class="btn back-button" href="{{ path('course_index') }}">back to list</a>
+{% endblock %}

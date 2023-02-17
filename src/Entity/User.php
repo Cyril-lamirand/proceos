@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -218,11 +219,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection|Classe[]
+     * @return Collection
      */
     public function getClasses(): Collection
     {
-        return $this->classes;
+        if ($this->classes != null) {
+            $mainArray = array();
+            foreach ($this->classes as $userClass) {
+                $mainArray[] = [
+                    "id" => $userClass->getId(),
+                    "label" => $userClass->getLabel()
+                ];
+            }
+
+        } else {
+            $arrayCollection = [
+                "class" => [
+                    "message" => "No classroom yet.",
+                ]
+            ];
+            return new ArrayCollection($arrayCollection);
+        }
+
+        return new ArrayCollection($mainArray);
     }
 
     public function addClass(Classe $class): self

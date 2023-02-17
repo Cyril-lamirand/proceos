@@ -18,7 +18,7 @@ class ForumController extends AbstractController
     #[Route('/', name: 'forum_index', methods: ['GET'])]
     public function index(ForumRepository $forumRepository): Response
     {
-        return $this->render('forum/index.html.twig', [
+        return $this->render('server/forum/index.html.twig', [
             'forums' => $forumRepository->findAll(),
         ]);
     }
@@ -38,7 +38,7 @@ class ForumController extends AbstractController
             return $this->redirectToRoute('forum_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('forum/new.html.twig', [
+        return $this->renderForm('server/forum/new.html.twig', [
             'forum' => $forum,
             'form' => $form,
         ]);
@@ -47,7 +47,7 @@ class ForumController extends AbstractController
     #[Route('/{id}', name: 'forum_show', methods: ['GET'])]
     public function show(Forum $forum): Response
     {
-        return $this->render('forum/show.html.twig', [
+        return $this->render('server/forum/show.html.twig', [
             'forum' => $forum,
         ]);
     }
@@ -64,7 +64,7 @@ class ForumController extends AbstractController
             return $this->redirectToRoute('forum_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('forum/edit.html.twig', [
+        return $this->renderForm('server/forum/edit.html.twig', [
             'forum' => $forum,
             'form' => $form,
         ]);

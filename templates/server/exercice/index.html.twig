@@ -1,0 +1,45 @@
+{% extends './server/base.html.twig' %}
+
+{% block title %}Exercice index{% endblock %}
+
+{% block body %}
+<h1 class="big-titles">Exercices</h1>
+<a class="btn btn-success create-new" href="{{ path('exercice_new') }}">Create new</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Createdat</th>
+        <th>Datelimit</th>
+        <th>Contentbeginner</th>
+        <th>Contentintermediate</th>
+        <th>Contentexpert</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for exercice in exercices %}
+    <tr>
+        <td>{{ exercice.id }}</td>
+        <td>{{ exercice.title }}</td>
+        <td>{{ exercice.content }}</td>
+        <td>{{ exercice.createdat ? exercice.createdat|date('Y-m-d H:i:s') : '' }}</td>
+        <td>{{ exercice.datelimit ? exercice.datelimit|date('Y-m-d H:i:s') : '' }}</td>
+        <td>{{ exercice.contentbeginner }}</td>
+        <td>{{ exercice.contentintermediate }}</td>
+        <td>{{ exercice.contentexpert }}</td>
+        <td>
+            <a class="btn btn-success" href="{{ path('exercice_show', {'id': exercice.id}) }}"><i class="far fa-eye"></i></a>
+            <a class="btn btn-success" href="{{ path('exercice_edit', {'id': exercice.id}) }}"><i class="fas fa-pen"></i></a>
+        </td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="9">no records found</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

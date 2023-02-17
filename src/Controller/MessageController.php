@@ -16,7 +16,7 @@ class MessageController extends AbstractController
     #[Route('/', name: 'message_index', methods: ['GET'])]
     public function index(MessageRepository $messageRepository): Response
     {
-        return $this->render('message/index.html.twig', [
+        return $this->render('server/message/index.html.twig', [
             'messages' => $messageRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ class MessageController extends AbstractController
             return $this->redirectToRoute('message_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('message/new.html.twig', [
+        return $this->renderForm('server/message/new.html.twig', [
             'message' => $message,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ class MessageController extends AbstractController
     #[Route('/{id}', name: 'message_show', methods: ['GET'])]
     public function show(Message $message): Response
     {
-        return $this->render('message/show.html.twig', [
+        return $this->render('server/message/show.html.twig', [
             'message' => $message,
         ]);
     }
@@ -62,7 +62,7 @@ class MessageController extends AbstractController
             return $this->redirectToRoute('message_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('message/edit.html.twig', [
+        return $this->renderForm('server/message/edit.html.twig', [
             'message' => $message,
             'form' => $form,
         ]);

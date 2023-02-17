@@ -37,7 +37,7 @@ class UserController extends AbstractController
             $users
                 = $this->getDoctrine()->getManager()->getRepository(User::class)->findAll();
         }
-        return $this->render('user/index.html.twig', [
+        return $this->render('server/user/index.html.twig', [
             "users" => $users,
         ]);
     }
@@ -92,7 +92,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('admin_user');
         }
 
-        return $this->render('user/form.html.twig', [
+        return $this->render('server/user/form.html.twig', [
             'form' => $form->createView(),
             "user" => $user
         ]);

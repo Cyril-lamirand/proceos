@@ -16,7 +16,7 @@ class QuizWorkController extends AbstractController
     #[Route('/', name: 'quiz_work_index', methods: ['GET'])]
     public function index(QuizWorkRepository $quizWorkRepository): Response
     {
-        return $this->render('quiz_work/index.html.twig', [
+        return $this->render('server/quiz_work/index.html.twig', [
             'quiz_works' => $quizWorkRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ class QuizWorkController extends AbstractController
             return $this->redirectToRoute('quiz_work_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('quiz_work/new.html.twig', [
+        return $this->renderForm('server/quiz_work/new.html.twig', [
             'quiz_work' => $quizWork,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ class QuizWorkController extends AbstractController
     #[Route('/{id}', name: 'quiz_work_show', methods: ['GET'])]
     public function show(QuizWork $quizWork): Response
     {
-        return $this->render('quiz_work/show.html.twig', [
+        return $this->render('server/quiz_work/show.html.twig', [
             'quiz_work' => $quizWork,
         ]);
     }
@@ -62,7 +62,7 @@ class QuizWorkController extends AbstractController
             return $this->redirectToRoute('quiz_work_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('quiz_work/edit.html.twig', [
+        return $this->renderForm('server/quiz_work/edit.html.twig', [
             'quiz_work' => $quizWork,
             'form' => $form,
         ]);

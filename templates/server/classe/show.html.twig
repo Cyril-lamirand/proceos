@@ -1,0 +1,42 @@
+{% extends './server/base.html.twig' %}
+
+{% block title %}Classe{% endblock %}
+
+{% block body %}
+<h1 class="big-titles">Classe</h1>
+
+<table class="table">
+    <tbody>
+    <tr>
+        <th>Id</th>
+        <td>{{ classe.id }}</td>
+    </tr>
+    <tr>
+        <th>Label</th>
+        <td>{{ classe.label }}</td>
+    </tr>
+    <tr>
+        <th>Elèves</th>
+        <td>
+            <ul>
+                {% for student in classe.users %}
+                <li>{{student.email}}</li>
+                {% endfor %}
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a class="btn back-button" href="{{ path('classe_index') }}">back to list</a>
+
+<a class="btn update-button" href="{{ path('classe_edit', {'id': classe.id}) }}"><i class="fas fa-pen"></i></a>
+
+{{ include('server/classe/_delete_form.html.twig') }}
+
+<h2>Ajouter un élève</h2>
+<form action="{{path('add_student',{id:classe.id})}}" method="post">
+    <input type="text" name="student" id="student">
+    <input type="submit" value="Ajouter" class="btn btn-primary">
+</form>
+
+{% endblock %}

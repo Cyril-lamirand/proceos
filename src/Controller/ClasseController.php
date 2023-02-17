@@ -29,7 +29,7 @@ class ClasseController extends AbstractController
             $classes = $user?->getClasses();
         }
 
-        return $this->render('classe/index.html.twig', [
+        return $this->render('server/classe/index.html.twig', [
             'classes' => $classes,
         ]);
     }
@@ -49,7 +49,7 @@ class ClasseController extends AbstractController
             return $this->redirectToRoute('classe_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('classe/new.html.twig', [
+        return $this->renderForm('server/classe/new.html.twig', [
             'classe' => $classe,
             'form' => $form,
         ]);
@@ -58,7 +58,7 @@ class ClasseController extends AbstractController
     #[Route('/{id}', name: 'classe_show', methods: ['GET'])]
     public function show(Classe $classe): Response
     {
-        return $this->render('classe/show.html.twig', [
+        return $this->render('server/classe/show.html.twig', [
             'classe' => $classe,
         ]);
     }
@@ -75,7 +75,7 @@ class ClasseController extends AbstractController
             return $this->redirectToRoute('classe_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('classe/edit.html.twig', [
+        return $this->renderForm('server/classe/edit.html.twig', [
             'classe' => $classe,
             'form' => $form,
         ]);
