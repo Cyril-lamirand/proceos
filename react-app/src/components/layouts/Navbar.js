@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react"
 // Context
 import {UserContext} from "../../contexts/UserContext"
 // Assets
-import logo from "../../logo.svg"
+import logo from "../../assets/proceos.png"
 // Avatar
 import Avatar from 'avataaars'
 
