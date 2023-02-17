@@ -1,5 +1,6 @@
 import React from "react"
 import {useParams} from "react-router-dom";
+import { Link } from "react-router-dom"
 
 export default function Module() {
 
@@ -34,9 +35,9 @@ export default function Module() {
                 </div>
                 <div className="col-12 mt-5 mb-5">
                     <div className="text-center">
-                        <button className="btn btn-primary">
-                           Questionnaire (obligatoire)
-                        </button>
+                        <Link to="/formulaire">
+                            <button   button className="btn btn-primary">Créer un formulaire</button>
+                        </Link>
                     </div>
                 </div>
                 <div className="col-12 text-center mt-5 mb-5">
