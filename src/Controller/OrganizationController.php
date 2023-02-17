@@ -34,7 +34,7 @@ class OrganizationController extends AbstractController
         } else {
             $organizations = $organizationRepository->findAll();
         }
-        return $this->render('organization/index.html.twig', [
+        return $this->render('server/organization/index.html.twig', [
             'organizations' => $organizations,
         ]);
     }
@@ -62,7 +62,7 @@ class OrganizationController extends AbstractController
             return $this->redirectToRoute('organization_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('organization/new.html.twig', [
+        return $this->renderForm('server/organization/new.html.twig', [
             'organization' => $organization,
             'form' => $form,
         ]);
@@ -71,7 +71,7 @@ class OrganizationController extends AbstractController
     #[Route('/{id}', name: 'organization_show', methods: ['GET'])]
     public function show(Organization $organization): Response
     {
-        return $this->render('organization/show.html.twig', [
+        return $this->render('server/organization/show.html.twig', [
             'organization' => $organization,
         ]);
     }
@@ -88,7 +88,7 @@ class OrganizationController extends AbstractController
             return $this->redirectToRoute('organization_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('organization/edit.html.twig', [
+        return $this->renderForm('server/organization/edit.html.twig', [
             'organization' => $organization,
             'form' => $form,
         ]);

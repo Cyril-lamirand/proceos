@@ -16,7 +16,7 @@ class TopicController extends AbstractController
     #[Route('/', name: 'topic_index', methods: ['GET'])]
     public function index(TopicRepository $topicRepository): Response
     {
-        return $this->render('topic/index.html.twig', [
+        return $this->render('server/topic/index.html.twig', [
             'topics' => $topicRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ class TopicController extends AbstractController
             return $this->redirectToRoute('topic_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('topic/new.html.twig', [
+        return $this->renderForm('server/topic/new.html.twig', [
             'topic' => $topic,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ class TopicController extends AbstractController
     #[Route('/{id}', name: 'topic_show', methods: ['GET'])]
     public function show(Topic $topic): Response
     {
-        return $this->render('topic/show.html.twig', [
+        return $this->render('server/topic/show.html.twig', [
             'topic' => $topic,
         ]);
     }
@@ -62,7 +62,7 @@ class TopicController extends AbstractController
             return $this->redirectToRoute('topic_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('topic/edit.html.twig', [
+        return $this->renderForm('server/topic/edit.html.twig', [
             'topic' => $topic,
             'form' => $form,
         ]);

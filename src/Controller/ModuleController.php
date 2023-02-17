@@ -37,7 +37,7 @@ class ModuleController extends AbstractController
         } elseif (in_array('ROLE_INTERVENANT', $user?->getRoles(), true)) {
             $modules = $user?->getModules();
         }
-        return $this->render('module/index.html.twig', [
+        return $this->render('server/module/index.html.twig', [
             'modules' => $modules,
         ]);
     }
@@ -57,7 +57,7 @@ class ModuleController extends AbstractController
             return $this->redirectToRoute('module_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('module/new.html.twig', [
+        return $this->renderForm('server/module/new.html.twig', [
             'module' => $module,
             'form' => $form,
         ]);
@@ -66,7 +66,7 @@ class ModuleController extends AbstractController
     #[Route('/{id}', name: 'module_show', methods: ['GET'])]
     public function show(Module $module): Response
     {
-        return $this->render('module/show.html.twig', [
+        return $this->render('server/module/show.html.twig', [
             'module' => $module,
         ]);
     }
@@ -83,7 +83,7 @@ class ModuleController extends AbstractController
             return $this->redirectToRoute('module_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('module/edit.html.twig', [
+        return $this->renderForm('server/module/edit.html.twig', [
             'module' => $module,
             'form' => $form,
         ]);

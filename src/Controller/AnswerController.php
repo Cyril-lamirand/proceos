@@ -16,7 +16,7 @@ class AnswerController extends AbstractController
     #[Route('/', name: 'answer_index', methods: ['GET'])]
     public function index(AnswerRepository $answerRepository): Response
     {
-        return $this->render('answer/index.html.twig', [
+        return $this->render('server/answer/index.html.twig', [
             'answers' => $answerRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ class AnswerController extends AbstractController
             return $this->redirectToRoute('answer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('answer/new.html.twig', [
+        return $this->renderForm('server/answer/new.html.twig', [
             'answer' => $answer,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ class AnswerController extends AbstractController
     #[Route('/{id}', name: 'answer_show', methods: ['GET'])]
     public function show(Answer $answer): Response
     {
-        return $this->render('answer/show.html.twig', [
+        return $this->render('server/answer/show.html.twig', [
             'answer' => $answer,
         ]);
     }
@@ -62,7 +62,7 @@ class AnswerController extends AbstractController
             return $this->redirectToRoute('answer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('answer/edit.html.twig', [
+        return $this->renderForm('server/answer/edit.html.twig', [
             'answer' => $answer,
             'form' => $form,
         ]);

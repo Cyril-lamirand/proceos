@@ -16,7 +16,7 @@ class QuizController extends AbstractController
     #[Route('/', name: 'quiz_index', methods: ['GET'])]
     public function index(QuizRepository $quizRepository): Response
     {
-        return $this->render('quiz/index.html.twig', [
+        return $this->render('server/quiz/index.html.twig', [
             'quizzes' => $quizRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ class QuizController extends AbstractController
             return $this->redirectToRoute('quiz_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('quiz/new.html.twig', [
+        return $this->renderForm('server/quiz/new.html.twig', [
             'quiz' => $quiz,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ class QuizController extends AbstractController
     #[Route('/{id}', name: 'quiz_show', methods: ['GET'])]
     public function show(Quiz $quiz): Response
     {
-        return $this->render('quiz/show.html.twig', [
+        return $this->render('server/quiz/show.html.twig', [
             'quiz' => $quiz,
         ]);
     }
@@ -62,7 +62,7 @@ class QuizController extends AbstractController
             return $this->redirectToRoute('quiz_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('quiz/edit.html.twig', [
+        return $this->renderForm('server/quiz/edit.html.twig', [
             'quiz' => $quiz,
             'form' => $form,
         ]);

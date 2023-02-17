@@ -86,7 +86,10 @@ class ApiUserController extends AbstractController
     public function apiLogin(Request $request): JsonResponse
     {
         $form = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
+        // Main Infos
         $user = $this->userRepository->findOneBy(["email" => $form["email"]]);
+        // Get Class
+        $class = $user->getClasses();
         if ($this->encoder->isPasswordValid($user, $form["password"])) {
             $arrayCollection = [
                 "request" => [
@@ -102,6 +105,7 @@ class ApiUserController extends AbstractController
                         "id" => $user->getOrganization()->getId(),
                         "label" => $user->getOrganization()->getLabel()
                     ],
+                    "class"=> $class,
                     "roles" => $user->getRoles(),
                     "avatar" => [
                         "topType" => $user->getUserAvatar()?->getTopType(),

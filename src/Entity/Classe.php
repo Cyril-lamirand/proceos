@@ -22,18 +22,18 @@ class Classe
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $label;
+    private ?string $label;
 
     /**
      * @ORM\ManyToOne(targetEntity=Organization::class, inversedBy="classes")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $organization;
+    private ?Organization $organization;
 
     /**
      * @ORM\ManyToMany(targetEntity=User::class, inversedBy="classes")
      */
-    private $users;
+    private Collection $users;
 
     /**
      * @ORM\OneToMany(targetEntity=Module::class, mappedBy="classe")
