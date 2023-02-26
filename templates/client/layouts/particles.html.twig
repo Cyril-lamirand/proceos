@@ -1,0 +1,23 @@
+{% block content %}
+    <canvas class="canvas-particles"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js" integrity="sha512-jq8sZI0I9Og0nnZ+CfJRnUzNSDKxr/5Bvha5bn7AHzTnRyxUfpUArMzfH++mwE/hb2efOo1gCAgI+1RMzf8F7g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="application/javascript">
+        window.onload = function() {
+            Particles.init({
+                selector: '.canvas-particles',
+                color: "#7367f0",
+                connectParticles: true,
+                maxParticles: 250
+            });
+        };
+    </script>
+    <style>
+        .canvas-particles {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+{% endblock %}
