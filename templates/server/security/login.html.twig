@@ -12,15 +12,46 @@
             .color-proceos-1{background: #7367f0; border:none;}
             span{ color: white; }
             a{ color: #7367f0; }
+            .white{ color: white; }
+            .nav-proceos{ background:#161d31; border-bottom:2px solid #7367f0; }
         </style>
     </head>
     <body>
         <header>
+            <nav class="navbar navbar-expand-lg bg-dark nav-proceos fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-white" href="/">Proceos</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
+                        <div class="w-100" style="text-align: right">
+                            <span class="text-white-50">{% if app.user %}Role : {{ app.user.roles[0] }} {% else %} <a href="/register">S'inscrire</a>{% endif %}</span>
+                        </div>
+
+                    </div>
+                </div>
+            </nav>
         </header>
-        <main>
-            <form method="post">
-                <div class="container">
+        <main class="container mt-5">
+            {% if app.user %}
+                <div class="mt-5 pt-5">
+                    <div class="text-center">
+
+                    </div>
+                    <div class="text-center">
+                        <h3 class="white">Hey {{ app.user.firstname }}, il semblerait que vous soyez déjà connecté ! </h3>
+                    </div>
+                    <p class="white">On te propose de te rendre ici :</p>
+                    <ul class="white">
+                        <li><a href="/">Page d'accueil</a></li>
+                        <li><a href="/dashboard">Ton tableau de bord</a></li>
+                        <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    </ul>
+                </div>
+            {% else %}
+                <form method="post">
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-3 col-lg-4 col-xl-4">
                             <!-- Keep it empty -->
@@ -53,11 +84,6 @@
                             {% if error %}
                                 <div class="alert alert-danger mt-4">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                             {% endif %}
-                            {% if app.user %}
-                                <div class="mb-3">
-                                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-                                </div>
-                            {% endif %}
                             <div class="col-12 mt-3">
                                 <span>Pas encore inscrit ? <a href="/register">Inscrivez-vous</a> !</span>
                             </div>
@@ -66,18 +92,18 @@
                             <!-- Keep it empty -->
                         </div>
                     </div>
-                </div>
-                {#
-                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                See https://symfony.com/doc/current/security/remember_me.html
+                    {#
+                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                    See https://symfony.com/doc/current/security/remember_me.html
 
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" name="_remember_me"> Remember me
-                    </label>
-                </div>
-                #}
-            </form>
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Remember me
+                        </label>
+                    </div>
+                    #}
+                </form>
+            {% endif %}
         </main>
         <footer>
 
