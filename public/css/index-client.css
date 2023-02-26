@@ -1,0 +1,30 @@
+.bg-proceos-1{
+    background-color: #202A46 !important;
+}
+
+.bg-proceos-2{
+    background-color:#161d31 !important;
+}
+
+.purple-proceos{
+    background-color: #7367f0 !important;
+}
+
+.border-proceos{
+    border: 2px solid #7367f0 !important;
+}
+
+.shadow-proceos{
+    -webkit-box-shadow: 0px 0px 15px 0px #000000 !important;
+    box-shadow: 0px 0px 15px 0px #000000 !important;
+}
+
+.white-proceos{
+    color: white !important;
+}
+
+.card-proceos-1{
+    border-radius: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
