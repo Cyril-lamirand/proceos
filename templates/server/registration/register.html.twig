@@ -4,11 +4,12 @@
         <meta charset="UTF-8">
         <title>{% block title %}Proceos | Inscription{% endblock %}</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{asset('css/index-client.css')}}">
         {% block stylesheets %}
         {% endblock %}
         <style>
             body{ background-color: #202A46; }
-            .card-auth{ border: 2px solid #7367f0; border-radius: 16px; padding-left: 10px; padding-right: 10px; color:white; background: #161d31; }
+            .card-auth{ border: 2px solid #7367f0; border-radius: 16px; padding-left: 10px; padding-right: 10px; color:white; background: #161d31; z-index: 3; }
             .color-proceos-1{background: #7367f0; border:none; color: white;}
             span{ color: white; }
             a{ color: #7367f0; }
@@ -17,6 +18,7 @@
         </style>
     </head>
     <body>
+
         <header>
             <nav class="navbar navbar-expand-lg bg-dark nav-proceos fixed-top">
                 <div class="container-fluid">
@@ -144,5 +146,6 @@
         <footer>
 
         </footer>
+        {% include "/client/layouts/particles.html.twig" %}
     </body>
 </html>
