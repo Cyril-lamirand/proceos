@@ -5,20 +5,12 @@
         <title>{% block title %}Proceos | Authentification{% endblock %}</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         {% block stylesheets %}
+            {{ encore_entry_link_tags('client') }}
         {% endblock %}
-        <style>
-            body{ background-color: #202A46; }
-            .card-auth{ border: 2px solid #7367f0; border-radius: 16px; padding-left: 10px; padding-right: 10px; color:white; background: #161d31; }
-            .color-proceos-1{background: #7367f0; border:none;}
-            span{ color: white; }
-            a{ color: #7367f0; }
-            .white{ color: white; }
-            .nav-proceos{ background:#161d31; border-bottom:2px solid #7367f0; }
-        </style>
     </head>
-    <body>
+    <body class="bg-proceos-1">
         <header>
-            <nav class="navbar navbar-expand-lg bg-dark nav-proceos fixed-top">
+            <nav class="navbar navbar-expand-lg bg-dark border-bottom-proceos shadow-proceos fixed-top">
                 <div class="container-fluid">
                     <a class="navbar-brand text-white" href="/">Proceos</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +19,7 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
                         <div class="w-100" style="text-align: right">
-                            <span class="text-white-50">{% if app.user %}Role : {{ app.user.roles[0] }} {% else %} <a href="/register">S'inscrire</a>{% endif %}</span>
+                            <span class="text-white-50">{% if app.user %}Role : {{ app.user.roles[0] }} {% else %} <a href="/register" class="text-purple-proceos">S'inscrire</a>{% endif %}</span>
                         </div>
 
                     </div>
@@ -57,35 +49,37 @@
                             <!-- Keep it empty -->
                         </div>
                         <div class="col-12 col-sm-12 col-md-3 col-lg-4 col-xl-4">
-                            <div class="shadow card-auth pt-5 pb-5 mt-5">
+                            <div class="shadow white-proceos card-proceos-1 bg-proceos-2 border-proceos pb-5 mt-5">
                                 <div>
-
+                                    <img src="https://i.ibb.co/dB038Ps/md-duran-1-Vq-HRwxc-CCw-unsplash.jpg" alt="md-duran-1-Vq-HRwxc-CCw-unsplash" class="w-100 img-card-proceos">
                                 </div>
-                                <div class="text-center">
-                                    <h2>Authentification</h2>
-                                </div>
-                                <hr/>
-                                <div>
-                                    <label for="inputEmail">Adresse email</label>
-                                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-                                </div>
-                                <div class="mt-3">
-                                    <label for="inputPassword">Mot de passe</label>
-                                    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-                                </div>
-                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                                <hr/>
-                                <div class="text-center pt-4">
-                                    <button class="btn btn-primary color-proceos-1 w-100" type="submit">
-                                        Connexion
-                                    </button>
+                                <div class="mt-3 card-proceos-padding">
+                                    <div class="text-center mt-3">
+                                        <h2>Authentification</h2>
+                                    </div>
+                                    <hr/>
+                                    <div>
+                                        <label for="inputEmail">Adresse email</label>
+                                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                                    </div>
+                                    <div class="mt-3">
+                                        <label for="inputPassword">Mot de passe</label>
+                                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                                    </div>
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                    <hr/>
+                                    <div class="text-center pt-4">
+                                        <button class="btn btn-primary purple-proceos border-proceos w-100" type="submit">
+                                            Connexion
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             {% if error %}
                                 <div class="alert alert-danger mt-4">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                             {% endif %}
                             <div class="col-12 mt-3">
-                                <span>Pas encore inscrit ? <a href="/register">Inscrivez-vous</a> !</span>
+                                <span class="white-proceos">Pas encore inscrit ? <a href="/register" class="text-purple-proceos">Inscrivez-vous</a> !</span>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-3 col-lg-4 col-xl-4">

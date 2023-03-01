@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Proceos | Administration{% endblock %}</title>
-    <link rel="stylesheet" href="{{asset('css/index.css')}}">
     {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
     {% endblock %}
 
 
