@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route('proceos/organization')]
+#[Route('admin/organization')]
 class OrganizationController extends AbstractController
 {
     public function __construct(EntityManagerInterface $em)

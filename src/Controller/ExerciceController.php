@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('proceos/exercice')]
+#[Route('admin/exercice')]
 class ExerciceController extends AbstractController
 {
     // TODO : Show only Organization USER Exercice

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('proceos/module')]
+#[Route('admin/module')]
 class ModuleController extends AbstractController
 {
     public function __construct(EntityManagerInterface $em)
