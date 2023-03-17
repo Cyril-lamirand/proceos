@@ -89,8 +89,5 @@
       "allow-contrib": false,
       "require": "5.3.*"
     }
-  },
-  "require-dev": {
-    "roave/security-advisories": "dev-latest"
   }
 }
