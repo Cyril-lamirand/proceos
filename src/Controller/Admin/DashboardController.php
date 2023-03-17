@@ -1,15 +1,13 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Module;
-use App\Entity\User;
-use App\Repository\ModuleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractController
 {
