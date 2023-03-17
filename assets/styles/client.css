@@ -48,3 +48,7 @@
 .bg-proceos-transparent{
     background-color: rgba(22,29,49, 0.7);
 }
+
+.logo-header {
+    width: 40px;
+}
