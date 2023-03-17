@@ -13,3 +13,6 @@
 .idea/
 # Local Netlify folder
 .netlify
+node_modules
+public/build
+.DS_Store
