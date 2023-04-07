@@ -28,10 +28,14 @@ class QuizController extends AbstractController
     public function create(Module $module): RedirectResponse|Response
     {
         if ($_POST) {
+            $quiz = new Quiz();
+            $quiz->setLabel($module->getLabel())
+            ->setModule($module)
+            ->setCreatedat(new \DateTime());
             $arrayOfQuestionsResponses = array_chunk($_POST, 2);
             foreach ($arrayOfQuestionsResponses as $questionsResponse) {
                 $question = new Question();
-                $question->setQuiz($module->getQuiz())
+                $question->setQuiz($quiz)
                     ->setLabel($questionsResponse[0])
                     ->setType('text');
 
@@ -44,6 +48,7 @@ class QuizController extends AbstractController
                 $this->manager->persist($answer);
             }
 
+            $this->manager->persist($quiz);
             $this->manager->flush();
 
             $this->addFlash('success', "Quiz créé");
