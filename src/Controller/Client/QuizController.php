@@ -23,7 +23,7 @@ class QuizController extends AbstractController
     )]
     public function create(Module $module): Response
     {
-        return $this->render('client/teacher/create-quiz.html.twig');
+        return $this->render('client/teacher/create-quiz.html.twig', compact('module'));
     }
 
     #[Route(
