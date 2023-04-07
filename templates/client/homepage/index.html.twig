@@ -21,12 +21,12 @@
                             <span class="text-white-50">
                                 {% if app.user %}
                                     Role : {{ app.user.roles[0] }}
+                                     <a href="/logout">Déconnexion</a> 
                                 {% else %}
                                     <a href="/login">Connexion</a> / <a href="/register">Inscription</a>
                                 {% endif %}
                             </span>
                         </div>
-
                     </div>
                 </div>
             </nav>
