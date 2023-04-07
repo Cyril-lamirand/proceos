@@ -3,6 +3,7 @@
 namespace App\Controller\Client;
 
 use App\Entity\Module;
+use App\Entity\Classe;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,7 +38,12 @@ class MainController extends AbstractController
     #[Route('/dashboard', name: 'index_student', methods: ['GET'])]
     public function studentDashboard(): Response
     {
-        return $this->render('client/student/dashboard.html.twig');
-
+        foreach ($this->getUser()->getClasses() as $class) {
+            $classFound = $this->manager->getRepository(Classe::class)->find($class['id']);
+            if ($classFound) {
+                $modules = $classFound->getModules();
+            }
+        }
+        return $this->render('client/student/dashboard.html.twig', compact('modules'));
     }
 }
