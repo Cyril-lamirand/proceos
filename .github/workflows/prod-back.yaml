@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
-        uses: appleboy/ssh-action@master
+      - uses: appleboy/ssh-action@master
+      - uses: ljharb/actions/node/install@main
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -19,10 +20,11 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd ~/proceos
+            nvm install 18
+            npm install
+            npm run build
             git pull origin master
             composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
             sudo APP_ENV=prod 
             php bin/console cache:clear
             nvm use 18
-            npm install
-            npm run build
