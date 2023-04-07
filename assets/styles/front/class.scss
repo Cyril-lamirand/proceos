@@ -1,50 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+h2 {
+    font-size: 1.25rem;
+}
+
+h3 {
+    font-size: 1rem;
+}
+p {
+    font-weight: 300;
+}
 .bg-proceos-1{
-  background-color: #202A46 !important;
+    background-color: #202A46 !important;
 }
 
 .bg-proceos-2{
-  background-color:#161d31 !important;
+    background-color:#161d31 !important;
 }
 
 .purple-proceos{
-  background-color: #7367f0 !important;
+    background-color: #7367f0 !important;
 }
 
 .text-purple-proceos{
-  color: #7367f0;
+    color: #7367f0;
 }
 
 .border-proceos{
-  border: 2px solid #7367f0 !important;
+    border: 2px solid #7367f0 !important;
 }
 
 .border-bottom-proceos{
-  border-bottom: 2px solid #7367f0 !important;
+    border-bottom: 2px solid #7367f0 !important;
 }
 
 .shadow-proceos{
-  -webkit-box-shadow: 0px 0px 15px 0px #000000 !important;
-  box-shadow: 0px 0px 15px 0px #000000 !important;
+    -webkit-box-shadow: 0px 0px 15px 0px #000000 !important;
+    box-shadow: 0px 0px 15px 0px #000000 !important;
 }
 
 .white-proceos{
-  color: white !important;
+    color: white !important;
 }
 
 .card-proceos-1 {
-  border-radius: 8px !important;
+    border-radius: 8px !important;
 }
 
 .img-card-proceos{
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .card-proceos-padding{
-  padding-left: 10px;
-  padding-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .bg-proceos-transparent{
-  background-color: rgba(22,29,49, 0.7);
+    background-color: rgba(22,29,49, 0.7);
+}
+
+.logo-header {
+    width: 40px;
 }

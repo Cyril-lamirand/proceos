@@ -2,16 +2,16 @@
 
 {% block content %}
 <div class="container-dashboard-teacher">
-    <h2>Tableau de bord</h2>
     <h2>Tableau de bord Teacher</h2>
     <hr/>
     <div class="col-12">
-        <h3>Module(s)</h3>
+        <h3 class="center">Liste des modules</h3>
     </div>
-    <div>
+    <div class="card-module__container">
         {% for module in modules %}
         <div class="card-module">
-            <h3>{{ module.label }}</h3>
+            <a href="#" class="titleLabel">{{ module.label }}</a>
+            <a href="#" class="quizzBtn">Créer un questionnaire</a>
         </div>
         {% endfor %}
     </div>
