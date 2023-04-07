@@ -1,18 +1,19 @@
 {% extends 'client/base-client.html.twig' %}
 
 {% block content %}
-    <div class="container-dashboard-teacher">
-        <h2>Tableau de bord</h2>
-        <hr/>
-        <div class="col-12">
-            <h3>Module(s)</h3>
-        </div>
-        <div>
-            {% for module in modules %}
-            <div class="card-module">
-                <h3>{{ module.label }}</h3>
-            </div>
-            {% endfor %}
-        </div>
+<div class="container-dashboard-teacher">
+    <h2>Tableau de bord</h2>
+    <h2>Tableau de bord Teacher</h2>
+    <hr/>
+    <div class="col-12">
+        <h3>Module(s)</h3>
     </div>
+    <div>
+        {% for module in modules %}
+        <div class="card-module">
+            <h3>{{ module.label }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
