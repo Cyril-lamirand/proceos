@@ -38,6 +38,7 @@ class MainController extends AbstractController
     #[Route('/dashboard', name: 'index_student', methods: ['GET'])]
     public function studentDashboard(): Response
     {
+        $modules = [];
         foreach ($this->getUser()->getClasses() as $class) {
             $classFound = $this->manager->getRepository(Classe::class)->find($class['id']);
             if ($classFound) {
