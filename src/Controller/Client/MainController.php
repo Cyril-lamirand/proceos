@@ -22,15 +22,15 @@ class MainController extends AbstractController
         ]);
     }
 
-    #[Route("/dashboard", name: 'index_intervenant', methods: ['GET'])]
-    public function interventantDashboard(): Response
+    #[Route("/dashboard/teacher", name: 'index_intervenant', methods: ['GET'])]
+    public function intervenantDashboard(): Response
     {
 
         $modules = $this->manager->getRepository(Module::class);
         $userModules = $modules->findBy(["user" => $this->getUser()]);
 
         return $this->render('client/teacher/dashboard.html.twig',[
-            "module" => $userModules
+            "modules" => $userModules
         ]);
     }
 

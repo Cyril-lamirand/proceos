@@ -1,4 +1,4 @@
-import './styles/client.css';
+import './styles/client.scss';
 // start the Stimulus application
 import './bootstrap';
 // images
