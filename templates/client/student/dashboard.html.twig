@@ -1,19 +1,19 @@
 {% extends 'client/base-client.html.twig' %}
 
 {% block content %}
-    <div class="container">
-        <h2>Tableau de bord Étudiant</h2>
-        <hr/>
-         <div class="col-12">
-            <h3 class="center">Liste des modules</h3>
-        </div>
-        <div class="card-module__container">
-            {% for module in modules %}
+<div class="container">
+    <h2>Tableau de bord Étudiant</h2>
+    <hr/>
+    <div class="col-12">
+        <h3 class="center">Liste des modules</h3>
+    </div>
+    <div class="card-module__container">
+        {% for module in modules %}
         <div class="card-module">
             <a href="#" class="titleLabel">{{ module.label }}</a>
-            <a href="#" class="quizzBtn">Créer un questionnaire</a>
+            <a href="{{path('answer_quiz', {id:module.quiz.id})}}" class="quizzBtn">Répondre au questionnaire</a>
         </div>
         {% endfor %}
     </div>
-    </div>
+</div>
 {% endblock %}

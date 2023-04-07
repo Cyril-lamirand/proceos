@@ -11,7 +11,7 @@
         {% for module in modules %}
         <div class="card-module">
             <a href="#" class="titleLabel">{{ module.label }}</a>
-            <a href="#" class="quizzBtn">Créer un questionnaire</a>
+            <a href="{{path('create_quiz', {id:module.id})}}" class="quizzBtn">Créer un questionnaire</a>
         </div>
         {% endfor %}
     </div>
