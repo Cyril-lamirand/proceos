@@ -1,4 +1,4 @@
-name: prod-back
+name: prod
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  deploy-back:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
@@ -21,8 +21,5 @@ jobs:
             cd ~/proceos
             git pull origin master
             composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-            php bin/console doctrine:migrations:migrate --no-interaction
             sudo APP_ENV=prod 
             php bin/console cache:clear
-            npm install
-            npm run build
