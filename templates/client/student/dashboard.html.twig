@@ -11,7 +11,9 @@
         {% for module in modules %}
         <div class="card-module">
             <a href="#" class="titleLabel">{{ module.label }}</a>
+            {% if module.quiz is not null %}
             <a href="{{path('answer_quiz', {id:module.quiz.id})}}" class="quizzBtn">Répondre au questionnaire</a>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
