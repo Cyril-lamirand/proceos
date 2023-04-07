@@ -1,0 +1,250 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #161d31;
+  color: #cfd1d5;
+  font-family: "Montserrat", sans-serif;
+}
+
+main {
+  width: calc(100vw - 200px);
+  margin-left: 200px;
+}
+
+a {
+  text-decoration: none;
+  color: #cfd1d5;
+}
+
+a:hover {
+  color: #cfd1d5;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+i {
+  color: #cfd1d5;
+  font-family: "FontAwesome", sans-serif !important;
+}
+
+.create-new {
+  background-color: #7367f0;
+  padding: 0.786rem 1.5rem;
+  color: #cfd1d5;
+  border-radius: 0.357rem;
+  margin: 20px;
+}
+.create-new:hover {
+  box-shadow: 0 8px 25px -8px #7367f0;
+}
+
+.update-button {
+  background-color: #7367f0;
+  border: solid 1px #7367f0;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 0.357rem;
+  color: #cfd1d5;
+  margin: 3px;
+  cursor: pointer;
+}
+.update-button:hover {
+  box-shadow: 0 8px 25px -8px #7367f0;
+}
+
+.back-button {
+  background-color: #ff9f43;
+  padding: 0.786rem 1.5rem;
+  color: #FFF;
+  border-radius: 0.357rem;
+  margin: 20px;
+}
+.back-button:hover {
+  box-shadow: 0 8px 25px -8px #ff9f43;
+}
+
+.validation-button {
+  border: solid 1px #2AC76F;
+  background-color: #2AC76F;
+  padding: 0.786rem 1.5rem;
+  color: #FFF;
+  border-radius: 0.357rem;
+  margin: 20px;
+  cursor: pointer;
+}
+.validation-button:hover {
+  box-shadow: 0 8px 25px -8px #2AC76F;
+}
+
+.user-form button {
+  border: solid 1px #2AC76F;
+  background-color: #2AC76F;
+  padding: 0.786rem 1.5rem;
+  color: #FFF;
+  border-radius: 0.357rem;
+  margin: 20px;
+  width: 150px;
+  cursor: pointer;
+}
+.user-form button:hover {
+  box-shadow: 0 8px 25px -8px #2AC76F;
+}
+
+.delete-button {
+  background-color: #ea5455;
+  border: solid 1px #ea5455;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 0.357rem;
+  color: #cfd1d5;
+  margin: 3px;
+  cursor: pointer;
+}
+.delete-button:hover {
+  box-shadow: 0 8px 25px -8px #ea5455;
+}
+
+.delete-button-formuser {
+  background-color: #ea5455 !important;
+  border: solid 1px #ea5455 !important;
+}
+.delete-button-formuser:hover {
+  box-shadow: 0 8px 25px -8px #ea5455 !important;
+}
+
+nav {
+  position: fixed;
+  height: 100vh;
+  width: 200px;
+  background: #283046;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+nav ul, nav li {
+  font-weight: 300;
+  width: 100%;
+}
+nav .home-link {
+  color: #605ec3;
+  font-size: 1.5rem;
+}
+nav .home-link:hover {
+  color: #cfd1d5;
+}
+nav ul {
+  margin-top: 20px;
+}
+nav ul .link-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+}
+nav ul .link-container .circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #cfd1d5;
+}
+nav ul .link-container:hover {
+  background: #605ec3;
+}
+
+.big-titles {
+  font-weight: 400;
+  margin: 0px 20px 20px;
+  padding-top: 30px;
+}
+
+table {
+  margin: 20px 20px 20px;
+  font-weight: 400;
+  background-color: #283046;
+  border-bottom-left-radius: 0.357rem;
+  border-bottom-right-radius: 0.357rem;
+  min-width: 90%;
+}
+
+thead {
+  height: 50px;
+  background-color: #343d55;
+}
+
+tr {
+  font-weight: 300;
+  height: 30px;
+  border-top: 1px solid #ebe9f1;
+}
+
+.margin_form_top {
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.user-table-line {
+  height: 60px;
+}
+
+.user-input-select {
+  border: 1px solid #7367f0;
+  background: none;
+  color: #cfd1d5;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 0.357rem;
+  cursor: pointer;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  margin-left: 30px;
+}
+
+input[type=text], select, textarea, input[type=number] {
+  padding: 0.438rem 1rem;
+  border: 1px solid #cfd1d5;
+  color: #cfd1d5;
+  background: none;
+  margin-top: 10px;
+  border-radius: 0.357rem;
+  width: 70%;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+input[type=text]:focus, select:focus, textarea:focus, input[type=number]:focus {
+  border: 2px solid #7367f0;
+}
+
+input[type=number] {
+  width: 30%;
+}
+
+.form-inline {
+  display: flex;
+  width: 70%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
