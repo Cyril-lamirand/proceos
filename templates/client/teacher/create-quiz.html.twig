@@ -1,9 +1,57 @@
 {% extends 'client/base-client.html.twig' %}
 
 {% block content %}
+{% set num_questions = -1 %}
 <div class="container">
     <h2>Créer un quiz</h2>
     <hr/>
+     <form method="POST" action="">
+        <label for="num_questions">Nombre de questions :</label>
+        <input type="number" id="num_questions" name="num_questions" min="1" max="10" disabled>
+        <br>
+
+        <div id="questions">
+            {% for i in 1..10 %}
+                {% if i <= num_questions %}
+                    <label for="question{{ i }}">Question {{ i }} :</label>
+                    <input type="text" id="question{{ i }}" name="question{{ i }}" required><br>
+                    {% for j in 1..4 %}
+                        <label for="question{{ i }}_answer{{ j }}">Réponse {{ j }} :</label>
+                        <input type="text" id="question{{ i }}_answer{{ j }}" name="question{{ i }}_answer{{ j }}" required><br>
+                    {% endfor %}
+                    <br>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <button type="button" id="add-question">Ajouter une question</button>
+        <br><br>
+
+        <input type="submit" value="Créer le quiz">
+    </form>
 
 </div>
+
+
+<script>
+        var numQuestions = 0;
+        var maxQuestions = 10;
+
+        document.getElementById("add-question").addEventListener("click", function() {
+            if (numQuestions < maxQuestions) {
+                numQuestions++;
+                var newQuestion = document.createElement("div");
+                newQuestion.innerHTML = `
+                    <label for="question${numQuestions}">Question ${numQuestions} :</label>
+                    <input type="text" id="question${numQuestions}" name="question${numQuestions}" required><br>
+                    <label for="question${numQuestions}_answer1">Réponse ${numQuestions} :</label>
+                    <input type="text" id="question${numQuestions}_answer1" name="question${numQuestions}_answer1" required><br>
+                    <br>
+                `;
+                document.getElementById("questions").appendChild(newQuestion);
+                document.getElementById("num_questions").value = numQuestions;
+            }
+        });
+    </script>
+
 {% endblock %}
