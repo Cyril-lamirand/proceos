@@ -65,6 +65,7 @@ class QuizController extends AbstractController
     )]
     public function answer(Quiz $quiz): Response
     {
+        // dd($quiz);
         return $this->render('client/student/answer-quiz.html.twig', compact('quiz'));
     }
 }
