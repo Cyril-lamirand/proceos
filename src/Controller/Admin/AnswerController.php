@@ -36,18 +36,13 @@ class AnswerController extends AbstractController
             return $this->redirectToRoute('answer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/answer/new.html.twig', [
-            'answer' => $answer,
-            'form' => $form,
-        ]);
+        return $this->renderForm('server/answer/new.html.twig', compact('answer', 'form'));
     }
 
     #[Route('/{id}', name: 'answer_show', methods: ['GET'])]
     public function show(Answer $answer): Response
     {
-        return $this->render('server/answer/show.html.twig', [
-            'answer' => $answer,
-        ]);
+        return $this->render('server/answer/show.html.twig', compact('answer'));
     }
 
     #[Route('/{id}/edit', name: 'answer_edit', methods: ['GET','POST'])]
@@ -62,10 +57,7 @@ class AnswerController extends AbstractController
             return $this->redirectToRoute('answer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/answer/edit.html.twig', [
-            'answer' => $answer,
-            'form' => $form,
-        ]);
+        return $this->renderForm('server/answer/edit.html.twig', compact('answer', 'form'));
     }
 
     #[Route('/{id}', name: 'answer_delete', methods: ['POST'])]

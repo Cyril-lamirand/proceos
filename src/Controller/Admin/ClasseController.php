@@ -29,9 +29,7 @@ class ClasseController extends AbstractController
             $classes = $user?->getClasses();
         }
 
-        return $this->render('server/classe/index.html.twig', [
-            'classes' => $classes,
-        ]);
+        return $this->render('server/classe/index.html.twig', compact('classes'));
     }
 
     #[Route('/new', name: 'classe_new', methods: ['GET', 'POST'])]
@@ -49,18 +47,13 @@ class ClasseController extends AbstractController
             return $this->redirectToRoute('classe_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/classe/new.html.twig', [
-            'classe' => $classe,
-            'form' => $form,
-        ]);
+        return $this->renderForm('server/classe/new.html.twig', compact('classe', 'form'));
     }
 
     #[Route('/{id}', name: 'classe_show', methods: ['GET'])]
     public function show(Classe $classe): Response
     {
-        return $this->render('server/classe/show.html.twig', [
-            'classe' => $classe,
-        ]);
+        return $this->render('server/classe/show.html.twig', compact('classe'));
     }
 
     #[Route('/{id}/edit', name: 'classe_edit', methods: ['GET', 'POST'])]
@@ -75,10 +68,7 @@ class ClasseController extends AbstractController
             return $this->redirectToRoute('classe_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/classe/edit.html.twig', [
-            'classe' => $classe,
-            'form' => $form,
-        ]);
+        return $this->renderForm('server/classe/edit.html.twig', compact('classe', 'form'));
     }
 
     #[Route('/{id}', name: 'classe_delete', methods: ['POST'])]
@@ -98,7 +88,7 @@ class ClasseController extends AbstractController
     {
         if ($_POST) {
             $email = $_POST['student'];
-            $student = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email' => $email]);
+            $student = $this->getDoctrine()->getRepository(User::class)->findOneBy(compact('email'));
             if ($student) {
                 $classe->addUser($student);
                 $manager = $this->getDoctrine()->getManager();
