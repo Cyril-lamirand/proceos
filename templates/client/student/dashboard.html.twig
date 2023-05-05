@@ -10,6 +10,11 @@
     <div class="card-module__container">
         {% for module in modules %}
         <div class="card-module">
+            <div class="pt-4">
+                <h2>{{ module.label }}</h2>
+            </div>
+
+
             <a href="#" class="titleLabel">{{ module.label }}</a>
             {% if module.quiz is not null %}
             {% if quizDone(module.quiz, app.user) %}
