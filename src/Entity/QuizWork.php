@@ -30,14 +30,14 @@ class QuizWork
     private $quiz;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $correctanswer;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createdat;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private array $answers = [];
 
     public function getId(): ?int
     {
@@ -68,18 +68,6 @@ class QuizWork
         return $this;
     }
 
-    public function getCorrectanswer(): ?int
-    {
-        return $this->correctanswer;
-    }
-
-    public function setCorrectanswer(int $correctanswer): self
-    {
-        $this->correctanswer = $correctanswer;
-
-        return $this;
-    }
-
     public function getCreatedat(): ?\DateTimeInterface
     {
         return $this->createdat;
@@ -88,6 +76,18 @@ class QuizWork
     public function setCreatedat(\DateTimeInterface $createdat): self
     {
         $this->createdat = $createdat;
+
+        return $this;
+    }
+
+    public function getAnswers(): ?array
+    {
+        return $this->answers;
+    }
+
+    public function setAnswers(array $answers): self
+    {
+        $this->answers = $answers;
 
         return $this;
     }

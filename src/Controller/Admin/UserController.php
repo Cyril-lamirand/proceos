@@ -36,9 +36,7 @@ class UserController extends AbstractController
             $users
                 = $this->getDoctrine()->getManager()->getRepository(User::class)->findAll();
         }
-        return $this->render('server/user/index.html.twig', [
-            "users" => $users,
-        ]);
+        return $this->render('server/user/index.html.twig', compact('users'));
     }
 
     #[Route('/update/role/{id}', name: 'admin_update_role')]
