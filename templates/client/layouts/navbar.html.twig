@@ -15,8 +15,10 @@
                 </div>
                 <div class="w-100" style="text-align: right">
                     <span class="text-white-50">Role : {{ app.user.roles[0] }}</span>
+                    {% if app.user %}
+                        <a href="/logout">Déconnexion</a> 
+                    {% endif %}
                 </div>
-
             </div>
         </div>
     </nav>
