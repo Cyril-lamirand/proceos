@@ -30,8 +30,8 @@ class QuizController extends AbstractController
         if ($_POST) {
             $quiz = new Quiz();
             $quiz->setLabel($module->getLabel())
-            ->setModule($module)
-            ->setCreatedat(new \DateTime());
+                ->setModule($module)
+                ->setCreatedat(new \DateTime());
             $arrayOfQuestionsResponses = array_chunk($_POST, 2);
             foreach ($arrayOfQuestionsResponses as $questionsResponse) {
                 $question = new Question();
@@ -65,7 +65,10 @@ class QuizController extends AbstractController
     )]
     public function answer(Quiz $quiz): Response
     {
-        // dd($quiz);
+        if($_POST){
+            $answers = $_POST['answer'];
+            dd($answers);
+        }
         return $this->render('client/student/answer-quiz.html.twig', compact('quiz'));
     }
 }

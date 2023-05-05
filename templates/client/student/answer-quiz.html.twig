@@ -4,14 +4,15 @@
 <div class="container">
     <h2>Répondre à {{quiz.label}}</h2>
     <hr/>
-    <form method="POST" action="">
-        {% for question in quiz.questions %}
+    <form method="POST" action="{{path('answer_quiz', {id:quiz.id})}}">
+        {% for index,question in quiz.questions %}
         <div class="question_bloc">
             <p>Question : {{question.label}}</p>
-            <textarea id="answer" name="answer" rows="5" cols="50" placeholder="Écrivez votre réponse ici..."></textarea>
+            <textarea id="answer[{{index}}]" name="answer[{{index}}]" rows="5" cols="50"
+                      placeholder="Écrivez votre réponse ici..."></textarea>
         </div>
         {% endfor %}
-         <input type="submit" value="Envoyer mes réponses" class="validation-button">
+        <input type="submit" value="Envoyer mes réponses" class="validation-button">
     </form>
 </div>
 {% endblock %}
