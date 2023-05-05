@@ -12,8 +12,6 @@ class ModuleClientController extends AbstractController
     #[Route('/module/{id}', name: 'app_client_module_show', methods: ['GET'])]
     public function show(Module $module): Response
     {
-        return $this->render('client/module/index.html.twig', [
-            'module' => $module,
-        ]);
+        return $this->render('client/module/index.html.twig', compact('module'));
     }
 }
