@@ -14,4 +14,14 @@ class ModuleClientController extends AbstractController
     {
         return $this->render('client/module/index.html.twig', compact('module'));
     }
+
+    #[Route(
+        path: "/teacher/module/{id}",
+        name: 'app_client_teacher_module_show',
+        methods: ['GET']
+    )]
+    public function teacherShow(Module $module): Response
+    {
+        return $this->render('client/module/teacher_show.html.twig', compact('module'));
+    }
 }
