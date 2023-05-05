@@ -35,7 +35,7 @@ class MainController extends AbstractController
         ]);
     }
 
-    #[Route('/dashboard', name: 'index_student', methods: ['GET'])]
+    #[Route('/dashboard/student', name: 'index_student', methods: ['GET'])]
     public function studentDashboard(): Response
     {
         $modules = [];

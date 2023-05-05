@@ -12,6 +12,7 @@ class DashboardController extends AbstractController
 {
     #[
         Route('/dashboard', name: 'dashboard', methods: ['GET']),
+        IsGranted("IS_AUTHENTICATED_FULLY", message: 'No access!')
     ]
     public function index(): RedirectResponse
     {
@@ -23,6 +24,7 @@ class DashboardController extends AbstractController
         }
 
         if (in_array("ROLE_INTERVENANT", $roles, true)) {
+
             return $this->redirectToRoute('index_intervenant');
         }
 
