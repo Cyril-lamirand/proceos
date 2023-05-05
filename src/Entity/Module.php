@@ -56,10 +56,16 @@ class Module
      */
     private $label;
 
+    /**
+     * @ORM\OneToMany(targetEntity=StudentLevel::class, mappedBy="module", orphanRemoval=true)
+     */
+    private $studentLevels;
+
     public function __construct()
     {
         $this->courses = new ArrayCollection();
         $this->exercices = new ArrayCollection();
+        $this->studentLevels = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -188,6 +194,36 @@ class Module
     public function setLabel(string $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, StudentLevel>
+     */
+    public function getStudentLevels(): Collection
+    {
+        return $this->studentLevels;
+    }
+
+    public function addStudentLevel(StudentLevel $studentLevel): self
+    {
+        if (!$this->studentLevels->contains($studentLevel)) {
+            $this->studentLevels[] = $studentLevel;
+            $studentLevel->setModule($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStudentLevel(StudentLevel $studentLevel): self
+    {
+        if ($this->studentLevels->removeElement($studentLevel)) {
+            // set the owning side to null (unless already changed)
+            if ($studentLevel->getModule() === $this) {
+                $studentLevel->setModule(null);
+            }
+        }
 
         return $this;
     }

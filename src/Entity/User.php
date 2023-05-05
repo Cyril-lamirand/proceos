@@ -95,6 +95,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $userAvatar;
 
+    /**
+     * @ORM\OneToMany(targetEntity=StudentLevel::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $studentLevels;
+
     public function __construct()
     {
         $this->classes = new ArrayCollection();
@@ -103,6 +108,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->exerciceWorks = new ArrayCollection();
         $this->topics = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->studentLevels = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -450,6 +456,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->userAvatar = $userAvatar;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, StudentLevel>
+     */
+    public function getStudentLevels(): Collection
+    {
+        return $this->studentLevels;
+    }
+
+    public function addStudentLevel(StudentLevel $studentLevel): self
+    {
+        if (!$this->studentLevels->contains($studentLevel)) {
+            $this->studentLevels[] = $studentLevel;
+            $studentLevel->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStudentLevel(StudentLevel $studentLevel): self
+    {
+        if ($this->studentLevels->removeElement($studentLevel)) {
+            // set the owning side to null (unless already changed)
+            if ($studentLevel->getUser() === $this) {
+                $studentLevel->setUser(null);
+            }
+        }
 
         return $this;
     }
