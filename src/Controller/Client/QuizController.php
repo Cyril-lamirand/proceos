@@ -8,6 +8,7 @@ use App\Entity\Answer;
 use App\Entity\Module;
 use App\Entity\Question;
 use App\Entity\Quiz;
+use App\Entity\QuizWork;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -67,7 +68,17 @@ class QuizController extends AbstractController
     {
         if($_POST){
             $answers = $_POST['answer'];
-            dd($answers);
+            $quizWork = new QuizWork();
+            $quizWork->setQuiz($quiz)
+            ->setUser($this->getUser())
+            ->setCreatedat(new \DateTimeImmutable())
+            ->setAnswers($answers);
+
+            $this->manager->persist($quizWork);
+            $this->manager->flush();
+
+            $this->addFlash("success", "Vous avez répondu au quiz");
+            $this->redirectToRoute('dashboard');
         }
         return $this->render('client/student/answer-quiz.html.twig', compact('quiz'));
     }

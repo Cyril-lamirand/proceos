@@ -12,7 +12,11 @@
         <div class="card-module">
             <a href="#" class="titleLabel">{{ module.label }}</a>
             {% if module.quiz is not null %}
+            {% if quizDone(module.quiz, app.user) %}
+            <a href="" class="quizzBtn">Déjà répondu</a>
+            {% else %}
             <a href="{{path('answer_quiz', {id:module.quiz.id})}}" class="quizzBtn">Répondre au questionnaire</a>
+            {% endif %}
             {% endif %}
         </div>
         {% endfor %}
