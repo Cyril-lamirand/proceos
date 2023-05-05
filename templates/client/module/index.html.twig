@@ -5,48 +5,25 @@
         <h2>{{ module.label }}</h2>
         <hr/>
         <div class="row">
-            <div class="col-12 col-lg-4">
+            {% if courses is not null %}
+                {% for course in courses %}
+                    <div class="col-12 col-lg-4">
+                        <div class="bg-proceos-2 pt-4 pb-4">
+                            <div class="text-center">
+                                <h3>{{ course.title }}</h3>
+                            </div>
+                            <hr/>
+                            <div class="d-flex justify-content-center">
+                                <a class="quizzBtn" href="{{path('app_client_course_show', {id:course.id})}}">Voir le cours</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
                 <div>
-                    <div class="text-center">
-                        <h3>Débutant(e)</h3>
-                    </div>
-                    <hr/>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad blanditiis consequatur corporis eaque esse illo nam neque non, officiis? Autem culpa nulla quam rem sapiente! Alias labore mollitia voluptas.</p>
-                    <div>
-                        <a href="#" class="quizzBtn">
-                            Voir le cours
-                        </a>
-                    </div>
+                    <h6>Il n'y a pas de cours disponible dans ce module.</h6>
                 </div>
-            </div>
-            <div class="col-12 col-lg-4">
-                <div>
-                    <div class="text-center">
-                        <h3>Intermédiaire</h3>
-                    </div>
-                    <hr/>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam blanditiis consequuntur dicta dolorum eos ex incidunt ipsam laudantium libero magni maxime modi molestiae nesciunt pariatur, repellendus sapiente sequi soluta velit?</p>
-                    <div>
-                        <a href="#" class="quizzBtn">
-                            Voir le cours
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-4">
-                <div>
-                    <div class="text-center">
-                        <h3>Avancé(e)</h3>
-                    </div>
-                    <hr/>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis dignissimos, enim et eveniet explicabo harum, illo natus nesciunt nisi nostrum officiis qui ratione sapiente! Aspernatur dolorem earum esse excepturi libero!</p>
-                    <div>
-                        <a href="#" class="quizzBtn">
-                            Voir le cours
-                        </a>
-                    </div>
-                </div>
-            </div>
+            {% endif %}
         </div>
         <hr/>
         <div>
