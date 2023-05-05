@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class QuizController extends AbstractController
+class QuizClientController extends AbstractController
 {
     public function __construct(private EntityManagerInterface $manager)
     {

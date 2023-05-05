@@ -7,24 +7,24 @@
     <div class="col-12">
         <h3 class="center">Liste des modules</h3>
     </div>
-    <div class="card-module__container">
+    <div class="row">
         {% for module in modules %}
-        <div class="card-module">
-            <div class="pt-4">
-                <h2>{{ module.label }}</h2>
+            <div class="col-12 col-lg-4">
+                <div class="card-module">
+                    <div class="pt-4">
+                        <h2>{{ module.label }}</h2>
+                    </div>
+                    {% if module.quiz is not null %}
+                        {% if quizDone(module.quiz, app.user) %}
+                            <a href="" class="quizzBtn">Déjà répondu</a>
+                        {% else %}
+                            <a href="{{path('app_client_module_show', {id:module.id})}}" class="quizzBtn">Voir le module</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
             </div>
-
-
-            <a href="#" class="titleLabel">{{ module.label }}</a>
-            {% if module.quiz is not null %}
-            {% if quizDone(module.quiz, app.user) %}
-            <a href="" class="quizzBtn">Déjà répondu</a>
-            {% else %}
-            <a href="{{path('answer_quiz', {id:module.quiz.id})}}" class="quizzBtn">Répondre au questionnaire</a>
-            {% endif %}
-            {% endif %}
-        </div>
         {% endfor %}
     </div>
+
 </div>
 {% endblock %}
