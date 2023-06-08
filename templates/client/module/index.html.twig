@@ -54,10 +54,19 @@
         </div>
         <hr/>
         <p>Pour pouvoir commencer un cours vous devez avoir répondu au préalable au questionnaire d'entrée.</p>
-        <div class="d-flex justify-content-center">
-            {% if module.quiz is not null %}
-                <a href="{{path('answer_quiz', {id:module.quiz.id})}}" class="quizzBtn">Répondre au questionnaire</a>
+        {% if module.quiz is not null %}
+            {% if quizDone(module.quiz, app.user) %}
+                <div class="alert alert-success" role="alert">
+                    Vous avez répondu au questionnaire !
+                </div>
+            {% else %}
+                <div class="alert alert-warning mt-2" role="alert">
+                    <span>Vous devez répondre au questionnaire !</span>
+                </div>
+                <div class="d-flex justify-content-center mb-3">
+                    <a href="{{path('answer_quiz', {id:module.quiz.id})}}" class="quizzBtn">Questionnaire</a>
+                </div>
             {% endif %}
-        </div>
+        {% endif %}
     </div>
 {% endblock %}

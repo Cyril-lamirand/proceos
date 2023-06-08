@@ -16,3 +16,5 @@
 node_modules
 public/build
 .DS_Store
+.idea/php.xml
+.idea/proceos.iml
