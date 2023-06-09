@@ -1,0 +1,18 @@
+{% extends 'client/base-client.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <h2>Réponses de {{quizWork.user.firstName}} {{quizWork.user.lastName}}</h2>
+    <hr/>
+    <div>
+        <ul>
+            {% for index,answer in quizWork.answers %}
+            <li>
+                <p>Question : {{quizWork.quiz.questions[index].label}}</p>
+                <p>Réponse : {{answer}}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
