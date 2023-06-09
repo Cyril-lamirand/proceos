@@ -17,9 +17,8 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('admin/organization')]
 class OrganizationController extends AbstractController
 {
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     #[Route('/', name: 'organization_index', methods: ['GET'])]
@@ -34,9 +33,7 @@ class OrganizationController extends AbstractController
         } else {
             $organizations = $organizationRepository->findAll();
         }
-        return $this->render('server/organization/index.html.twig', [
-            'organizations' => $organizations,
-        ]);
+        return $this->render('server/organization/index.html.twig', compact('organizations'));
     }
 
     #[Route('/new', name: 'organization_new', methods: ['GET', 'POST'])]
@@ -55,25 +52,22 @@ class OrganizationController extends AbstractController
                 $organization->setLogo($logoName);
             }
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($organization);
-            $entityManager->flush();
+            $this->em->persist($organization);
+            $this->em->flush();
 
             return $this->redirectToRoute('organization_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/organization/new.html.twig', [
+        return $this->render('server/organization/new.html.twig', [
             'organization' => $organization,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}', name: 'organization_show', methods: ['GET'])]
     public function show(Organization $organization): Response
     {
-        return $this->render('server/organization/show.html.twig', [
-            'organization' => $organization,
-        ]);
+        return $this->render('server/organization/show.html.twig', compact('organization'));
     }
 
     #[Route('/{id}/edit', name: 'organization_edit', methods: ['GET', 'POST'])]
@@ -83,14 +77,14 @@ class OrganizationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
 
             return $this->redirectToRoute('organization_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/organization/edit.html.twig', [
+        return $this->render('server/organization/edit.html.twig', [
             'organization' => $organization,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -98,9 +92,9 @@ class OrganizationController extends AbstractController
     public function delete(Request $request, Organization $organization): Response
     {
         if ($this->isCsrfTokenValid('delete' . $organization->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($organization);
-            $entityManager->flush();
+
+            $this->em->remove($organization);
+            $this->em->flush();
         }
 
         return $this->redirectToRoute('organization_index', [], Response::HTTP_SEE_OTHER);

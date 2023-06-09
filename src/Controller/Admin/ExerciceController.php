@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Exercice;
 use App\Form\ExerciceType;
 use App\Repository\ExerciceRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('admin/exercice')]
 class ExerciceController extends AbstractController
 {
+    public function __construct(private readonly EntityManagerInterface $em)
+    {
+    }
+
     // TODO : Show only Organization USER Exercice
 
     #[Route('/', name: 'exercice_index', methods: ['GET'])]
@@ -31,25 +36,22 @@ class ExerciceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($exercice);
-            $entityManager->flush();
+            $this->em->persist($exercice);
+            $this->em->flush();
 
             return $this->redirectToRoute('exercice_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/exercice/new.html.twig', [
+        return $this->render('server/exercice/new.html.twig', [
             'exercice' => $exercice,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}', name: 'exercice_show', methods: ['GET'])]
     public function show(Exercice $exercice): Response
     {
-        return $this->render('server/exercice/show.html.twig', [
-            'exercice' => $exercice,
-        ]);
+        return $this->render('server/exercice/show.html.twig', compact('exercice'));
     }
 
     #[Route('/{id}/edit', name: 'exercice_edit', methods: ['GET','POST'])]
@@ -59,14 +61,14 @@ class ExerciceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
 
             return $this->redirectToRoute('exercice_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/exercice/edit.html.twig', [
+        return $this->render('server/exercice/edit.html.twig', [
             'exercice' => $exercice,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -74,9 +76,8 @@ class ExerciceController extends AbstractController
     public function delete(Request $request, Exercice $exercice): Response
     {
         if ($this->isCsrfTokenValid('delete'.$exercice->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($exercice);
-            $entityManager->flush();
+            $this->em->remove($exercice);
+            $this->em->flush();
         }
 
         return $this->redirectToRoute('exercice_index', [], Response::HTTP_SEE_OTHER);

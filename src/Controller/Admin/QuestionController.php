@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Question;
 use App\Form\QuestionType;
 use App\Repository\QuestionRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,59 +25,55 @@ class QuestionController extends AbstractController
     }
 
     #[Route('/new', name: 'question_new', methods: ['GET','POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $em): Response
     {
         $question = new Question();
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($question);
-            $entityManager->flush();
+            $em->persist($question);
+            $em->flush();
 
             return $this->redirectToRoute('question_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/question/new.html.twig', [
+        return $this->render('server/question/new.html.twig', [
             'question' => $question,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}', name: 'question_show', methods: ['GET'])]
     public function show(Question $question): Response
     {
-        return $this->render('server/question/show.html.twig', [
-            'question' => $question,
-        ]);
+        return $this->render('server/question/show.html.twig', compact('question'));
     }
 
     #[Route('/{id}/edit', name: 'question_edit', methods: ['GET','POST'])]
-    public function edit(Request $request, Question $question): Response
+    public function edit(Request $request, Question $question, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em->flush();
 
             return $this->redirectToRoute('question_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/question/edit.html.twig', [
+        return $this->render('server/question/edit.html.twig', [
             'question' => $question,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}', name: 'question_delete', methods: ['POST'])]
-    public function delete(Request $request, Question $question): Response
+    public function delete(Request $request, Question $question, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('delete'.$question->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($question);
-            $entityManager->flush();
+            $em->remove($question);
+            $em->flush();
         }
 
         return $this->redirectToRoute('question_index', [], Response::HTTP_SEE_OTHER);

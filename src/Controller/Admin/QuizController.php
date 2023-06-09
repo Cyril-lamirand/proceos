@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Quiz;
 use App\Form\QuizType;
 use App\Repository\QuizRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('admin/quiz')]
 class QuizController extends AbstractController
 {
+    public function __construct(private readonly EntityManagerInterface $em)
+    {
+    }
+
     #[Route('/', name: 'quiz_index', methods: ['GET'])]
     public function index(QuizRepository $quizRepository): Response
     {
@@ -29,25 +34,22 @@ class QuizController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($quiz);
-            $entityManager->flush();
+            $this->em->persist($quiz);
+            $this->em->flush();
 
             return $this->redirectToRoute('quiz_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/quiz/new.html.twig', [
+        return $this->render('server/quiz/new.html.twig', [
             'quiz' => $quiz,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}', name: 'quiz_show', methods: ['GET'])]
     public function show(Quiz $quiz): Response
     {
-        return $this->render('server/quiz/show.html.twig', [
-            'quiz' => $quiz,
-        ]);
+        return $this->render('server/quiz/show.html.twig', compact('quiz'));
     }
 
     #[Route('/{id}/edit', name: 'quiz_edit', methods: ['GET','POST'])]
@@ -57,14 +59,14 @@ class QuizController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
 
             return $this->redirectToRoute('quiz_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/quiz/edit.html.twig', [
+        return $this->render('server/quiz/edit.html.twig', [
             'quiz' => $quiz,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -72,9 +74,8 @@ class QuizController extends AbstractController
     public function delete(Request $request, Quiz $quiz): Response
     {
         if ($this->isCsrfTokenValid('delete'.$quiz->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($quiz);
-            $entityManager->flush();
+            $this->em->remove($quiz);
+            $this->em->flush();
         }
 
         return $this->redirectToRoute('quiz_index', [], Response::HTTP_SEE_OTHER);

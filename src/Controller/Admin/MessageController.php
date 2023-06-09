@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Message;
 use App\Form\MessageType;
 use App\Repository\MessageRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('admin/message')]
 class MessageController extends AbstractController
 {
+    public function __construct(private readonly EntityManagerInterface $em)
+    {
+    }
+
     #[Route('/', name: 'message_index', methods: ['GET'])]
     public function index(MessageRepository $messageRepository): Response
     {
@@ -29,25 +34,22 @@ class MessageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($message);
-            $entityManager->flush();
+            $this->em->persist($message);
+            $this->em->flush();
 
             return $this->redirectToRoute('message_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/message/new.html.twig', [
+        return $this->render('server/message/new.html.twig', [
             'message' => $message,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}', name: 'message_show', methods: ['GET'])]
     public function show(Message $message): Response
     {
-        return $this->render('server/message/show.html.twig', [
-            'message' => $message,
-        ]);
+        return $this->render('server/message/show.html.twig', compact('message'));
     }
 
     #[Route('/{id}/edit', name: 'message_edit', methods: ['GET','POST'])]
@@ -57,14 +59,14 @@ class MessageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
 
             return $this->redirectToRoute('message_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/message/edit.html.twig', [
+        return $this->render('server/message/edit.html.twig', [
             'message' => $message,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -72,9 +74,8 @@ class MessageController extends AbstractController
     public function delete(Request $request, Message $message): Response
     {
         if ($this->isCsrfTokenValid('delete'.$message->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($message);
-            $entityManager->flush();
+            $this->em->remove($message);
+            $this->em->flush();
         }
 
         return $this->redirectToRoute('message_index', [], Response::HTTP_SEE_OTHER);

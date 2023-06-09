@@ -20,9 +20,8 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('admin/admin')]
 class UserController extends AbstractController
 {
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     #[Route('/user', name: 'admin_user')]
@@ -31,10 +30,10 @@ class UserController extends AbstractController
         $role = $this->getUser()?->getRoles();
 
         if (in_array('ROLE_ORGA_ADMIN', $role, true)) {
-            $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByOrga($this->getUser()?->getOrganization());
+            $users = $this->em->getRepository(User::class)->findByOrga($this->getUser()?->getOrganization());
         } else {
             $users
-                = $this->getDoctrine()->getManager()->getRepository(User::class)->findAll();
+                = $this->em->getRepository(User::class)->findAll();
         }
         return $this->render('server/user/index.html.twig', compact('users'));
     }
@@ -43,11 +42,10 @@ class UserController extends AbstractController
     public function updateRole(User $user,)
     {
         if ($_POST) {
-            $manager = $this->getDoctrine()->getManager();
             $role = $_POST['roles'];
             $user->setRoles([$role]);
-            $manager->persist($user);
-            $manager->flush();
+            $this->em->persist($user);
+            $this->em->flush();
 
             $this->addFlash('success', "User updated");
             return $this->redirectToRoute('admin_user');
@@ -64,12 +62,11 @@ class UserController extends AbstractController
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        $manager = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
             $courses = explode(',', $_POST['courses']);
             foreach ($courses as $id) {
-                $course = $manager->getRepository(Classe::class)->find($id);
-                if ($courses) {
+                $course = $this->em->getRepository(Classe::class)->find($id);
+                if ($course) {
                     $user->addClass($course);
                 }
             }
@@ -83,8 +80,8 @@ class UserController extends AbstractController
                 $ppName = $fileUploader->upload($profilePicture);
                 $user->setProfilepicture($ppName);
             }
-            $manager->persist($user);
-            $manager->flush();
+            $this->em->persist($user);
+            $this->em->flush();
             $this->addFlash('success', "User updated");
             return $this->redirectToRoute('admin_user');
         }

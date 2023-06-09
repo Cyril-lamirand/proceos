@@ -15,9 +15,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('admin/module')]
 class ModuleController extends AbstractController
 {
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     #[Route('/', name: 'module_index', methods: ['GET'])]
@@ -37,9 +36,7 @@ class ModuleController extends AbstractController
         } elseif (in_array('ROLE_INTERVENANT', $user?->getRoles(), true)) {
             $modules = $user?->getModules();
         }
-        return $this->render('server/module/index.html.twig', [
-            'modules' => $modules,
-        ]);
+        return $this->render('server/module/index.html.twig', compact('modules'));
     }
 
     #[Route('/new', name: 'module_new', methods: ['GET', 'POST'])]
@@ -50,25 +47,23 @@ class ModuleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($module);
-            $entityManager->flush();
+
+            $this->em->persist($module);
+            $this->em->flush();
 
             return $this->redirectToRoute('module_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/module/new.html.twig', [
+        return $this->render('server/module/new.html.twig', [
             'module' => $module,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}', name: 'module_show', methods: ['GET'])]
     public function show(Module $module): Response
     {
-        return $this->render('server/module/show.html.twig', [
-            'module' => $module,
-        ]);
+        return $this->render('server/module/show.html.twig', compact('module'));
     }
 
     #[Route('/{id}/edit', name: 'module_edit', methods: ['GET', 'POST'])]
@@ -78,14 +73,14 @@ class ModuleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
 
             return $this->redirectToRoute('module_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/module/edit.html.twig', [
+        return $this->render('server/module/edit.html.twig', [
             'module' => $module,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -93,9 +88,8 @@ class ModuleController extends AbstractController
     public function delete(Request $request, Module $module): Response
     {
         if ($this->isCsrfTokenValid('delete' . $module->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($module);
-            $entityManager->flush();
+            $this->em->remove($module);
+            $this->em->flush();
         }
 
         return $this->redirectToRoute('module_index', [], Response::HTTP_SEE_OTHER);

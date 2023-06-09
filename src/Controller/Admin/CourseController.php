@@ -14,9 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('admin/course')]
 class CourseController extends AbstractController
 {
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     #[Route('/', name: 'course_index', methods: ['GET'])]
@@ -41,9 +40,7 @@ class CourseController extends AbstractController
                 }
             }
         }
-        return $this->render('server/course/index.html.twig', [
-            'courses' => $courses,
-        ]);
+        return $this->render('server/course/index.html.twig', compact('courses'));
     }
 
     #[Route('/new', name: 'course_new', methods: ['GET', 'POST'])]
@@ -54,25 +51,22 @@ class CourseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($course);
-            $entityManager->flush();
+            $this->em->persist($course);
+            $this->em->flush();
 
             return $this->redirectToRoute('course_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/course/new.html.twig', [
+        return $this->render('server/course/new.html.twig', [
             'course' => $course,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}', name: 'course_show', methods: ['GET'])]
     public function show(Course $course): Response
     {
-        return $this->render('server/course/show.html.twig', [
-            'course' => $course,
-        ]);
+        return $this->render('server/course/show.html.twig', compact('course'));
     }
 
     #[Route('/{id}/edit', name: 'course_edit', methods: ['GET', 'POST'])]
@@ -82,14 +76,14 @@ class CourseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
 
             return $this->redirectToRoute('course_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/course/edit.html.twig', [
+        return $this->render('server/course/edit.html.twig', [
             'course' => $course,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -97,9 +91,8 @@ class CourseController extends AbstractController
     public function delete(Request $request, Course $course): Response
     {
         if ($this->isCsrfTokenValid('delete' . $course->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($course);
-            $entityManager->flush();
+            $this->em->remove($course);
+            $this->em->flush();
         }
 
         return $this->redirectToRoute('course_index', [], Response::HTTP_SEE_OTHER);
