@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\QuizWork;
 use App\Form\QuizWorkType;
 use App\Repository\QuizWorkRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('admin/quiz_work')]
 class QuizWorkController extends AbstractController
 {
+    public function __construct(private readonly EntityManagerInterface $em)
+    {
+    }
+
     #[Route('/', name: 'quiz_work_index', methods: ['GET'])]
     public function index(QuizWorkRepository $quizWorkRepository): Response
     {
@@ -29,16 +34,15 @@ class QuizWorkController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($quizWork);
-            $entityManager->flush();
+            $this->em->persist($quizWork);
+            $this->em->flush();
 
             return $this->redirectToRoute('quiz_work_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/quiz_work/new.html.twig', [
+        return $this->render('server/quiz_work/new.html.twig', [
             'quiz_work' => $quizWork,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -57,14 +61,14 @@ class QuizWorkController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
 
             return $this->redirectToRoute('quiz_work_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/quiz_work/edit.html.twig', [
+        return $this->render('server/quiz_work/edit.html.twig', [
             'quiz_work' => $quizWork,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -72,9 +76,8 @@ class QuizWorkController extends AbstractController
     public function delete(Request $request, QuizWork $quizWork): Response
     {
         if ($this->isCsrfTokenValid('delete'.$quizWork->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($quizWork);
-            $entityManager->flush();
+            $this->em->remove($quizWork);
+            $this->em->flush();
         }
 
         return $this->redirectToRoute('quiz_work_index', [], Response::HTTP_SEE_OTHER);

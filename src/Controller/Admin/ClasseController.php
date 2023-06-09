@@ -6,6 +6,7 @@ use App\Entity\Classe;
 use App\Entity\User;
 use App\Form\ClasseType;
 use App\Repository\ClasseRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -16,6 +17,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('admin/classe')]
 class ClasseController extends AbstractController
 {
+    public function __construct(private readonly EntityManagerInterface $em)
+    {
+    }
 
     #[Route('/', name: 'classe_index', methods: ['GET'])]
     public function index(ClasseRepository $classeRepository): Response
@@ -25,7 +29,7 @@ class ClasseController extends AbstractController
             $classes = $classeRepository->findAll();
         } else if (in_array('ROLE_ORGA_ADMIN', $user?->getRoles(), true)) {
             $classes = $classeRepository->findByOrga($user?->getOrganization());
-        } else if (in_array('ROLE_INTERVENANT', $user?->getRoles(), true)){
+        } else if (in_array('ROLE_INTERVENANT', $user?->getRoles(), true)) {
             $classes = $user?->getClasses();
         }
 
@@ -40,14 +44,13 @@ class ClasseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($classe);
-            $entityManager->flush();
+            $this->em->persist($classe);
+            $this->em->flush();
 
             return $this->redirectToRoute('classe_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/classe/new.html.twig', compact('classe', 'form'));
+        return $this->render('server/classe/new.html.twig', ['classe' => $classe, 'form' => $form->createView()]);
     }
 
     #[Route('/{id}', name: 'classe_show', methods: ['GET'])]
@@ -63,21 +66,20 @@ class ClasseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
 
             return $this->redirectToRoute('classe_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/classe/edit.html.twig', compact('classe', 'form'));
+        return $this->render('server/classe/edit.html.twig', ['classe' => $classe, 'form' => $form->createView()]);
     }
 
     #[Route('/{id}', name: 'classe_delete', methods: ['POST'])]
     public function delete(Request $request, Classe $classe): Response
     {
         if ($this->isCsrfTokenValid('delete' . $classe->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($classe);
-            $entityManager->flush();
+            $this->em->remove($classe);
+            $this->em->flush();
         }
 
         return $this->redirectToRoute('classe_index', [], Response::HTTP_SEE_OTHER);
@@ -88,12 +90,11 @@ class ClasseController extends AbstractController
     {
         if ($_POST) {
             $email = $_POST['student'];
-            $student = $this->getDoctrine()->getRepository(User::class)->findOneBy(compact('email'));
+            $student = $this->em->getRepository(User::class)->findOneBy(compact('email'));
             if ($student) {
                 $classe->addUser($student);
-                $manager = $this->getDoctrine()->getManager();
-                $manager->persist($classe);
-                $manager->flush();
+                $this->em->persist($classe);
+                $this->em->flush();
 
                 return $this->redirectToRoute('classe_show', ['id' => $classe->getId()]);
             }

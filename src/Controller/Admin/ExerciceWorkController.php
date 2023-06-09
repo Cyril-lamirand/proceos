@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\ExerciceWork;
 use App\Form\ExerciceWorkType;
 use App\Repository\ExerciceWorkRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('admin/exercice_work')]
 class ExerciceWorkController extends AbstractController
 {
+    public function __construct(private readonly EntityManagerInterface $em)
+    {
+    }
+
     #[Route('/', name: 'exercice_work_index', methods: ['GET'])]
     public function index(ExerciceWorkRepository $exerciceWorkRepository): Response
     {
@@ -29,16 +34,15 @@ class ExerciceWorkController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($exerciceWork);
-            $entityManager->flush();
+            $this->em->persist($exerciceWork);
+            $this->em->flush();
 
             return $this->redirectToRoute('exercice_work_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/exercice_work/new.html.twig', [
+        return $this->render('server/exercice_work/new.html.twig', [
             'exercice_work' => $exerciceWork,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -57,14 +61,14 @@ class ExerciceWorkController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
 
             return $this->redirectToRoute('exercice_work_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/exercice_work/edit.html.twig', [
+        return $this->render('server/exercice_work/edit.html.twig', [
             'exercice_work' => $exerciceWork,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -72,9 +76,8 @@ class ExerciceWorkController extends AbstractController
     public function delete(Request $request, ExerciceWork $exerciceWork): Response
     {
         if ($this->isCsrfTokenValid('delete'.$exerciceWork->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($exerciceWork);
-            $entityManager->flush();
+            $this->em->remove($exerciceWork);
+            $this->em->flush();
         }
 
         return $this->redirectToRoute('exercice_work_index', [], Response::HTTP_SEE_OTHER);

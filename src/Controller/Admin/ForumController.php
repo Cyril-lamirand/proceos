@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Forum;
 use App\Form\ForumType;
 use App\Repository\ForumRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('admin/forum')]
 class ForumController extends AbstractController
 {
+    public function __construct(private readonly EntityManagerInterface $em)
+    {
+    }
+
     // TODO : Show only Organization USER Forum
 
     #[Route('/', name: 'forum_index', methods: ['GET'])]
@@ -31,25 +36,22 @@ class ForumController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($forum);
-            $entityManager->flush();
+            $this->em->persist($forum);
+            $this->em->flush();
 
             return $this->redirectToRoute('forum_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/forum/new.html.twig', [
+        return $this->render('server/forum/new.html.twig', [
             'forum' => $forum,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}', name: 'forum_show', methods: ['GET'])]
     public function show(Forum $forum): Response
     {
-        return $this->render('server/forum/show.html.twig', [
-            'forum' => $forum,
-        ]);
+        return $this->render('server/forum/show.html.twig', compact('forum'));
     }
 
     #[Route('/{id}/edit', name: 'forum_edit', methods: ['GET','POST'])]
@@ -59,14 +61,14 @@ class ForumController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->em->flush();
 
             return $this->redirectToRoute('forum_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('server/forum/edit.html.twig', [
+        return $this->render('server/forum/edit.html.twig', [
             'forum' => $forum,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -74,9 +76,8 @@ class ForumController extends AbstractController
     public function delete(Request $request, Forum $forum): Response
     {
         if ($this->isCsrfTokenValid('delete'.$forum->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($forum);
-            $entityManager->flush();
+            $this->em->remove($forum);
+            $this->em->flush();
         }
 
         return $this->redirectToRoute('forum_index', [], Response::HTTP_SEE_OTHER);
