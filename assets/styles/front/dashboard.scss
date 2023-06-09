@@ -1,17 +1,45 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     font-family: "Montserrat", sans-serif;
 }
 
+.card-module__container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
+}
 .card-module {
     border: solid 1px #7367f0;
     border-radius: 0.357rem;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    margin: 10px;
 }
+
+@media (max-width:1000px){
+    .card-module {
+        width: 75%;
+    }
+}
+
 .quizzBtn {
     background-color: #7367f0;
     border: solid 1px #7367f0;
-    padding: 0.2rem 0.7rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
     border-radius: 0.357rem;
     text-decoration: none;
     color: #cfd1d5;
@@ -22,6 +50,7 @@ body {
     }
 }
 .titleLabel {
+    text-align: center;
     font-size: 1.3rem;
     text-decoration: none;
     margin-bottom: 10px;
@@ -29,5 +58,33 @@ body {
     &:hover{
         text-decoration:underline;
         color: #cfd1d5;
+    }
+}
+
+.container-dashboard-teacher{
+    h2 {
+        font-size: 1.25rem;
+        text-align: center;
+    }
+    h3 {
+        font-size: 1rem;
+        text-align: center;
+    }
+    p {
+        font-weight: 300;
+    }
+}
+
+.container-dashboard-student{
+    h2 {
+        font-size: 1.25rem;
+        text-align: center;
+    }
+    h3 {
+        font-size: 1rem;
+        text-align: center;
+    }
+    p {
+        font-weight: 300;
     }
 }
