@@ -53,11 +53,15 @@
             <h4>Questionnaire d'entrée</h4>
         </div>
         <hr/>
-        <p>Pour pouvoir commencer un cours vous devez avoir répondu au préalable au questionnaire d'entrée.</p>
-        <div class="d-flex justify-content-center">
-            {% if module.quiz is not null %}
-                <a href="{{path('answer_quiz', {id:module.quiz.id})}}" class="quizzBtn">Répondre au questionnaire</a>
-            {% endif %}
+        <div>
+           <ul>
+               {% for work in module.quiz.quizWorks %}
+               <li>
+                   <p>Fait par : {{work.user.firstName}} {{work.user.lastName}} le {{work.createdAt|date('d/m/Y')}} à {{work.createdAt|date('h:m')}}</p>
+                   <a href="{{path('quiz_work_detail', {id:work.id})}}">Voir les réponses</a>
+               </li>
+               {% endfor %}
+           </ul>
         </div>
     </div>
 {% endblock %}
