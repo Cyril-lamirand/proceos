@@ -4,5 +4,52 @@
     <div class="container">
         <h2>{{ course.module.label }} - {{ course.title }}</h2>
         <hr/>
+        <h6>Cours crée le : {{ course.createdAt | date('d-m-Y') }}</h6>
+        <div>
+            <p>{{ course.content }}</p>
+        </div>
+        <hr/>
+        <h3>Exercice(s)</h3>
+        <hr/>
+        <div>
+            {% for exercice in course.module.exercices  %}
+                <h6>{{ exercice.content }}</h6>
+                <div class="row mt-5">
+                    <div class="col-12 col-lg-4">
+                        <div>
+                            <div class="text-center">
+                                <h6>Débutant</h6>
+                            </div>
+                            <hr/>
+                            <div>
+                                <p>{{ exercice.contentbeginner }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div>
+                            <div class="text-center">
+                                <h6>Intermédiaire</h6>
+                            </div>
+                            <hr/>
+                            <div>
+                                <p>{{ exercice.contentintermediate }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div>
+                            <div class="text-center">
+                                <h6>Avancé</h6>
+                            </div>
+                            <hr/>
+                            <div>
+                                <p>{{ exercice.contentexpert }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
