@@ -5,51 +5,65 @@
         <h2>{{ course.module.label }} - {{ course.title }}</h2>
         <hr/>
         <h6>Cours crée le : {{ course.createdAt | date('d-m-Y') }}</h6>
-        <div>
-            <p>{{ course.content }}</p>
+        <hr/>
+        <div class="justify-content-center">
+            <ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Contenu</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Exercice</button>
+                </li>
+            </ul>
         </div>
         <hr/>
-        <h3>Exercice(s)</h3>
-        <hr/>
         <div>
-            {% for exercice in course.module.exercices  %}
-                <h6>{{ exercice.content }}</h6>
-                <div class="row mt-5">
-                    <div class="col-12 col-lg-4">
-                        <div>
-                            <div class="text-center">
-                                <h6>Débutant</h6>
-                            </div>
-                            <hr/>
-                            <div>
-                                <p>{{ exercice.contentbeginner }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <div>
-                            <div class="text-center">
-                                <h6>Intermédiaire</h6>
-                            </div>
-                            <hr/>
-                            <div>
-                                <p>{{ exercice.contentintermediate }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <div>
-                            <div class="text-center">
-                                <h6>Avancé</h6>
-                            </div>
-                            <hr/>
-                            <div>
-                                <p>{{ exercice.contentexpert }}</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active bg-proceos-2" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                    <p>{{ course.content }}</p>
                 </div>
-            {% endfor %}
+                <div class="tab-pane fade bg-proceos-2" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                    {% for exercice in course.module.exercices  %}
+                        <h6>{{ exercice.content }}</h6>
+                        <div class="row mt-5">
+                            <div class="col-12 col-lg-4">
+                                <div>
+                                    <div class="text-center">
+                                        <h6>Débutant</h6>
+                                    </div>
+                                    <hr/>
+                                    <div>
+                                        <p>{{ exercice.contentbeginner }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div>
+                                    <div class="text-center">
+                                        <h6>Intermédiaire</h6>
+                                    </div>
+                                    <hr/>
+                                    <div>
+                                        <p>{{ exercice.contentintermediate }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div>
+                                    <div class="text-center">
+                                        <h6>Avancé</h6>
+                                    </div>
+                                    <hr/>
+                                    <div>
+                                        <p>{{ exercice.contentexpert }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

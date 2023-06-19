@@ -7,16 +7,17 @@
     <div class="col-12">
         <h3 class="center">Liste des modules</h3>
     </div>
-    <div class="card-module__container">
+    <div class="row mt-3">
         {% for module in modules %}
-                <div class="card-module">
+            <div class="col-12 col-lg-4">
+                <div class="card-module bg-proceos-2 w-100 h-100">
                     <div class="pt-4">
                         <div class="text-center">
                             <h2>{{ module.label }}</h2>
                         </div>
                         <hr/>
                         <div class="d-flex justify-content-center">
-                          <a href="{{path('app_client_module_show', {id:module.id})}}" class="quizzBtn">Voir le module</a>
+                            <a href="{{path('app_client_module_show', {id:module.id})}}" class="quizzBtn">Voir le module</a>
                         </div>
                         {% if module.quiz is not null %}
                             <hr/>
@@ -35,6 +36,7 @@
                         {% endif %}
                     </div>
                 </div>
+            </div>
         {% endfor %}
     </div>
 </div>

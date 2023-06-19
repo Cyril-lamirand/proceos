@@ -72,4 +72,13 @@ p {
 .card-module{
     padding-left: 15px;
     padding-right: 15px;
+    background: #161d31;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: #7367f0 !important;
+}
+
+.nav-fill .nav-item .nav-link, .nav-justified .nav-item .nav-link{
+    color: white;
 }
