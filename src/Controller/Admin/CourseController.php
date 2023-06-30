@@ -22,13 +22,14 @@ class CourseController extends AbstractController
     public function index(CourseRepository $courseRepository): Response
     {
         $user = $this->getUser();
+        $courses = [];
+
         if (in_array('ROLE_ADMIN', $user?->getRoles(), true)) {
             $courses = $courseRepository->findAll();
         } else {
             $orga = $user?->getOrganization();
             if ($orga) {
                 $users = $orga->getUsers();
-                $courses = [];
                 foreach ($users as $usr){
                     $modules = $usr->getModules();
                     foreach ($modules as $module) {

@@ -2,9 +2,9 @@ let select = document.getElementById('user_classes');
 let hiddenInput = document.getElementById('courses');
 hiddenInput.setAttribute('value', "");
 
-let orgaSelected = document.querySelector('#user_organization option[selected]');
+let orgaSelected = document.querySelector('#user_organization option');
 
-fetch(window.location.origin + '/proceos/admin/api/classes/' + orgaSelected.getAttribute('value'))
+fetch(window.location.origin + '/admin/admin/api/classes/' + orgaSelected.getAttribute('value'))
     .then(res => res.json())
     .then(response => {
         let i = 0;

@@ -32,8 +32,7 @@ class UserController extends AbstractController
         if (in_array('ROLE_ORGA_ADMIN', $role, true)) {
             $users = $this->em->getRepository(User::class)->findByOrga($this->getUser()?->getOrganization());
         } else {
-            $users
-                = $this->em->getRepository(User::class)->findAll();
+            $users = $this->em->getRepository(User::class)->findAll();
         }
         return $this->render('server/user/index.html.twig', compact('users'));
     }
