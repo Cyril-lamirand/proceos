@@ -15,7 +15,7 @@
 </head>
 <body class="bg-proceos-1 white-proceos">
 <header>
-    <nav class="navbar navbar-expand-lg bg-dark bg-proceos-2 border-bottom-proceos shadow-proceos fixed-top">
+    <nav class="navbar navbar-expand-lg bg-dark bg-proceos-2 shadow-proceos fixed-top" style="border-bottom: 10px solid #7367f0">
         <div class="container-fluid">
             <a class="navbar-brand text-white" href="/"><img src="{{ asset('build/images/proceos-logo.png') }}"
                                                              class="logo-header" alt="..."></a>
@@ -28,19 +28,19 @@
                 <div>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-white-50" aria-current="page" href="{{ path('dashboard') }}">Dashboard</a>
+                            <a class="nav-link text-white" aria-current="page" href="{{ path('dashboard') }}">Dashboard</a>
                         </li>
                     </ul>
                 </div>
                 {% endif %}
                 <div class="w-100" style="text-align: right">
-							<span class="text-white-50">
-								{% if app.user %}
-									<a href="/logout">Déconnexion</a>
-								{% else %}
-									<a href="/login">Connexion</a>
-								{% endif %}
-							</span>
+                    <span class="text-white-50">
+                        {% if app.user %}
+                            <a class="purple-proceos btn-custom-1" href="/logout">Déconnexion</a>
+                        {% else %}
+                            <a class="purple-proceos btn-custom-1" href="/login">Connexion</a>
+                        {% endif %}
+                    </span>
                 </div>
             </div>
         </div>
@@ -48,29 +48,106 @@
 </header>
 <main class="container mt-5 pt-5 bg-proceos-transparent">
     <div class="col-12">
-        <div class="text-center">
-            <h1>Proceos</h1>
+        <div class="text-center pt-4">
+            <h1>Bienvenue sur Proceos <br> Votre plateforme d'e-learning personnalisée !</h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 h-100 pt-3">
-            <h2>Dans quel but ce projet à vu le jour ?</h2>
-            <p>Proceos est une plateforme d'apprentissage conçue dans le but spécifique de minimiser les disparités de
-                niveau entre les étudiants d'une même classe et de leur offrir la possibilité de progresser à leur
-                propre rythme. </p>
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 h-100 pt-3">
-            <h2>Qui peut utiliser PROCEOS ?</h2>
-            <p>Notre projet est destiné aux écoles et aux professeurs voulant mettre en place notre système
-                d’apprentissage personnalisé pour chaque étudiant. L’école utilisant notre plateforme proposera aux
-                intervenants d’utiliser Proceos pour parfaire son enseignement en évaluant les étudiant avant le cours
-                pour prendre connaissance de leurs niveaux et ensuite proposer des solutions adaptées à chaque étudiant
-                pour faciliter leur apprentissage. </p>
+    <div class="col-12 mt-5">
+        <div class="d-flex justify-content-center">
+            <div>
+                <span class="dot-orange"></span>
+            </div>
+            <div style="margin-left: 20px; margin-right: 20px;">
+                <span class="dot-blue"></span>
+            </div>
+            <div>
+                <span class="dot-red"></span>
+            </div>
         </div>
     </div>
+    <div class="col-12 mt-5">
+        <p>
+            Bienvenue sur Proceos, la plateforme d'e-learning qui révolutionne la manière dont vous apprenez et enseignez. Que vous soyez un étudiant, un professeur ou un gérant d'école, Proceos vous offre une expérience d'apprentissage en ligne exceptionnelle, adaptée à vos besoins spécifiques.
+        </p>
+    </div>
+    <div class="col-12 mt-3">
+        <h2>Notre mission</h2>
+    </div>
+    <div class="col-12 mt-3">
+        <p>
+            À Proceos, notre mission est de rendre l'éducation plus accessible, interactive et efficace. Nous croyons en la puissance de la technologie pour transformer l'apprentissage, et c'est pourquoi nous avons développé une plateforme innovante qui met l'e-learning à votre portée.
+        </p>
+    </div>
+    <div class="col-12 mt-3">
+        <h3>Proceos - L'innovation créée par des étudiants du Pôle Universitaire Léonard de Vinci</h3>
+        <p class="mt-3">
+            Proceos est bien plus qu'une plateforme d'e-learning. C'est un projet ambitieux et novateur, créé par une équipe passionnée d'étudiants du Pôle Universitaire Léonard de Vinci. En tant qu'étudiants nous-mêmes, nous avons ressenti les besoins et les défis auxquels font face les apprenants d'aujourd'hui. C'est pourquoi nous avons décidé de repenser l'apprentissage en ligne et de créer Proceos.
+        </p>
+        <h5 class="mt-3">Inspirés par notre expérience d'étudiants...</h5>
+        <p class="mt-3">
+            En tant qu'étudiants, nous avons été témoins des défis que les apprenants rencontrent au quotidien. Nous avons ressenti le besoin d'une plateforme qui réponde véritablement à ces besoins, qui offre une expérience d'apprentissage personnalisée, interactive et engageante. C'est cette expérience vécue qui a été notre source d'inspiration pour créer Proceos.
+        </p>
+        <h5 class="mt-3">La combinaison de l'expertise académique et technique...</h5>
+        <p class="mt-3">
+            En tant qu'étudiants du Pôle Universitaire Léonard de Vinci, nous avons eu l'opportunité d'acquérir une solide expertise académique dans nos domaines respectifs. De plus, grâce à notre formation technique, nous avons pu mettre en pratique nos connaissances et donner vie à notre vision de Proceos. Cette synergie entre notre expertise académique et notre savoir-faire technologique a été la clé de notre réussite.
+        </p>
+    </div>
+    <div class="col-12 mt-3">
+        <h3>Proceos en phase de test dans les écoles du Pôle Universitaire Léonard de Vinci</h3>
+        <p class="mt-3">
+            Nous sommes ravis d'annoncer que Proceos est actuellement en phase de test dans les trois écoles du Pôle Universitaire Léonard de Vinci : l'ESILV, l'EMLV et l'IIM. Cette étape cruciale nous permet de recueillir des retours précieux de la part des étudiants, des professeurs et des gérants d'école, afin d'améliorer encore davantage notre plateforme d'e-learning et de garantir une expérience exceptionnelle à tous les utilisateurs.
+        </p>
+        <div class="row">
+            <div class="col-12 col-lg-4 mt-3 mb-3">
+                <div class="text-center">
+                    <img
+                        src="{{ asset("build/images/logo-iim.webp") }}"
+                        alt="" width="200"
+                        style="border-radius: 128px; border: 5px solid #FF9447"
+                    />
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 mt-3 mb-3">
+                <div class="text-center">
+                    <img
+                        src="{{ asset("build/images/logo-emlv.png") }}"
+                        alt="" width="200"
+                        style="border-radius: 128px; border: 5px solid #009FB7"
+                    />
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 mt-3 mb-3">
+                <div class="text-center">
+                    <img
+                        src="{{ asset("build/images/logo-esilv.png") }}"
+                        alt="" width="200"
+                        style="border-radius: 128px; border: 5px solid #EA3546"
+                    />
+                </div>
+            </div>
+        </div>
+        <p class="mt-3">
+            Nous sommes reconnaissants envers l'ESILV, l'EMLV et l'IIM pour leur soutien et leur collaboration tout au long de cette phase de test. Leur participation active est essentielle pour façonner le futur de Proceos et nous permet de nous assurer que notre plateforme d'e-learning répond aux exigences académiques et pédagogiques des établissements du Pôle Universitaire Léonard de Vinci.
+        </p>
+    </div>
+    <div class="col-12 mt-5 mb-5">
+        <div class="d-flex justify-content-center">
+            <div>
+                <span class="dot-orange"></span>
+            </div>
+            <div style="margin-left: 20px; margin-right: 20px;">
+                <span class="dot-blue"></span>
+            </div>
+            <div>
+                <span class="dot-red"></span>
+            </div>
+        </div>
+    </div>
+
     <div class="col-12">
         <hr/>
-        <h2 class="text-center p-3">Vous souhaitez utiliser PROCEOS en tant que...</h2>
+        <h2 class="text-center mt-5 mb-5">Découvrez les profils d'utilisateur sur Proceos</h2>
+        <hr/>
     </div>
     <div class="row">
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
@@ -84,9 +161,9 @@
                         <h4>Étudiant(e)</h4>
                     </div>
                     <hr/>
-                    <p>Je veux avoir la possibilité de prévisualiser mes cours et d'évaluer mon niveau dans chaque
-                        matière pour que l’intervenant prenne en compte mon niveau afin de recevoir un enseignement
-                        adapté. </p>
+                    <p>
+                        En tant qu'étudiant(e) chez PROCEOS, je me suis engagé(e) à l'apprentissage continu et à l'exploration des dernières tendances en matière de technologies. Passionné(e) par l'innovation et doté(e) d'un esprit critique, j'ai pu développer une compréhension approfondie des divers concepts et applications techniques. J'ai également une solide compétence en recherche, capable de synthétiser et d'appliquer efficacement des informations complexes. Mon dévouement à l'excellence académique et mon désir d'apporter une contribution significative à la technologie font de moi un atout précieux pour PROCEOS.
+                    </p>
                 </div>
             </div>
         </div>
@@ -101,8 +178,9 @@
                         <h4>Professeur(e)</h4>
                     </div>
                     <hr/>
-                    <p>Je souhaite évaluer le niveau de mes élèves afin de pouvoir leur proposer un enseignement adapté
-                        à chacun, leur permettant ainsi de progresser à leur propre rythme.</p>
+                    <p>
+                        En tant que professeur pour PROCEOS, je me suis consacré(e) à la création d'un environnement d'apprentissage enrichissant et stimulant. Fort(e) d'une expérience approfondie en enseignement et d'une solide expertise dans le domaine de la technologie de l'information, j'ai une approche pédagogique adaptative, qui favorise l'apprentissage autonome. Ma capacité à développer des programmes de cours attrayants, à utiliser des technologies éducatives innovantes et à établir des relations solides avec les élèves, les collègues et les parents a contribué à ma réputation d'excellence.
+                    </p>
                 </div>
             </div>
         </div>
@@ -117,61 +195,86 @@
                         <h4>Gérant(e) d'une institution</h4>
                     </div>
                     <hr/>
-                    <p>Nous aspirons à proposer aux étudiants ainsi qu'aux intervenants une manière totalement nouvelle
-                        et innovante d'appréhender les cours, en mettant en place des méthodes pédagogiques uniques qui
-                        favorisent l'engagement des étudiants.</p>
+                    <p>
+                        En tant que gérant(e) d'une institution pour PROCEOS, j'ai démontré des compétences exceptionnelles en leadership et une vision stratégique claire. Mon expérience dans la gestion des opérations et des ressources humaines, combinée à ma capacité à prendre des décisions efficaces, a joué un rôle essentiel dans la réalisation des objectifs organisationnels. En outre, ma connaissance approfondie des réglementations et des normes de l'industrie m'a permis de maintenir les opérations conformes aux normes de qualité. Mon rôle en tant que gérant(e) est de garantir le succès continu.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
     <hr/>
-    <div class="mt-3 mb-3 text-center">
-        <h2>Liste des fonctionnalités</h2>
+    <div class="mt-5 mb-5 text-center">
+        <h2>Caractéristiques clés de Proceos</h2>
     </div>
     <hr/>
     <div class="justify-content-center">
         <ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-                        type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home
+                        type="button" role="tab" aria-controls="pills-home" aria-selected="true">Cours personnalisés
                 </button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                        type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile
+                        type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Professeurs experts
                 </button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
-                        type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact
+                        type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Exercices adaptés
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled"
-                        type="button" role="tab" aria-controls="pills-disabled" aria-selected="false" disabled>Disabled
+                <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-carac4"
+                        type="button" role="tab" aria-controls="pills-carac4" aria-selected="false">Flexibilité d'apprentissage
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-carac5"
+                        type="button" role="tab" aria-controls="pills-carac5" aria-selected="false">Interaction et soutien
                 </button>
             </li>
         </ul>
     </div>
     <div>
         <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
-                 tabindex="0">Home - homepage
+            <div class="tab-pane fade show active pt-5 pb-5" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                 tabindex="0">
+                <p>
+                    Nos gérants d'école ont la liberté de créer des modules adaptés à leurs programmes scolaires. Chaque cours est conçu pour répondre aux besoins spécifiques des étudiants, avec des niveaux débutant, intermédiaire et expert disponibles.
+                </p>
             </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
-                 tabindex="0">Profile page
+            <div class="tab-pane fade pt-5 pb-5" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                 tabindex="0">
+                <p>
+                    Nous collaborons avec des professeurs hautement qualifiés et spécialisés dans différents domaines. Chaque module est attribué à un professeur qui rédige des cours engageants, interactifs et de qualité pour vous guider tout au long de votre parcours d'apprentissage.
+                </p>
             </div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
-                 tabindex="0">Contact page
+            <div class="tab-pane fade pt-5 pb-5" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
+                 tabindex="0">
+                <p>
+                    Pour renforcer votre compréhension et évaluer votre progression, notre plateforme propose des exercices correspondant à votre niveau de compétence. Vous pourrez ainsi pratiquer de manière ciblée et suivre vos progrès au fil du temps.
+                </p>
             </div>
-            <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab"
-                 tabindex="0">...
+            <div class="tab-pane fade pt-5 pb-5" id="pills-carac4" role="tabpanel" aria-labelledby="pills-carac4-tab"
+                 tabindex="0">
+                <p>
+                    Avec Proceos, vous avez la liberté d'apprendre à votre rythme. Vous pouvez accéder aux cours et aux ressources pédagogiques à tout moment, où que vous soyez. Notre plateforme est compatible avec les ordinateurs, les tablettes et les smartphones, pour une expérience d'apprentissage fluide et accessible.
+                </p>
+            </div>
+            <div class="tab-pane fade pt-5 pb-5" id="pills-carac5" role="tabpanel" aria-labelledby="pills-carac5-tab"
+                 tabindex="0">
+                <p>
+                    Nous encourageons l'interaction entre les étudiants et les professeurs grâce à des fonctionnalités telles que les forums de discussion et les sessions de chat en direct. Vous pourrez poser des questions, participer à des débats et bénéficier d'un soutien personnalisé pour maximiser votre apprentissage.
+                </p>
             </div>
         </div>
     </div>
 
 </main>
-<footer></footer>
+<footer>
+    {% include "./client/layouts/footer.html.twig" %}
+</footer>
 {% include "/client/layouts/particles.html.twig" %}
 </body>
 </html>

@@ -2,7 +2,9 @@
 
 {% block content %}
     <div class="container">
-        <h2>{{ module.label }}</h2>
+        <div class="mt-4 mb-4">
+            <h2>{{ module.label }}</h2>
+        </div>
         <hr/>
         <div class="row">
             {% for course in module.courses %}
