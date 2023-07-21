@@ -9,23 +9,22 @@
         <div class="row">
             {% for course in module.courses %}
                 <div class="col-12 col-lg-4">
-                    <div>
+                    <div style="background-color: #161d31; padding: 20px 15px;">
                         <div class="text-center">
                             <h3>{{ course.title }}</h3>
                         </div>
                         <hr/>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad blanditiis consequatur corporis eaque esse illo nam neque non, officiis? Autem culpa nulla quam rem sapiente! Alias labore mollitia voluptas.</p>
+                        <p>{{ course.content | slice (0,250) | raw }}</p>
                         <div class="mb-3 d-flex justify-content-center">
                             <a href="{{path('app_client_course_show', {id:course.id})}}" class="quizzBtn">
                                 Voir le cours
                             </a>
                         </div>
                     </div>
-                    <hr/>
                 </div>
             {% endfor %}
         </div>
-        <div>
+        <div class="mt-5">
             <h4>Questionnaire d'entrée</h4>
         </div>
         <hr/>
@@ -34,6 +33,9 @@
             {% if quizDone(module.quiz, app.user) %}
                 <div class="alert alert-success" role="alert">
                     Vous avez répondu au questionnaire !
+                </div>
+                <div class="mt-4 pb-4">
+                    <h6>Suite à votre Quizz, voici le niveau recommandé : <b>{{ level.level }}</b></h6>
                 </div>
             {% else %}
                 <div class="alert alert-warning mt-2" role="alert">
