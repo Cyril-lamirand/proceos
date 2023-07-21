@@ -2,41 +2,49 @@
 
 {% block content %}
     <div class="container">
-        <h2>{{ module.label }}</h2>
+        <div class="mt-4 mb-4">
+            <h2>{{ module.label }}</h2>
+        </div>
         <hr/>
         <div class="row">
             {% for course in module.courses %}
             <div class="col-12 col-lg-4">
-                <div>
+                <div style="background-color: #161d31; padding: 20px 15px;">
                     <div class="text-center">
-                        <h3>{{ course.title }}</h3>
+                        <h5 class="mt-3 pb-3">{{ course.title }}</h5>
                     </div>
                     <hr/>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad blanditiis consequatur corporis eaque esse illo nam neque non, officiis? Autem culpa nulla quam rem sapiente! Alias labore mollitia voluptas.</p>
+                    <p>{{ course.content | slice(0,250) | raw }}...</p>
                     <div class="mb-3 d-flex justify-content-center">
-                        <a href="{{path('app_client_course_show', {id:course.id})}}" class="quizzBtn">
+                        <a href="{{path('app_client_course_show', {id:course.id})}}" class="quizzBtn mt-3">
                             Voir le cours
                         </a>
                     </div>
                 </div>
-                <hr/>
             </div>
             {% endfor %}
         </div>
         <hr/>
-        <div>
+        <div class="text-center pt-3 pb-3">
             <h4>Questionnaire d'entrée</h4>
         </div>
         <hr/>
-        <div>
-           <ul>
-               {% for work in module.quiz.quizWorks %}
-               <li>
-                   <p>Fait par : {{work.user.firstName}} {{work.user.lastName}} le {{work.createdAt|date('d/m/Y')}} à {{work.createdAt|date('h:m')}}</p>
-                   <a href="{{path('quiz_work_detail', {id:work.id})}}">Voir les réponses</a>
-               </li>
-               {% endfor %}
-           </ul>
+        <div class="row">
+            {% for work in module.quiz.quizWorks %}
+                <div class="col-12 col-lg-3">
+                    <div style="background-color: #161d31; padding: 20px 15px;">
+                        <div class="text-center">
+                            <h6>{{ work.user.firstName }} <b>{{ work.user.lastName }}</b></h6>
+                        </div>
+                        <hr/>
+                        <span>{{work.createdAt|date('d/m/Y')}} à {{work.createdAt|date('h:m')}}</span>
+                        <div class="text-center mt-2">
+                            <a class="text-white" href="{{path('quiz_work_detail', {id:work.id})}}">Voir les réponses</a>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

@@ -3,14 +3,6 @@
 body {
     font-family: "Montserrat", sans-serif;
 }
-
-h2 {
-    font-size: 1.25rem;
-}
-
-h3 {
-    font-size: 1rem;
-}
 p {
     font-weight: 300;
 }
@@ -81,4 +73,26 @@ p {
 
 .nav-fill .nav-item .nav-link, .nav-justified .nav-item .nav-link{
     color: white;
+}
+
+.dot-orange, .dot-blue, .dot-red {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-orange{ background-color: #FF9447; }
+.dot-red{ background-color: #EA3546; }
+.dot-blue{ background-color: #009FB7; }
+
+.btn-custom-1{
+    padding: 10px 7px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btn-custom-1:hover{
+    color: yellow;
 }

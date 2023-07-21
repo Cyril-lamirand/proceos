@@ -1,23 +1,45 @@
 {% extends 'client/base-client.html.twig' %}
 
 {% block content %}
-<div class="container dashboard-teacher">
-    <h2>Tableau de bord Intervenant</h2>
-    <hr/>
-    <div class="col-12">
-        <h3 class="center">Liste des modules</h3>
-    </div>
-    <div class="card-module__container">
-        {% for module in modules %}
-        <div class="card-module">
-            <a href="{{path('app_client_teacher_module_show', {id:module.id})}}" class="titleLabel">{{ module.label }}</a>
-            {% if module.quiz is null %}
-            <a href="{{path('create_quiz', {id:module.id})}}" class="quizzBtn">Créer un questionnaire</a>
-            {% else %}
-            <p>Quiz déjà créé</p>
-            {% endif %}
+    <div class="container dashboard-teacher">
+        <div class="mt-4 mb-4">
+            <h2>Tableau de bord</h2>
         </div>
-        {% endfor %}
+
+        <hr/>
+        <div class="col-12">
+            <h5 class="center">Module(s) assigné(s) :</h5>
+        </div>
+        <div class="row">
+            {% for module in modules %}
+                <div class="col-12 col-lg-4 mt-3 mb-3">
+                    <div class="card-module w-100">
+                        <a href="{{path('app_client_teacher_module_show', {id:module.id})}}" class="titleLabel">{{ module.label }}</a>
+                        {% if module.quiz is null %}
+                            <a href="{{path('create_quiz', {id:module.id})}}" class="quizzBtn">Créer un questionnaire</a>
+                        {% else %}
+                            <p>Quiz déjà créé</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div>
+            <hr/>
+            <h5 class="mt-4 mb-4">Besoin d'aide ? Nous sommes là pour vous soutenir en tant que professeur(e) sur Proceos.</h5>
+            <hr/>
+            <p class="mt-3">
+                Chez Proceos, nous comprenons que chaque professeur(e) peut avoir besoin d'un soutien supplémentaire pour offrir la meilleure expérience d'apprentissage à ses étudiants. C'est pourquoi notre équipe est dédiée à vous apporter toute l'aide dont vous avez besoin. Que vous ayez des questions techniques, des préoccupations pédagogiques ou simplement besoin de conseils, nous sommes là pour vous accompagner. Notre équipe de support est disponible pour répondre à vos demandes et vous guider dans l'utilisation de la plateforme. Nous voulons que vous vous sentiez soutenu(e) et confiant(e) dans votre rôle de professeur(e) sur Proceos.
+            </p>
+            <p class="mt-3">
+                En plus de notre assistance technique, nous offrons également des ressources pédagogiques pour vous aider à améliorer vos cours et à maximiser l'engagement de vos étudiants. Nous mettons à votre disposition des guides, des tutoriels et des bonnes pratiques pour créer des cours interactifs et captivants. Vous pouvez également échanger avec d'autres professeurs sur notre plateforme, partager vos expériences et bénéficier de conseils précieux. Notre communauté éducative est une source d'inspiration et de soutien mutuel pour enrichir votre pratique pédagogique.
+            </p>
+            <p class="mt-3">
+                Enfin, nous organisons régulièrement des formations et des webinaires pour vous tenir informé(e) des dernières avancées en matière d'éducation en ligne et vous donner des conseils pour optimiser votre enseignement sur Proceos. Ces sessions de formation vous permettent d'explorer de nouvelles fonctionnalités, de découvrir des stratégies pédagogiques innovantes et d'échanger avec d'autres professionnels de l'éducation. Nous nous engageons à vous offrir les ressources et le soutien nécessaires pour exceller en tant que professeur(e) sur Proceos.
+            </p>
+            <p class="mt-3">
+                Chez Proceos, votre réussite en tant que professeur(e) est notre priorité. N'hésitez pas à nous contacter, à explorer nos ressources pédagogiques et à participer à nos formations pour bénéficier d'un soutien complet. Ensemble, nous pouvons créer une expérience d'apprentissage exceptionnelle pour vos étudiants.
+            </p>
+        </div>
     </div>
-</div>
 {% endblock %}

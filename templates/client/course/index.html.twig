@@ -2,7 +2,18 @@
 
 {% block content %}
     <div class="container">
-        <h2>{{ course.module.label }} - {{ course.title }}</h2>
+        <div class="row mt-4 mb-4">
+            <div class="col-12 col-lg-9">
+                <h3>{{ course.module.label }} - {{ course.title }}</h3>
+            </div>
+            {% if is_granted('ROLE_INTERVENANT') %}
+                <div class="col-12 col-lg-3">
+                    <a class="quizzBtn" href="{{ path("app_client_course_edit", {id: course.id}) }}">
+                        Modifier le cours
+                    </a>
+                </div>
+            {% endif %}
+        </div>
         <hr/>
         <h6>Cours crée le : {{ course.createdAt | date('d-m-Y') }}</h6>
         <hr/>
@@ -21,7 +32,7 @@
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active bg-proceos-2" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
                     <div style="padding: 15px 10px;">
-                        <p>{{ course.content }}</p>
+                        <p>{{ course.content | raw }}</p>
                     </div>
                 </div>
                 <div class="tab-pane fade bg-proceos-2" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">

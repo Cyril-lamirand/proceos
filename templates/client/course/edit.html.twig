@@ -1,0 +1,10 @@
+{% extends 'client/base-client.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Modification du cours : {{ course.id }} - {{ course.title }}</h2>
+        <h6>Module de référence : {{ course.module.label }}</h6>
+        <hr/>
+        {{ form(form) }}
+    </div>
+{% endblock %}

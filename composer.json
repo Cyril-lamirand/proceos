@@ -13,6 +13,7 @@
     "doctrine/doctrine-fixtures-bundle": "^3.4",
     "doctrine/doctrine-migrations-bundle": "^3.1",
     "doctrine/orm": "^2.10",
+    "friendsofsymfony/ckeditor-bundle": "^2.4",
     "nelmio/cors-bundle": "^2.1",
     "phpdocumentor/reflection-docblock": "^5.3",
     "sensio/framework-extra-bundle": "^6.2",
@@ -68,7 +69,8 @@
   "scripts": {
     "auto-scripts": {
       "cache:clear": "symfony-cmd",
-      "assets:install %PUBLIC_DIR%": "symfony-cmd"
+      "assets:install %PUBLIC_DIR%": "symfony-cmd",
+      "ckeditor:install": "symfony-cmd"
     },
     "warmup": [
       "php bin/console cache:pool:clear cache.global_clearer"
