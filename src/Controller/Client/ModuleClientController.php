@@ -4,15 +4,23 @@ namespace App\Controller\Client;
 
 use App\Entity\Module;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ModuleClientController extends AbstractController
 {
     #[Route('/module/{id}', name: 'app_client_module_show', methods: ['GET'])]
-    public function show(Module $module): Response
+    public function show(Module $module): Response|RedirectResponse
     {
-        return $this->render('client/module/index.html.twig', compact('module'));
+        foreach ($module->getStudentLevels() as $level){
+            if ($level->getUser()->getId() == $this->getUser()->getId()){
+                return $this->render('client/module/index.html.twig', compact('module', 'level'));
+
+            }
+        }
+
+        return $this->redirectToRoute('dashboard');
     }
 
     #[Route(
